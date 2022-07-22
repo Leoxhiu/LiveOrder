@@ -14,14 +14,14 @@ class SupplierDA
 	public:
 
 		SupplierDA() {};
-
 		// public functions here
+		LinkedList<Supplier>* importSupplier(); // Import supplier data to LinkedList
 
 
 
 	private:
 		// private functions (connect to database)
-		void importFrom(string filepath, LinkedList<Supplier>* supplier); // Import supplier from database
+		void importFrom(LinkedList<Supplier>* supplier); // Import supplier from database
 
 };
 

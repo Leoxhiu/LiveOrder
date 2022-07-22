@@ -20,7 +20,6 @@ ReportGeneration::ReportGeneration(int accountType) {
 	{
 
 		executiveInterface(accountType);
-
 	}
 
 }

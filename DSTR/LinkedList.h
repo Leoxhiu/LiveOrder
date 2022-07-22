@@ -17,7 +17,7 @@ public:
     void append(T newData);
     void appendAfter(int i, T newData);
     int getLength();
-    T* get(int i);
+    T* linearSearch(int i);
 
 public:
     int length;
@@ -87,7 +87,7 @@ inline int LinkedList<T>::getLength()
 }
 
 template<class T>
-inline T* LinkedList<T>::get(int i)
+inline T* LinkedList<T>::linearSearch(int i)
 {
     if (i >= this->length)
     {

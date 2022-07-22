@@ -19,6 +19,6 @@ class ItemDA
 
 	private:
 		// private functions (connect to database)
-		void importFrom(string filepath, LinkedList<Item>* items);
+		//void importFrom(LinkedList<Item>* items);
 };
 

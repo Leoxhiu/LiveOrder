@@ -30,9 +30,9 @@ UserDA::validate UserDA::userValidation(string email, string password, LinkedLis
 	UserDA::validate result = UserDA::validate::NotFound;
 	for (int i = 0; i < users->length; i++)
 	{
-		if (email == users->get(i)->email) {
+		if (email == users->linearSearch(i)->email) {
 			result = UserDA::validate::IncorrectPassword;
-			if (password == users->get(i)->password) {
+			if (password == users->linearSearch(i)->password) {
 				result = UserDA::validate::Successful;
 
 			}
@@ -46,7 +46,7 @@ UserDA::find UserDA::findUserByEmail(string email, LinkedList<User>* users) {
 	UserDA::find result = UserDA::find::NotFound;
 	for (int i = 0; i < users->length; i++)
 	{
-		if (email == users->get(i)->email) {
+		if (email == users->linearSearch(i)->email) {
 			result = UserDA::find::Found;
 			}
 		
@@ -59,13 +59,13 @@ User UserDA::getUserByEmail(string email, LinkedList<User>* users) {
 	User user;
 	for (int i = 0; i < users->length ; i++)
 	{
-		if (email == users->get(i)->email) {
+		if (email == users->linearSearch(i)->email) {
 			
-			user.id = users->get(i)->id;
-			user.email = users->get(i)->email;
-			user.password = users->get(i)->password;
-			user.phoneNumber = users->get(i)->phoneNumber;
-			user.type = users->get(i)->type;
+			user.id = users->linearSearch(i)->id;
+			user.email = users->linearSearch(i)->email;
+			user.password = users->linearSearch(i)->password;
+			user.phoneNumber = users->linearSearch(i)->phoneNumber;
+			user.type = users->linearSearch(i)->type;
 
 		}
 	}
@@ -75,10 +75,8 @@ User UserDA::getUserByEmail(string email, LinkedList<User>* users) {
 
 void UserDA::displayList(LinkedList<User>* users) {
 
-	LinkedList<User>* temp_users = users;
-
-	for (int i = 0; i < temp_users->length; i++) {
-		User* user = temp_users->get(i);
+	for (int i = 0; i < users->length; i++) {
+		User* user = users->linearSearch(i);
 		printElement(user->id, 4);
 		printElement(user->email, 25);
 		printElement(user->password, 20);
@@ -86,7 +84,6 @@ void UserDA::displayList(LinkedList<User>* users) {
 		printElement(user->phoneNumber, 20);
 		cout << endl;
 	}
-	users = temp_users;
 }
 
 
@@ -129,12 +126,12 @@ void UserDA::exportTo(LinkedList<User>* users) {
 
 		for (int i = 0; i < users->length; i++)
 		{
-			file << users->get(i)->id << "," <<
-				users->get(i)->email << "," <<
-				users->get(i)->password << "," <<
-				users->get(i)->name << "," <<
-				users->get(i)->phoneNumber << "," <<
-				users->get(i)->type << endl;
+			file << users->linearSearch(i)->id << "," <<
+				users->linearSearch(i)->email << "," <<
+				users->linearSearch(i)->password << "," <<
+				users->linearSearch(i)->name << "," <<
+				users->linearSearch(i)->phoneNumber << "," <<
+				users->linearSearch(i)->type << endl;
 		}
 
 	}
