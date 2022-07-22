@@ -1,5 +1,5 @@
 # POS System
-This is a POS system created for assignment purpose. Completely based on C++
+This is a POS system created for assignment purpose. Based on C++
 
 
 #### Data structures:
