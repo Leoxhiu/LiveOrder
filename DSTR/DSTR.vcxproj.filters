@@ -42,9 +42,6 @@
     <ClCompile Include="OrderDA.cpp">
       <Filter>Source Files\DA</Filter>
     </ClCompile>
-    <ClCompile Include="ItermDA.cpp">
-      <Filter>Source Files\DA</Filter>
-    </ClCompile>
     <ClCompile Include="Homepage.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -69,6 +66,9 @@
     <ClCompile Include="OrderManagement.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="ItemDA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserDA.h">
@@ -84,9 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OrderDA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ItermDA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Login.h">
@@ -123,6 +120,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OrderManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemDA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

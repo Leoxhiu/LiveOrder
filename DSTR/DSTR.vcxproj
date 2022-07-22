@@ -130,7 +130,7 @@
     <ClCompile Include="ExecutiveRegistration.cpp" />
     <ClCompile Include="Homepage.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="ItermDA.cpp" />
+    <ClCompile Include="ItemDA.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -147,9 +147,9 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="ExecutiveRegistration.h" />
     <ClInclude Include="Homepage.h" />
+    <ClInclude Include="ItemDA.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItermDA.h" />
     <ClInclude Include="LinearSearch.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MainMenu.h" />
