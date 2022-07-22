@@ -14,9 +14,10 @@ class SupplierDA
 	public:
 
 		SupplierDA() {};
+
 		// public functions here
 		LinkedList<Supplier>* importSupplier(); // Import supplier data to LinkedList
-
+		void displayList(LinkedList<Supplier>* suppliers);
 
 
 	private:
