@@ -1,0 +1,11 @@
+1,hiuwenxuan@gmail.com,123,leox,0111062961,0
+2,chan@gmail.com,123,chan,0197639354,0
+3,jinnhou@gmail.com,123,jinn,0169078964,0
+4,aaa@gmail.com,123,adminaaa,0164242646,0
+5,bbb@gmail.com,123,bbbadmin,0123816617,0
+6,ali123@gmail.com,123,ali,0168889999,1
+7,sarah05@gmail.com,456,sarah,0141234567,1
+8,paul1993@gmail.com,paul1993,paul,0168783368,1
+9,ben01@gmail.com,ben1234,ben lim,0164567891,1
+10,jinn03@gmail.com,jinn123,chon jinn hou,0113334444,1
+11,leoxhiu@gmail.com,123,leoxhiu,01110729611,1
