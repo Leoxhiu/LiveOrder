@@ -8,4 +8,3 @@
 8,paul1993@gmail.com,paul1993,paul,0168783368,1
 9,ben01@gmail.com,ben1234,ben lim,0164567891,1
 10,jinn03@gmail.com,jinn123,chon jinn hou,0113334444,1
-11,leoxhiu@gmail.com,123,leoxhiu,01110729611,1

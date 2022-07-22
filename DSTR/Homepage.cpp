@@ -12,7 +12,7 @@ Homepage::Homepage() {
 void Homepage::Initialise(){
     cout << "============================" << endl;
     cout << "    LiveOrder PO system     " << endl;
-    cout << "============================\n" << endl;
+    cout << "============================" << endl;
     cout << "Welcome, " << endl <<
         endl <<
         "1. Login" << endl <<

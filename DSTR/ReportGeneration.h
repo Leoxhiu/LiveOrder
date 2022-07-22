@@ -1,14 +1,14 @@
 #pragma once
-#include <iostream>
 
 using namespace std;
 
-class MainMenu
+class ReportGeneration
 {
 	public:
-		MainMenu(int accountType); // 0 = admin, 1 = executive
-	
+		ReportGeneration(int accountType);  // 0 = admin, 1 = executive
+
 		void adminInterface(int accountType);
 		void executiveInterface(int accountType);
+
 };
 

@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <iomanip>
 
 #include "User.h"
 #include "UserDA.h"
@@ -12,17 +11,17 @@
 
 using namespace std;
 
-
+// public functions here
 LinkedList<User>* UserDA::importUser() {
 	LinkedList<User>* users = new LinkedList<User>();
-	importFrom("user.txt", users);
+	importFrom(users);
 	return users;
 }
 
 LinkedList<User>* UserDA::registerUser(User user) {
 	LinkedList<User>* users = importUser();
 	users->append(user);
-	exportTo("user.txt", users);
+	exportTo(users);
 
 	return users;
 }
@@ -74,8 +73,6 @@ User UserDA::getUserByEmail(string email, LinkedList<User>* users) {
 	return user;
 }
 
-
-
 void UserDA::displayList(LinkedList<User>* users) {
 
 	LinkedList<User>* temp_users = users;
@@ -92,9 +89,11 @@ void UserDA::displayList(LinkedList<User>* users) {
 	users = temp_users;
 }
 
-void UserDA::importFrom(string filepath, LinkedList<User>* users) {
 
-	ifstream file(filepath); // read database (relative path)
+// private functions (connect to database)
+void UserDA::importFrom(LinkedList<User>* users) {
+
+	ifstream file(this->filepath); // read database (relative path)
 	if (file.is_open()) {
 
 		string id, email, password, name, phoneNumber, type;
@@ -123,9 +122,9 @@ void UserDA::importFrom(string filepath, LinkedList<User>* users) {
 
 }
 
-void UserDA::exportTo(string filepath, LinkedList<User>* users) {
+void UserDA::exportTo(LinkedList<User>* users) {
 
-	fstream file(filepath);
+	fstream file(this->filepath);
 	if (file.is_open()) {
 
 		for (int i = 0; i < users->length; i++)

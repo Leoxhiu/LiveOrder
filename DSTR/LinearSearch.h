@@ -12,7 +12,7 @@ using namespace std;
 template <class T>
 T LinearSearch(T arr[], int length, T x) {
 
-	for (int i = 0; i < n; ++i) {
+	for (int i = 0; i < length; ++i) {
 
 		if (arr[i] == x)
 			return i;
