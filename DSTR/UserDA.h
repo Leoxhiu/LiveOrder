@@ -18,10 +18,10 @@ class UserDA
 
 		// public functions here
 
-		LinkedList<User>* importUser(); // Import user data to LinkedList
-		LinkedList<User>* registerUser(User user); // Put in LinkedList then store into database
+		LinkedList<User>* importUser(); // Import user data to linked list
+		LinkedList<User>* registerUser(User user); // Put in linked list then store into database
 
-		void displayList(LinkedList<User>* users); // Display LinkedList as table form
+		void displayList(LinkedList<User>* users); // Display linked list as table form
 
 		User getUserByEmail(string email, LinkedList<User>* users); // Get full details of user by email
 

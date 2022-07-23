@@ -15,12 +15,13 @@ class OrderDA
 		OrderDA() {};
 
 		// public functions here
+		LinkedList<Order>* importOrder(); // Import order data to linked list
 
-
+		void displayList(LinkedList<Order>* orders);
 
 	private:
 		// private functions (connect to database)
-		void importFrom(string filepath, LinkedList<Order>* orders); // Import user from database
-		void exportTo(string filepath, LinkedList<Order>* orders); // Export user to database
+		void importFrom(LinkedList<Order>* orders); // Import order from database
+		void exportTo(LinkedList<Order>* orders); // Export order to database
 };
 

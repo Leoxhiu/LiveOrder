@@ -7,5 +7,3 @@ int main()
 	Homepage Homepage;
 
 }
-
-
