@@ -23,6 +23,6 @@ class SupplierDA
 	private:
 		// private functions (connect to database)
 		void importFrom(LinkedList<Supplier>* supplier); // Import supplier from database
-
+		void exportTo(LinkedList<Supplier>* suppliers); // Export supplier to database
 };
 

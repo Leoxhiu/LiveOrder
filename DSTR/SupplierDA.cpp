@@ -22,12 +22,13 @@ void SupplierDA::displayList(LinkedList<Supplier>* suppliers) {
 
 	for (int i = 0; i < suppliers->length; i++) {
 		Supplier* supplier = suppliers->linearSearch(i);
-		printElement(supplier->id, 4);
+		printElement(supplier->id, 10);
 		printElement(supplier->name, 20);
 		printElement(supplier->phoneNumber, 20);
 		printElement(supplier->email, 25);
 		cout << endl;
 	}
+
 }
 
 // private functions (connect to database)
@@ -56,6 +57,26 @@ void SupplierDA::importFrom(LinkedList<Supplier>* suppliers) {
 	else {
 
 		cout << "Unable to access database.";
+	}
+
+}
+
+void SupplierDA::exportTo(LinkedList<Supplier>* suppliers) {
+
+	fstream file(this->filepath);
+	if (file.is_open()) {
+
+		for (int i = 0; i < suppliers->length; i++)
+		{
+			file << suppliers->linearSearch(i)->id << "," <<
+				suppliers->linearSearch(i)->name << "," <<
+				suppliers->linearSearch(i)->phoneNumber << "," <<
+				suppliers->linearSearch(i)->email << endl;
+		}
+
+	}
+	else {
+		cout << "File not open";
 	}
 
 }

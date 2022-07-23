@@ -21,15 +21,16 @@ void OrderDA::displayList(LinkedList<Order>* orders) {
 
 	for (int i = 0; i < orders->length; i++) {
 		Order* order = orders->linearSearch(i);
-		printElement(order->id, 4);
-		printElement(order->itemID, 25);
-		printElement(order->quantity, 20);
+		printElement(order->id, 10);
+		printElement(order->itemID, 10);
+		printElement(order->quantity, 10);
 		printElement(order->date, 20);
-		printElement(order->supplierID, 20);
-		printElement(order->status, 20);
-		printElement(order->isCompleted, 20);
+		printElement(order->supplierID, 10);
+		printElement(order->status, 15);
+		printElement(order->isCompleted, 4);
 		cout << endl;
 	}
+
 }
 
 // private functions (connect to database)
@@ -71,6 +72,24 @@ void OrderDA::importFrom(LinkedList<Order>* orders) {
 
 void OrderDA::exportTo(LinkedList<Order>* orders) {
 
+	fstream file(this->filepath);
+	if (file.is_open()) {
+
+		for (int i = 0; i < orders->length; i++)
+		{
+			file << orders->linearSearch(i)->id << "," <<
+				orders->linearSearch(i)->itemID << "," <<
+				orders->linearSearch(i)->quantity << "," <<
+				orders->linearSearch(i)->date << "," <<
+				orders->linearSearch(i)->supplierID << "," <<
+				orders->linearSearch(i)->status << "," <<
+				orders->linearSearch(i)->isCompleted << endl;
+		}
+
+	}
+	else {
+		cout << "File not open";
+	}
 
 
 }
