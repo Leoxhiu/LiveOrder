@@ -8,7 +8,6 @@
 #include "UserDA.h"
 #include "LinkedList.h"
 #include "Table.h"
-#include "Array.h"
 
 using namespace std;
 
@@ -28,7 +27,7 @@ UserDA::validate UserDA::userValidation(string email, string password) {
 	LinkedList<User>* userData = getUserData();
 	UserDA::validate result = UserDA::validate::NotFound;
 
-	for (int i = 0; i < userData->length; i++)
+	for (int i = 0; i < userData->getLength(); i++)
 	{
 		if (email == userData->linearSearch(i)->email) {
 			result = UserDA::validate::IncorrectPassword;
@@ -45,7 +44,7 @@ UserDA::find UserDA::findUserByEmail(string email) {
 	LinkedList<User>* userData = getUserData();
 	UserDA::find result = UserDA::find::NotFound;
 
-	for (int i = 0; i < userData->length; i++)
+	for (int i = 0; i < userData->getLength(); i++)
 	{
 		if (email == userData->linearSearch(i)->email) {
 			result = UserDA::find::Found;
@@ -60,7 +59,7 @@ User UserDA::getUserByEmail(string email) {
 	User user;
 	LinkedList<User>* users = getUserData();
 
-	for (int i = 0; i < users->length; i++)
+	for (int i = 0; i < users->getLength(); i++)
 	{
 		if (email == users->linearSearch(i)->email) {
 
@@ -81,7 +80,7 @@ void UserDA::displayList() {
 
 	LinkedList<User>* users = getUserData();
 
-	for (int i = 0; i < users->length; i++) {
+	for (int i = 0; i < users->getLength(); i++) {
 		User* user = users->linearSearch(i);
 		printElement(user->id, 4);
 		printElement(user->email, 25);
@@ -149,7 +148,7 @@ void UserDA::exportToDatabase() {
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < userData->length; i++)
+		for (int i = 0; i < userData->getLength(); i++)
 		{
 			file << userData->linearSearch(i)->id << "," <<
 				userData->linearSearch(i)->email << "," <<

@@ -27,7 +27,7 @@ void ItemDA::displayList() {
 
     LinkedList<Item>* orderData = getItemData();
 
-    for (int i = 0; i < orderData->length; i++) {
+    for (int i = 0; i < orderData->getLength(); i++) {
         Item* item = orderData->linearSearch(i);
         printElement(item->id, 10);
         printElement(item->name, 50);
@@ -92,7 +92,7 @@ void ItemDA::exportToDatabase() {
     fstream file(this->filepath);
     if (file.is_open()) {
 
-        for (int i = 0; i < itemData->length; i++)
+        for (int i = 0; i < itemData->getLength(); i++)
         {
             file << itemData->linearSearch(i)->id << "," <<
                 itemData->linearSearch(i)->name << "," <<

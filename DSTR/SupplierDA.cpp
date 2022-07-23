@@ -27,7 +27,7 @@ void SupplierDA::displayList() {
 
 	LinkedList<Supplier>* supplierData = getSupplierData();
 
-	for (int i = 0; i < supplierData->length; i++) {
+	for (int i = 0; i < supplierData->getLength(); i++) {
 		Supplier* supplier = supplierData->linearSearch(i);
 		printElement(supplier->id, 10);
 		printElement(supplier->name, 20);
@@ -91,7 +91,7 @@ void SupplierDA::exportToDatabase() {
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < supplierData->length; i++)
+		for (int i = 0; i < supplierData->getLength(); i++)
 		{
 			file << supplierData->linearSearch(i)->id << "," <<
 				supplierData->linearSearch(i)->name << "," <<

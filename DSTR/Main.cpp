@@ -12,7 +12,7 @@
 
 #include "User.h"
 #include "UserDA.h"
-
+#include "DynamicArray.h"
 
 using namespace std;
 
@@ -42,10 +42,10 @@ void Initialization() {
 
 int main()
 {
-	// uncomment this and delete other lines to launch the actual system
 	Initialization();
+
+	//// uncomment this to launch the actual system
 	Homepage Homepage;
-	
-	
+
 }
 

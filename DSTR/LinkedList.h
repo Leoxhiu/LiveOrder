@@ -12,19 +12,17 @@ template <class T> class LinkedList
 {
 private:
     Node<T>* head;
-
-public:
-    void append(T newData);
-    void appendAfter(int i, T newData);
-    int getLength();
-    T* linearSearch(int i);
-
-public:
     int length;
 
 public:
     LinkedList();
     ~LinkedList();
+
+    void append(T newData);
+    void appendAfter(int index, T newData);
+    int getLength();
+    T* linearSearch(int index);
+
 };
 
 template<class T>
@@ -50,9 +48,9 @@ inline void LinkedList<T>::append(T newData)
 }
 
 template<class T>
-inline void LinkedList<T>::appendAfter(int i, T newData)
+inline void LinkedList<T>::appendAfter(int index, T newData)
 {
-    if (i >= this->length)return;
+    if (index >= this->length)return;
     if (!this->head) return;
     Node<T>* newNode = new Node<T>();
     Node<T>* last = this->head;
@@ -60,13 +58,13 @@ inline void LinkedList<T>::appendAfter(int i, T newData)
     newNode->data = newData;
     newNode->next = nullptr;
     int currIndex = 0;
-    if (i == 0) {
+    if (index == 0) {
         lastNext = last->next;
         this->head->next = newNode;
         newNode->next = lastNext;
     }
     else {
-        while (i != currIndex && last->next) {
+        while (index != currIndex && last->next) {
             last = last->next;
             if (last) {
                 lastNext = last->next;
@@ -87,19 +85,19 @@ inline int LinkedList<T>::getLength()
 }
 
 template<class T>
-inline T* LinkedList<T>::linearSearch(int i)
+inline T* LinkedList<T>::linearSearch(int index)
 {
-    if (i >= this->length)
+    if (index >= this->length)
     {
         return nullptr;
     }
     Node<T>* last = this->head;
     int currIndex = 0;
-    if (i == 0) {
+    if (index == 0) {
         return &this->head->data;
     }
     else {
-        while (i != currIndex && last->next) {
+        while (index != currIndex && last->next) {
             last = last->next;
             currIndex++;
         }

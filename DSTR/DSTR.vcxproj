@@ -127,11 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
     <ClCompile Include="BinarySearch.cpp" />
     <ClCompile Include="BubbleSort.cpp" />
+    <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="ExecutiveRegistration.cpp" />
-    <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Homepage.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDA.cpp" />
@@ -158,11 +157,10 @@
     <ClCompile Include="UserDA.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
     <ClInclude Include="BinarySearch.h" />
     <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="ExecutiveRegistration.h" />
-    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Homepage.h" />
     <ClInclude Include="ItemReport.h" />
     <ClInclude Include="Login.h" />
