@@ -13,7 +13,7 @@ Login::Login() {
 
 	cout << "============================" << endl;
 	cout << "           Login		     " << endl;
-	cout << "============================\n" << endl;
+	cout << "============================" << endl;
 
 	cout << "Email address: ";
 	cin >> email;

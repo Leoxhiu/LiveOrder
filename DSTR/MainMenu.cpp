@@ -6,6 +6,7 @@
 #include "Homepage.h"
 #include "ExecutiveRegistration.h"
 #include "OrderManagement.h";
+#include "ReportGeneration.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ void MainMenu::adminInterface(int accountType) { // 0 = admin, 1 = executive
 
 	cout << "============================" << endl;
 	cout << "       Admin Interface		 " << endl;
-	cout << "============================\n" << endl;
+	cout << "============================" << endl;
 	cout << "What are you going to do next?" << endl <<
 		endl <<
 		"1. Executive Registration" << endl <<
@@ -54,8 +55,8 @@ void MainMenu::adminInterface(int accountType) { // 0 = admin, 1 = executive
 		break;
 	}
 	case 3: {
-		//Screen::clearScreen();
-		//Report Generation page
+		Screen::clearScreen();
+		ReportGeneration ReportGeneration(accountType);
 		break;
 	}
 	case 4: {
@@ -80,7 +81,7 @@ void MainMenu::executiveInterface(int accountType) { // 0 = admin, 1 = executive
 
 	cout << "============================" << endl;
 	cout << "     Executive Interface	 " << endl;
-	cout << "============================\n" << endl;
+	cout << "============================" << endl;
 	cout << "What are you going to do next?" << endl <<
 		endl <<
 		"1. Order Management" << endl <<
@@ -100,8 +101,8 @@ void MainMenu::executiveInterface(int accountType) { // 0 = admin, 1 = executive
 		break;
 	}
 	case 2: {
-		//Screen::clearScreen();
-		//Report Generation page
+		Screen::clearScreen();
+		ReportGeneration ReportGeneration(accountType);
 		break;
 	}
 	case 3: {
@@ -110,7 +111,9 @@ void MainMenu::executiveInterface(int accountType) { // 0 = admin, 1 = executive
 		break;
 	}
 	default: {
-		cout << "Invalid option!" << endl;
+		cout << "\n-----------------------------" << endl;
+		cout << "    Invalid option!            " << endl;
+		cout << "-----------------------------" << endl;
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
 		MainMenu MainMenu(accountType);

@@ -16,7 +16,6 @@ private:
 public:
     void append(T newData);
     void appendAfter(int i, T newData);
-    //bool* search(T data);
     int getLength();
     T* get(int i);
 
@@ -80,21 +79,6 @@ inline void LinkedList<T>::appendAfter(int i, T newData)
     this->length++;
 
 }
-
-//template<class T>
-//inline bool* LinkedList<T>::search(T data)
-//{
-//    Node<T>* last = this->head;
-//    while (last != NULL)
-//    {
-//        if (last->data == data)
-//        {
-//            return true;
-//        }
-//        last = last->next;
-//    }
-//    return false;
-//}
 
 template<class T>
 inline int LinkedList<T>::getLength()
