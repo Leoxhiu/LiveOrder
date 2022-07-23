@@ -4,6 +4,7 @@
 #include "PurchaseReport.h"
 #include "Screen.h"
 #include "ReportGeneration.h"
+#include "MonthlyPurchaseReport.h"
 
 
 using namespace std;
@@ -48,7 +49,7 @@ void PurchaseReport::adminInterface(int accountType) { // 0 = admin, 1 = executi
 	}
 	case 2: {
 		Screen::clearScreen();
-		// generate monthly purchase report
+		MonthlyPurchaseReport MonthlyPurchaseReport(accountType);
 		break;
 	}
 	case 3: {
@@ -88,7 +89,7 @@ void PurchaseReport::executiveInterface(int accountType) { // 0 = admin, 1 = exe
 	switch (option) {
 	case 1: {
 		Screen::clearScreen();
-		// generate monthly purchase report
+		MonthlyPurchaseReport MonthlyPurchaseReport(accountType);
 		break;
 	}
 	case 3: {

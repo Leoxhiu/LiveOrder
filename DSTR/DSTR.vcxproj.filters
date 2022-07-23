@@ -102,6 +102,15 @@
     <ClCompile Include="PurchaseReport.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="MonthlyPurchaseReport.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="HashTable.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Storage.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserDA.h">
@@ -180,6 +189,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ItemReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MonthlyPurchaseReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

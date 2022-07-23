@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 
+#include "Storage.h"
 #include "User.h"
 #include "UserDA.h"
 #include "LinkedList.h"
@@ -12,27 +13,26 @@
 using namespace std;
 
 // public functions here
-LinkedList<User>* UserDA::importUser() {
-	LinkedList<User>* users = new LinkedList<User>();
-	importFrom(users);
-	return users;
+LinkedList<User>* UserDA::getUserData() {
+	Storage<LinkedList<User>*>* userData = userData->getInstance(); // find the linked list from storage
+	return userData->getData();
 }
 
-LinkedList<User>* UserDA::registerUser(User user) {
-	LinkedList<User>* users = importUser();
-	users->append(user);
-	exportTo(users);
-
-	return users;
+void UserDA::addUser(User user) {
+	LinkedList<User>* userData = getUserData();
+	userData->append(user);
+	//exportToDatabase();
 }
 
-UserDA::validate UserDA::userValidation(string email, string password, LinkedList<User>* users) {
+UserDA::validate UserDA::userValidation(string email, string password) {
+	LinkedList<User>* userData = getUserData();
 	UserDA::validate result = UserDA::validate::NotFound;
-	for (int i = 0; i < users->length; i++)
+
+	for (int i = 0; i < userData->length; i++)
 	{
-		if (email == users->get(i)->email) {
+		if (email == userData->linearSearch(i)->email) {
 			result = UserDA::validate::IncorrectPassword;
-			if (password == users->get(i)->password) {
+			if (password == userData->linearSearch(i)->password) {
 				result = UserDA::validate::Successful;
 
 			}
@@ -41,12 +41,13 @@ UserDA::validate UserDA::userValidation(string email, string password, LinkedLis
 	return result;
 }
 
-UserDA::find UserDA::findUserByEmail(string email, LinkedList<User>* users) {
-
+UserDA::find UserDA::findUserByEmail(string email) {
+	LinkedList<User>* userData = getUserData();
 	UserDA::find result = UserDA::find::NotFound;
-	for (int i = 0; i < users->length; i++)
+
+	for (int i = 0; i < userData->length; i++)
 	{
-		if (email == users->get(i)->email) {
+		if (email == userData->linearSearch(i)->email) {
 			result = UserDA::find::Found;
 			}
 		
@@ -54,18 +55,21 @@ UserDA::find UserDA::findUserByEmail(string email, LinkedList<User>* users) {
 	return result;
 }
 
-User UserDA::getUserByEmail(string email, LinkedList<User>* users) {
+User UserDA::getUserByEmail(string email) {
 
 	User user;
-	for (int i = 0; i < users->length ; i++)
+	LinkedList<User>* users = getUserData();
+
+	for (int i = 0; i < users->length; i++)
 	{
-		if (email == users->get(i)->email) {
-			
-			user.id = users->get(i)->id;
-			user.email = users->get(i)->email;
-			user.password = users->get(i)->password;
-			user.phoneNumber = users->get(i)->phoneNumber;
-			user.type = users->get(i)->type;
+		if (email == users->linearSearch(i)->email) {
+
+			user.id = users->linearSearch(i)->id;
+			user.email = users->linearSearch(i)->email;
+			user.password = users->linearSearch(i)->password;
+			user.name = users->linearSearch(i)->name;
+			user.phoneNumber = users->linearSearch(i)->phoneNumber;
+			user.type = users->linearSearch(i)->type;
 
 		}
 	}
@@ -73,25 +77,39 @@ User UserDA::getUserByEmail(string email, LinkedList<User>* users) {
 	return user;
 }
 
-void UserDA::displayList(LinkedList<User>* users) {
+void UserDA::displayList() {
 
-	LinkedList<User>* temp_users = users;
+	LinkedList<User>* users = getUserData();
 
-	for (int i = 0; i < temp_users->length; i++) {
-		User* user = temp_users->get(i);
+	for (int i = 0; i < users->length; i++) {
+		User* user = users->linearSearch(i);
 		printElement(user->id, 4);
 		printElement(user->email, 25);
 		printElement(user->password, 20);
 		printElement(user->name, 20);
-		printElement(user->phoneNumber, 20);
+		printElement(user->phoneNumber, 15);
+		printElement(user->type, 5);
 		cout << endl;
 	}
-	users = temp_users;
 }
 
 
-// private functions (connect to database)
-void UserDA::importFrom(LinkedList<User>* users) {
+
+
+void UserDA::importUser() {
+
+	// create new instance in storage
+	Storage<LinkedList<User>*>* userData = Storage<LinkedList<User>*>::getInstance();
+
+	// import user data into storage(linked list) from database 
+	userData->setData(importFromDatabase());
+
+}
+
+// private functions here
+LinkedList<User>* UserDA::importFromDatabase() {
+
+	LinkedList<User>* userData = new LinkedList<User>();
 
 	ifstream file(this->filepath); // read database (relative path)
 	if (file.is_open()) {
@@ -111,7 +129,7 @@ void UserDA::importFrom(LinkedList<User>* users) {
 			getline(ss, type, ',');
 
 			User user(stoi(id), email, password, name, phoneNumber, stoi(type));
-			users->append(user);
+			userData->append(user);
 		}
 
 	}
@@ -120,26 +138,30 @@ void UserDA::importFrom(LinkedList<User>* users) {
 		cout << "Unable to access database.";
 	}
 
+	return userData;
+
 }
 
-void UserDA::exportTo(LinkedList<User>* users) {
+void UserDA::exportToDatabase() {
+
+	LinkedList<User>* userData = getUserData();
 
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < users->length; i++)
+		for (int i = 0; i < userData->length; i++)
 		{
-			file << users->get(i)->id << "," <<
-				users->get(i)->email << "," <<
-				users->get(i)->password << "," <<
-				users->get(i)->name << "," <<
-				users->get(i)->phoneNumber << "," <<
-				users->get(i)->type << endl;
+			file << userData->linearSearch(i)->id << "," <<
+				userData->linearSearch(i)->email << "," <<
+				userData->linearSearch(i)->password << "," <<
+				userData->linearSearch(i)->name << "," <<
+				userData->linearSearch(i)->phoneNumber << "," <<
+				userData->linearSearch(i)->type << endl;
 		}
 
 	}
 	else {
-		cout << "File not open";
+		cout << "Unable to access database.";
 	}
 
 }

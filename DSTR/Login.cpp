@@ -26,12 +26,12 @@ Login::Login() {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	UserDA userDA;
-	UserDA::validate result = userDA.userValidation(email, password, userDA.importUser());
+	UserDA::validate result = userDA.userValidation(email, password);
 
 	if (result == UserDA::validate::Successful) {
 
 		// if email and password correct, identify user type (0 = admin, 1 = executive)
-		User user = userDA.getUserByEmail(email, userDA.importUser());
+		User user = userDA.getUserByEmail(email);
 		Screen::clearScreen();
 		MainMenu MainMenu(user.type);
 	}

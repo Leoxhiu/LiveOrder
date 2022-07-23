@@ -17,23 +17,23 @@ class UserDA
 
 
 		// public functions here
+		LinkedList<User>* getUserData(); // Return all users data
+		void addUser(User user); // Add in linked list
 
-		LinkedList<User>* importUser(); // Import user data to LinkedList
-		LinkedList<User>* registerUser(User user); // Put in LinkedList then store into database
+		void displayList(); // Display linked list as table form
 
-		void displayList(LinkedList<User>* users); // Display LinkedList as table form
+		validate userValidation(string email, string password); // For login validation
 
-		User getUserByEmail(string email, LinkedList<User>* users); // Get full details of user by email
-
-
-		validate userValidation(string email, string password, LinkedList<User>* users); // For login validation
-		find findUserByEmail(string email, LinkedList<User>* users); // To check unique email
+		User getUserByEmail(string email); // Get full details of user by email
+		find findUserByEmail(string email); // To check unique email
 	
+
+
+		void importUser(); // Import user data to linked list storage
 
 	private:
 
-		// private functions (connect to database)
-
-		void importFrom(LinkedList<User>* users); // Import user from database
-		void exportTo(LinkedList<User>* users); // Export user to database
+		// private functions here
+		LinkedList<User>* importFromDatabase(); // Import user from database into linked list
+		void exportToDatabase(); // Export user to database from linked list
 };

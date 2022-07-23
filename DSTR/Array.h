@@ -16,6 +16,7 @@ template <class T> class Array
 		T& get(int index);
 
 	public:
+		T* linearSearch(int i);
 		Array(int length);
 		~Array();
 		
@@ -55,6 +56,24 @@ T& Array<T>::get(int index)
 	return this->arr[index];
 }
 
+
+template<class T>
+inline T* Array<T>::linearSearch(int i)
+{
+	if (i >= this->length)
+	{
+		return NULL;
+	}
+	if (i == 0) {
+		return &this->arr[0];
+	}
+	else {
+		while (i < this->length) {
+			t++;
+		}
+		return &(this->arr[i]);
+	}
+}
 
 template<class T>
 Array<T>::Array(int length)

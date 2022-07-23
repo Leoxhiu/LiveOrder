@@ -16,7 +16,7 @@ ExecutiveRegistration::ExecutiveRegistration() {
 
 	string email, password, name, phoneNumber;
 
-	int id = userDA.importUser()->getLength() + 1;
+	int id = userDA.getUserData()->getLength() + 1;
 	const int type = 1;
 
 	cout << "============================" << endl;
@@ -61,7 +61,7 @@ ExecutiveRegistration::ExecutiveRegistration() {
 	if (inputValid) {
 		
 		User newExecutive(id, email, password, name, phoneNumber, type);
-		userDA.registerUser(newExecutive); // put in LinkedList and store into database
+		userDA.addUser(newExecutive); // put in linked list and store into database
 
 		cout << "\n-----------------------------" << endl;
 		cout << "   Registered successfully		" << endl;
@@ -76,7 +76,7 @@ ExecutiveRegistration::ExecutiveRegistration() {
 bool ExecutiveRegistration::emailExist(string email, UserDA userDA){
 
 	// exist? 
-	UserDA::find result = userDA.findUserByEmail(email, userDA.importUser());
+	UserDA::find result = userDA.findUserByEmail(email);
 
 	if (result == UserDA::find::Found) {
 		return true;
@@ -178,5 +178,3 @@ void ExecutiveRegistration::keepLaunch(string message) {
 	}
 
 }
-
-

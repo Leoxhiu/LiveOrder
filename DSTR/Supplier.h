@@ -13,6 +13,6 @@ public:
 
 
 	Supplier() {};
-	Supplier(int id, string email, string name, string phoneNumber)
-		: id(id), email(email), name(name), phoneNumber(phoneNumber) {};
+	Supplier(int id, string name, string phoneNumber, string email)
+		: id(id), email(email), phoneNumber(phoneNumber), name(name) {};
 };
