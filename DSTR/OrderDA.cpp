@@ -7,34 +7,57 @@
 #include "Order.h"
 #include "LinkedList.h"
 #include "Table.h"
+#include "Storage.h"
 
 using namespace std;
 
 // public functions here
-LinkedList<Order>* OrderDA::importOrder() {
-	LinkedList<Order>* orders = new LinkedList<Order>;
-	importFrom(orders);
-	return orders;
+LinkedList<Order>* OrderDA::getOrderData() {
+	Storage<LinkedList<Order>*>* orderData = orderData->getInstance(); // find the linked list from storage
+	return orderData->getData();
 }
 
-void OrderDA::displayList(LinkedList<Order>* orders) {
+void OrderDA::addOrder(Order order) {
+	LinkedList<Order>* orderData = getOrderData();
+	orderData->append(order);
+	//exportToDatabase();
+}
 
-	for (int i = 0; i < orders->length; i++) {
-		Order* order = orders->linearSearch(i);
-		printElement(order->id, 10);
-		printElement(order->itemID, 10);
-		printElement(order->quantity, 10);
-		printElement(order->date, 20);
-		printElement(order->supplierID, 10);
-		printElement(order->status, 15);
-		printElement(order->isCompleted, 4);
-		cout << endl;
-	}
+void OrderDA::displayList() {
+
+	LinkedList<Order>* orderData = getOrderData();
+
+    for (int i = 0; i < orderData->length; i++) {
+        Order* order = orderData->linearSearch(i);
+        printElement(order->id, 10);
+        printElement(order->itemID, 10);
+        printElement(order->quantity, 10);
+        printElement(order->date, 20);
+        printElement(order->supplierID, 10);
+        printElement(order->status, 15);
+        printElement(order->isCompleted, 4);
+        cout << endl;
+    }
 
 }
 
-// private functions (connect to database)
-void OrderDA::importFrom(LinkedList<Order>* orders) {
+
+
+
+void OrderDA::importOrder() {
+
+    // create new instance in storage
+    Storage<LinkedList<Order>*>* orderData = Storage<LinkedList<Order>*>::getInstance();
+
+    // import user data into storage(linked list) from database 
+    orderData->setData(importFromDatabase());
+
+}
+
+// private functions here
+LinkedList<Order>* OrderDA::importFromDatabase() {
+
+	LinkedList<Order>* orderData = new LinkedList<Order>();
 
 	ifstream file(this->filepath); // read database (relative path)
 	if (file.is_open()) {
@@ -44,22 +67,22 @@ void OrderDA::importFrom(LinkedList<Order>* orders) {
 
 		while (getline(file, line)) {
 
-			stringstream ss(line);
+            stringstream ss(line);
 
-			getline(ss, id, ',');
-			getline(ss, itemID, ',');
-			getline(ss, quantity, ',');
-			getline(ss, date, ',');
-			getline(ss, supplierID, ',');
-			getline(ss, status, ',');
-			getline(ss, isCompleted, ',');
+            getline(ss, id, ',');
+            getline(ss, itemID, ',');
+            getline(ss, quantity, ',');
+            getline(ss, date, ',');
+            getline(ss, supplierID, ',');
+            getline(ss, status, ',');
+            getline(ss, isCompleted, ',');
 
-			bool sta;
-			istringstream(isCompleted) >> sta;
+            bool sta;
+            istringstream(isCompleted) >> sta;
 
-			Order order(stoi(id), stoi(itemID), stoi(quantity),
-				date, stoi(supplierID), status, sta);
-			orders->append(order);
+            Order order(stoi(id), stoi(itemID), stoi(quantity),
+                date, stoi(supplierID), status, sta);
+            orderData->append(order);
 		}
 
 	}
@@ -68,28 +91,31 @@ void OrderDA::importFrom(LinkedList<Order>* orders) {
 		cout << "Unable to access database.";
 	}
 
+	return orderData;
+
 }
 
-void OrderDA::exportTo(LinkedList<Order>* orders) {
+void OrderDA::exportToDatabase() {
+
+	LinkedList<Order>* orderData = getOrderData();
 
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < orders->length; i++)
+		for (int i = 0; i < orderData->length; i++)
 		{
-			file << orders->linearSearch(i)->id << "," <<
-				orders->linearSearch(i)->itemID << "," <<
-				orders->linearSearch(i)->quantity << "," <<
-				orders->linearSearch(i)->date << "," <<
-				orders->linearSearch(i)->supplierID << "," <<
-				orders->linearSearch(i)->status << "," <<
-				orders->linearSearch(i)->isCompleted << endl;
+            file << orderData->linearSearch(i)->id << "," <<
+                orderData->linearSearch(i)->itemID << "," <<
+                orderData->linearSearch(i)->quantity << "," <<
+                orderData->linearSearch(i)->date << "," <<
+                orderData->linearSearch(i)->supplierID << "," <<
+                orderData->linearSearch(i)->status << "," <<
+                orderData->linearSearch(i)->isCompleted << endl;
 		}
 
 	}
 	else {
-		cout << "File not open";
+        cout << "Unable to access database.";
 	}
-
 
 }

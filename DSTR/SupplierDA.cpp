@@ -7,21 +7,28 @@
 #include "SupplierDA.h"
 #include "LinkedList.h"
 #include "Table.h"
+#include "Storage.h";
 
 using namespace std;
 
 // public functions here
-LinkedList<Supplier>* SupplierDA::importSupplier(){
-	LinkedList<Supplier>* suppliers = new LinkedList<Supplier>;
-	importFrom(suppliers);
-	return suppliers;
+LinkedList<Supplier>* SupplierDA::getSupplierData() {
+	Storage<LinkedList<Supplier>*>* supplierData = supplierData->getInstance(); // find the linked list from storage
+	return supplierData->getData();
 }
 
+void SupplierDA::addSupplier(Supplier supplier) {
+	LinkedList<Supplier>* supplierData = getSupplierData();
+	supplierData->append(supplier);
+	//exportToDatabase();
+}
 
-void SupplierDA::displayList(LinkedList<Supplier>* suppliers) {
+void SupplierDA::displayList() {
 
-	for (int i = 0; i < suppliers->length; i++) {
-		Supplier* supplier = suppliers->linearSearch(i);
+	LinkedList<Supplier>* supplierData = getSupplierData();
+
+	for (int i = 0; i < supplierData->length; i++) {
+		Supplier* supplier = supplierData->linearSearch(i);
 		printElement(supplier->id, 10);
 		printElement(supplier->name, 20);
 		printElement(supplier->phoneNumber, 20);
@@ -31,8 +38,22 @@ void SupplierDA::displayList(LinkedList<Supplier>* suppliers) {
 
 }
 
-// private functions (connect to database)
-void SupplierDA::importFrom(LinkedList<Supplier>* suppliers) {
+
+
+
+void SupplierDA::importSupplier() {
+
+	// create new instance in storage
+	Storage<LinkedList<Supplier>*>* supplierData = Storage<LinkedList<Supplier>*>::getInstance();
+
+	// import user data into storage(linked list) from database 
+	supplierData->setData(importFromDatabase());
+}
+
+// private functions here
+LinkedList<Supplier>* SupplierDA::importFromDatabase() {
+
+	LinkedList<Supplier>* supplierData = new LinkedList<Supplier>();
 
 	ifstream file(this->filepath); // read database (relative path)
 	if (file.is_open()) {
@@ -50,7 +71,7 @@ void SupplierDA::importFrom(LinkedList<Supplier>* suppliers) {
 			getline(ss, email, ',');
 
 			Supplier supplier(stoi(id), name, phoneNumber, email);
-			suppliers->append(supplier);
+			supplierData->append(supplier);
 		}
 
 	}
@@ -59,24 +80,28 @@ void SupplierDA::importFrom(LinkedList<Supplier>* suppliers) {
 		cout << "Unable to access database.";
 	}
 
+	return supplierData;
+
 }
 
-void SupplierDA::exportTo(LinkedList<Supplier>* suppliers) {
+void SupplierDA::exportToDatabase() {
+
+	LinkedList<Supplier>* supplierData = getSupplierData();
 
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < suppliers->length; i++)
+		for (int i = 0; i < supplierData->length; i++)
 		{
-			file << suppliers->linearSearch(i)->id << "," <<
-				suppliers->linearSearch(i)->name << "," <<
-				suppliers->linearSearch(i)->phoneNumber << "," <<
-				suppliers->linearSearch(i)->email << endl;
+			file << supplierData->linearSearch(i)->id << "," <<
+				supplierData->linearSearch(i)->name << "," <<
+				supplierData->linearSearch(i)->phoneNumber << "," <<
+				supplierData->linearSearch(i)->email << endl;
 		}
 
 	}
 	else {
-		cout << "File not open";
+		cout << "Unable to access database.";
 	}
 
 }

@@ -149,6 +149,7 @@
     <ClCompile Include="PurchaseReport.cpp" />
     <ClCompile Include="ReportGeneration.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Storage.cpp" />
     <ClCompile Include="Supplier.cpp" />
     <ClCompile Include="SupplierDA.cpp" />
     <ClCompile Include="SupplierReport.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="ReportGeneration.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="Supplier.h" />
     <ClInclude Include="SupplierDA.h" />
     <ClInclude Include="SupplierReport.h" />

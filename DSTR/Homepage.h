@@ -7,7 +7,7 @@ class Homepage
 public :
 	Homepage();
 
-	void Initialise();
+	void Initialization();
 	
 };
 

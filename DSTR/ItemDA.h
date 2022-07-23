@@ -15,13 +15,18 @@ class ItemDA
 		ItemDA() {};
 
 		// public functions here
-		LinkedList<Item>* importItem(); // Import item data to linked list
+		LinkedList<Item>* getItemData(); // Return all item data
+		void addItem(Item item); // Add in linked list then store into database
 
-		void displayList(LinkedList<Item>* items);
+		void displayList(); // Display linked list as table form
+
+
+
+		void importItem(); // Import item data to linked list storage
 
 	private:
-		// private functions (connect to database)
-		void importFrom(LinkedList<Item>* items); // Import item from database
-		void exportTo(LinkedList<Item>* items); // Export item to database
+		// private functions here
+		LinkedList<Item>* importFromDatabase(); // Import items from database into linked list
+		void exportToDatabase(); // Export items to database from linked list
 };
 

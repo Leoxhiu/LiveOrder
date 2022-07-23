@@ -16,13 +16,19 @@ class SupplierDA
 		SupplierDA() {};
 
 		// public functions here
-		LinkedList<Supplier>* importSupplier(); // Import supplier data to LinkedList
-		void displayList(LinkedList<Supplier>* suppliers);
+		LinkedList<Supplier>* getSupplierData(); // Return all supplier data
+		void addSupplier(Supplier supplier); // Register in linked list then store into database
 
+		void displayList(); // Display linked list as table form
+
+
+
+		void importSupplier(); // Import supplier data to linked list storage
 
 	private:
-		// private functions (connect to database)
-		void importFrom(LinkedList<Supplier>* supplier); // Import supplier from database
-		void exportTo(LinkedList<Supplier>* suppliers); // Export supplier to database
+
+		// private functions here
+		LinkedList<Supplier>* importFromDatabase(); // Import suppliers from database into linked list
+		void exportToDatabase(); // Export suppliers to database from linked list
 };
 

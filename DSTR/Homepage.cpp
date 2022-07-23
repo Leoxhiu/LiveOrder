@@ -1,15 +1,22 @@
+#include <iostream>
+#include <thread>
+
 #include "Screen.h"
 #include "Homepage.h"
 #include "Login.h"
-#include <iostream>
-#include <thread>
+
+#include "Item.h"
+#include "ItemDA.h"
+
 using namespace std;
 
 Homepage::Homepage() {
-    Initialise();
+
+    Initialization();
+
 }
 
-void Homepage::Initialise(){
+void Homepage::Initialization(){
     cout << "============================" << endl;
     cout << "    LiveOrder PO system     " << endl;
     cout << "============================" << endl;
