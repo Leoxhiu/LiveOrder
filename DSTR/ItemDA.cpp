@@ -7,28 +7,29 @@
 #include "ItemDA.h"
 #include "Table.h"
 #include "Storage.h"
+#include "DynamicArray.h"
 
 using namespace std;
 
 // public functions here
 
-LinkedList<Item>* ItemDA::getItemData() {
-	Storage<LinkedList<Item>*>* itemData = itemData->getInstance(); // find the linked list from storage
+DynamicArray<Item>* ItemDA::getItemData() {
+	Storage<DynamicArray<Item>*>* itemData = itemData->getInstance(); // find the dynamic array from storage
 	return itemData->getData();
 }
 
 void ItemDA::addItem(Item item) {
-	LinkedList<Item>* itemData = getItemData();
+    DynamicArray<Item>* itemData = getItemData();
 	itemData->append(item);
 	//exportToDatabase();
 }
 
 void ItemDA::displayList() {
 
-    LinkedList<Item>* orderData = getItemData();
+    DynamicArray<Item>* orderData = getItemData();
 
     for (int i = 0; i < orderData->getLength(); i++) {
-        Item* item = orderData->linearSearch(i);
+        Item* item = orderData->getData(i);
         printElement(item->id, 10);
         printElement(item->name, 50);
         printElement(item->quantity, 10);
@@ -42,7 +43,7 @@ void ItemDA::displayList() {
 
 void ItemDA::importItem() {
     // create new instance in storage
-    Storage<LinkedList<Item>*>* itemData = Storage<LinkedList<Item>*>::getInstance();
+    Storage<DynamicArray<Item>*>* itemData = Storage<DynamicArray<Item>*>::getInstance();
 
     // import user data into storage(linked list) from database 
     itemData->setData(importFromDatabase());
@@ -51,9 +52,9 @@ void ItemDA::importItem() {
 
 
 // private functions here
-LinkedList<Item>* ItemDA::importFromDatabase() {
+DynamicArray<Item>* ItemDA::importFromDatabase() {
 
-    LinkedList<Item>* itemData = new LinkedList<Item>();
+    DynamicArray<Item>* itemData = new DynamicArray<Item>();
 
     ifstream file(this->filepath); // read database (relative path)
     if (file.is_open()) {
@@ -87,18 +88,18 @@ LinkedList<Item>* ItemDA::importFromDatabase() {
 
 void ItemDA::exportToDatabase() {
 
-    LinkedList<Item>* itemData = getItemData();
+    DynamicArray<Item>* itemData = getItemData();
 
     fstream file(this->filepath);
     if (file.is_open()) {
 
         for (int i = 0; i < itemData->getLength(); i++)
         {
-            file << itemData->linearSearch(i)->id << "," <<
-                itemData->linearSearch(i)->name << "," <<
-                itemData->linearSearch(i)->quantity << "," <<
-                itemData->linearSearch(i)->type << "," <<
-                itemData->linearSearch(i)->price << endl;
+            file << itemData->getData(i)->id << "," <<
+                itemData->getData(i)->name << "," <<
+                itemData->getData(i)->quantity << "," <<
+                itemData->getData(i)->type << "," <<
+                itemData->getData(i)->price << endl;
         }
 
     }

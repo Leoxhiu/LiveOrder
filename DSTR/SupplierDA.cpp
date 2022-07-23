@@ -13,10 +13,9 @@ using namespace std;
 
 // public functions here
 DynamicArray<Supplier>* SupplierDA::getSupplierData() {
-	Storage<DynamicArray<Supplier>*>* supplierData = supplierData->getInstance(); // find the array from storage
+	Storage<DynamicArray<Supplier>*>* supplierData = supplierData->getInstance(); // find the dynamic array from storage
 	return supplierData->getData();
 }
-
 
 void SupplierDA::addSupplier(Supplier supplier) {
 	DynamicArray<Supplier>* supplierData = getSupplierData();
@@ -37,6 +36,18 @@ void SupplierDA::displayList() {
 		printElement(supplier->email, 25);
 		cout << endl;
 	}
+}
+
+void SupplierDA::sortSupplierbyName() {
+
+}
+
+void SupplierDA::sortSupplierbyId() {
+
+}
+
+
+
 void SupplierDA::importSupplier() {
 
 	// create new instance in storage
@@ -82,17 +93,17 @@ DynamicArray<Supplier>* SupplierDA::importFromDatabase() {
 
 void SupplierDA::exportToDatabase() {
 
-	LinkedList<Supplier>* supplierData = getSupplierData();
+	DynamicArray<Supplier>* supplierData = getSupplierData();
 
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < supplierData->get; i++)
+		for (int i = 0; i < supplierData->getLength(); i++)
 		{
-			file << supplierData->linearSearch(i)->id << "," <<
-				supplierData->linearSearch(i)->name << "," <<
-				supplierData->linearSearch(i)->phoneNumber << "," <<
-				supplierData->linearSearch(i)->email << endl;
+			file << supplierData->getData(i)->id << "," <<
+				supplierData->getData(i)->name << "," <<
+				supplierData->getData(i)->phoneNumber << "," <<
+				supplierData->getData(i)->email << endl;
 		}
 
 	}

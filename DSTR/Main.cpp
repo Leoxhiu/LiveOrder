@@ -1,5 +1,7 @@
 #include "Homepage.h"
 #include "Storage.h"
+#include "LinkedList.h"
+#include "DynamicArray.h"
 
 #include "Item.h"
 #include "ItemDA.h"
@@ -12,14 +14,15 @@
 
 #include "User.h"
 #include "UserDA.h"
-#include "DynamicArray.h"
+
+
 
 using namespace std;
 
 Storage<LinkedList<User>*>* Storage<LinkedList<User>*>::instance = nullptr;
-Storage<LinkedList<Supplier>*>* Storage<LinkedList<Supplier>*>::instance = nullptr;
+Storage<DynamicArray<Supplier>*>* Storage<DynamicArray<Supplier>*>::instance = nullptr;
 Storage<LinkedList<Order>*>* Storage<LinkedList<Order>*>::instance = nullptr;
-Storage<LinkedList<Item>*>* Storage<LinkedList<Item>*>::instance = nullptr;
+Storage<DynamicArray<Item>*>* Storage<DynamicArray<Item>*>::instance = nullptr;
 
 void Initialization() {
 
@@ -44,7 +47,7 @@ int main()
 {
 	Initialization();
 
-	//// uncomment this to launch the actual system
+	// uncomment this to launch the actual system
 	Homepage Homepage;
 
 }
