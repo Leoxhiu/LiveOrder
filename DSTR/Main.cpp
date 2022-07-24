@@ -48,7 +48,12 @@ int main()
 	Initialization();
 
 	// uncomment this to launch the actual system
-	Homepage Homepage;
+	// Homepage Homepage;
+
+	OrderDA orderDA;
+	orderDA.sort(orderDA.getOrderData(), 0, orderDA.getOrderData()->getLength() - 1);
+	orderDA.displayList();
+	
 
 }
 

@@ -22,6 +22,12 @@ class UserDA
 
 		void displayList(); // Display linked list as table form
 
+		void sort(LinkedList<User>* list, int low, int high);
+
+		int partition(LinkedList<User>* list, int low, int high, User* pivot);
+
+		void swap(LinkedList<User>* list, Node<User>* low, Node<User>* high);
+
 		validate userValidation(string email, string password); // For login validation
 
 		

@@ -11,12 +11,13 @@ template <class T> class Node {
 template <class T> class LinkedList
 {
 private:
-    Node<T>* head;
     int length;
 
 public:
+    Node<T>* head;
     LinkedList();
     ~LinkedList();
+    void modifyHead();
     void append(T newData);
     void appendAfter(int index, T newData);
     int getLength();
@@ -119,14 +120,14 @@ inline Node<T>* LinkedList<T>::getNode(int index) {
     Node<T>* last = this->head;
     int currIndex = 0;
     if (index == 0) {
-        return &this->head;
+        return this->head;
     }
     else {
         while (index != currIndex && last->next) {
             last = last->next;
             currIndex++;
         }
-        return &last;
+        return last;
     }
 }
 

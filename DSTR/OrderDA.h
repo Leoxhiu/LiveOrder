@@ -20,7 +20,11 @@ class OrderDA
 
 		void displayList(); // Display linked list as table form
 
+		void sort(LinkedList<Order>* list, int low, int high);
+		
+		int partition(LinkedList<Order>* list, int low, int high, Order* pivot);
 
+		void swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high);
 
 		void importOrder(); // Import order data to linked list storage
 
