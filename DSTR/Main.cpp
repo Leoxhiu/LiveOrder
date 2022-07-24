@@ -48,13 +48,7 @@ int main()
 	Initialization();
 
 	// uncomment this to launch the actual system
-	// Homepage Homepage;
-
-	UserDA userda;
-	if (userda.findUserByID(5) == UserDA::find::NotFound)
-		printf("Value not present\n");
-	else
-		printf("Present");
+	Homepage Homepage;
 
 }
 

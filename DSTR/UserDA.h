@@ -26,10 +26,10 @@ class UserDA
 
 		
 
-		find findUserByID(int value); // Find if ID exists by using binary search
+		find findUserByID(int id); // Find if ID exists by using binary search
 		User getUserByID(int id); // Use linear search to get the user by ID
 
-		find findUserByEmail(string email); // To check unique email
+		find findUserByEmail(string email); // Find if email exists
 		User getUserByEmail(string email); // Use linear search to get the user by email
 		
 	

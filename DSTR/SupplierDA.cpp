@@ -42,48 +42,56 @@ void SupplierDA::sortSupplierbyName() {
 
 }
 
-// binary search
-int SupplierDA::searchSupplierbyID(int l, int r, int x) {
+
+SupplierDA::find SupplierDA::findSupplierByID(int id) {
 
 	DynamicArray<Supplier>* supplierData = getSupplierData();
 
-	if (r >= l) {
-		int mid = l + (r - l) / 2;
+	int low = 0, high = supplierData->getLength() - 1;
+	int mid;
 
-		// If the element is present at the middle
-		// itself
-		if (supplierData->getData(mid)->id == x)
-			return mid;
-
-		// If element is smaller than mid, then
-		// it can only be present in left subarray
-		if (supplierData->getData(mid)->id > x)
-			return searchSupplierbyID(l, mid - 1, x);
-
-		// Else the element can only be present
-		// in right subarray
-		return searchSupplierbyID( mid + 1, r, x);
+	// This below check covers all cases , so need to check
+	// for mid=lo-(hi-lo)/2
+	while (high - low> 1) {
+		int mid = (high + low) / 2;
+		if (supplierData->getData(mid)->id < id) {
+			low = mid + 1;
+		}
+		else {
+			high = mid;
+		}
+	}
+	if (supplierData->getData(low)->id == id) {
+		return find::Found;
+	}
+	else if (supplierData->getData(high)->id == id) {
+		return find::Found;
+	}
+	else {
+		return find::NotFound;
 	}
 
-	// We reach here when element is not
-	// present in array
-	return -1;
-
 }
+Supplier SupplierDA::getSupplierByID(int id) {
 
-// In Progresss
+	DynamicArray<Supplier>* supplierData = getSupplierData();
+	Supplier supplier;
+	for (int i = 0; i < supplierData->getLength(); i++)
+	{
+		if (supplierData->getData(i)->id == id) {
+			
+			supplier.id = supplierData->getData(i)->id;
+			supplier.name = supplierData->getData(i)->name;
+			supplier.phoneNumber = supplierData->getData(i)->phoneNumber;
+			supplier.email = supplierData->getData(i)->email;
 
-//Supplier SupplierDA::getSupplierByID(int id) {
-//
-//	DynamicArray<Supplier>* supplierData = getSupplierData();
-//	Supplier supplier;
-//	for (int i = 0; i < supplierData->getLength(); i++)
-//		if (supplierData->getData(i)->id == id)
-//			supplier = supplierData->getData(i);
-//			return ;
-//
-//	return -1;
-//}
+		}
+			
+		
+	}
+
+	return supplier;
+}
 
 
 void SupplierDA::importSupplier() {

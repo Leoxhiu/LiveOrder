@@ -12,8 +12,9 @@ class SupplierDA
 		const string filepath = "supplier.txt"; // relative database
 
 	public:
-
 		SupplierDA() {};
+		enum class find { NotFound, Found };
+
 
 		// public functions here
 		DynamicArray<Supplier>* getSupplierData(); // Return all supplier data
@@ -22,7 +23,7 @@ class SupplierDA
 		void displayList(); // Display dynamic array as table form
 
 		void sortSupplierbyName();
-		int searchSupplierbyID(int l, int r, int x);
+		find findSupplierByID(int id); // Find if ID exists by using binary search
 		Supplier getSupplierByID(int id); //Get the user by ID
 
 

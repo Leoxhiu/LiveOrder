@@ -63,7 +63,7 @@ Node<User>* middle(Node<User>* start, Node<User>* last)
 	return slow;
 }
 
-UserDA::find UserDA::findUserByID(int value)
+UserDA::find UserDA::findUserByID(int id)
 {
 	LinkedList<User>* userData = getUserData();
 	Node<User>* start = userData->getHead();
@@ -79,11 +79,11 @@ UserDA::find UserDA::findUserByID(int value)
 			return UserDA::find::NotFound;
 
 		// If value is present at middle
-		if (mid->data.id == value)
+		if (mid->data.id == id)
 			return UserDA::find::Found;
 
 		// If value is more than mid
-		else if (mid->data.id < value)
+		else if (mid->data.id < id)
 			start = mid->next;
 
 		// If the value is less than mid.
