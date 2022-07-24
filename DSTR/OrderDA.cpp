@@ -26,6 +26,14 @@ void OrderDA::addOrder(Order order) {
 void OrderDA::displayList() {
 
 	LinkedList<Order>* orderData = getOrderData();
+	printElement("Order ID", 10);
+	printElement("Item ID", 10);
+	printElement("Quantity", 10);
+	printElement("Date", 20);
+	printElement("Supplier ID", 15);
+	printElement("Status", 15);
+	printElement("isCompleted?", 12);
+	cout << endl;
 
     for (int i = 0; i < orderData->getLength(); i++) {
         Order* order = orderData->getData(i);
@@ -33,14 +41,126 @@ void OrderDA::displayList() {
         printElement(order->itemID, 10);
         printElement(order->quantity, 10);
         printElement(order->date, 20);
-        printElement(order->supplierID, 10);
+        printElement(order->supplierID, 15);
         printElement(order->status, 15);
-        printElement(order->isCompleted, 4);
+        printElement(order->isCompleted, 12);
         cout << endl;
     }
 
 }
 
+Node<Order>* OrderDA::merge(Node<Order>* first, Node<Order>* second, int choice) {
+	Node<Order>* merged = new Node<Order>;
+	Node<Order>* temp = new Node<Order>;
+
+	merged = temp;
+
+	// while either firstNode or secondNode becomes NULL
+	while (first != nullptr && second != nullptr) {
+		switch (choice) {
+		case 1: { // ascending
+			if (first->data.id <= second->data.id) {
+				temp->next = first;
+				first = first->next;
+			}
+			else {
+				temp->next = second;
+				second = second->next;
+			}
+			temp = temp->next;
+		}
+		case 2: { //descending
+			if (first->data.id > second->data.id) {
+				temp->next = first;
+				first = first->next;
+			}
+			else {
+				temp->next = second;
+				second = second->next;
+			}
+			temp = temp->next;
+		}
+		}
+	}
+
+	// any remaining Node in firstNode or secondNode gets
+	// inserted in the temp List
+	while (first != nullptr) {
+		temp->next = first;
+		first = first->next;
+		temp = temp->next;
+	}
+
+	while (second != nullptr) {
+		temp->next = second;
+		second = second->next;
+		temp = temp->next;
+	}
+
+	return merged->next;
+}
+
+Node<Order>* OrderDA::findMiddle(Node<Order>* head) {
+	Node<Order>* fast = head->next;
+	Node<Order>* slow = head;
+
+	while (!slow->next && (!fast && !fast->next)) {
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	return slow;
+}
+
+Node<Order>* OrderDA::mergeSort(Node<Order>* head, int choice) {
+	if (head->next == nullptr) {
+		return head;
+	}
+
+	Node<Order>* mid = new Node<Order>;
+	Node<Order>* head2 = new Node<Order>;
+	mid = findMiddle(head);
+	head2 = mid->next;
+	mid->next = nullptr;
+
+	Node<Order>* res = merge(mergeSort(head, choice), mergeSort(head2, choice), choice);
+
+	LinkedList<Order>* tempData = new LinkedList<Order>();
+	Order order(res->data.id, res->data.itemID, res->data.quantity,
+		res->data.date, res->data.supplierID, res->data.status, res->data.isCompleted);
+	tempData->append(order);
+
+	for (int i = 0; i <= tempData->getLength(); i++) {
+		Order* order = tempData->getData(i);
+		printElement(order->id, 10);
+		printElement(order->itemID, 10);
+		printElement(order->quantity, 10);
+		printElement(order->date, 20);
+		printElement(order->supplierID, 15);
+		printElement(order->status, 15);
+		printElement(order->isCompleted, 12);
+		cout << endl;
+	}
+
+	return res;
+}
+
+void OrderDA::sort() {
+	LinkedList<Order>* orderData = getOrderData();
+	int choice = 0;
+	cout << "Ascending - 1" << endl << "Descending - 2" << endl;
+	cin >> choice;
+
+	printElement("Order ID", 10);
+	printElement("Item ID", 10);
+	printElement("Quantity", 10);
+	printElement("Date", 20);
+	printElement("Supplier ID", 15);
+	printElement("Status", 15);
+	printElement("isCompleted?", 12);
+	cout << endl;
+
+	mergeSort(orderData->getHead(), choice);
+}
 
 //void UserDA::bubbleSort(LinkedList<User>* userData)
 //{

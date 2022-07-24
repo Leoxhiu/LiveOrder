@@ -20,7 +20,13 @@ class OrderDA
 
 		void displayList(); // Display linked list as table form
 
+		Node<Order>* merge(Node<Order>* first, Node<Order>* second, int choice);
 
+		Node<Order>* findMiddle(Node<Order>* head);
+
+		Node<Order>* mergeSort(Node<Order>* head, int choice);
+
+		void sort();
 
 		void importOrder(); // Import order data to linked list storage
 
