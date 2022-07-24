@@ -49,78 +49,16 @@ void OrderDA::displayList() {
 
 }
 
-void OrderDA::sort(LinkedList<Order>* list, int low, int high) {
+void OrderDA::sortOrderByID(int low, int high) {
+    LinkedList<Order>* orderData = getOrderData();
     if (low < high) {
-        auto pivot = list->getData(high);
-        int pos = partition(list, low, high, pivot);
-        sort(list, low, pos - 1);
-        sort(list, pos + 1, high);
+        auto pivot = orderData->getData(high);
+        int pos = partition(orderData, low, high, pivot);
+        sortOrderByID(low, pos - 1);
+        sortOrderByID(pos + 1, high);
     }
 }
 
-int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot) {
-    int i = low;
-    int j = low;
-    while (i <= high) {
-        auto id = list->getData(i)->id;
-        auto pivotid = pivot->id;
-        if (id < pivotid) {
-            i++;
-        }
-        else {
-            swap(list, list->getNode(i), list->getNode(j));
-            i++;
-            j++;
-        }
-    }
-    return j - 1;
-}
-
-void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high) {
-    Node<Order>* prev = nullptr;
-    Node<Order>* prev2 = nullptr;
-    auto l = list->getHead();
-    auto r = list->getHead();
-
-    if (l == nullptr) {
-        return;
-    }
-    if (low->data.id == high->data.id) {
-        return;
-    }
-
-    while (l != nullptr && l->data.id != low->data.id) {
-        prev = l;
-        l = l->next;
-    }
-
-    while (r != nullptr && r->data.id != high->data.id) {
-        prev2 = r;
-        r = r->next;
-    }
-
-    if (l != nullptr && r != nullptr) {
-        if (prev != nullptr) {
-            prev->next = r;
-        }
-        else {
-            list->head = r;
-        }
-
-        if (prev2 != nullptr) {
-            prev2->next = l;
-        }
-        else {
-            list->head = l;
-        }
-        auto temp = l->next;
-        l->next = r->next;
-        r->next = temp;
-    }
-    else {
-        return;
-    }
-}
 
 
 void OrderDA::importOrder() {
@@ -173,7 +111,6 @@ LinkedList<Order>* OrderDA::importFromDatabase() {
 	return orderData;
 
 }
-
 void OrderDA::exportToDatabase() {
 
 	LinkedList<Order>* orderData = getOrderData();
@@ -196,5 +133,72 @@ void OrderDA::exportToDatabase() {
 	else {
         cout << "Unable to access database.";
 	}
+
+}
+
+int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot) {
+    
+    int i = low;
+    int j = low;
+    while (i <= high) {
+        auto id = list->getData(i)->id;
+        auto pivotid = pivot->id;
+        if (id < pivotid) {
+            i++;
+        }
+        else {
+            swap(list, list->getNode(i), list->getNode(j));
+            i++;
+            j++;
+        }
+    }
+    return j - 1;
+ 
+}
+void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high) {
+
+    Node<Order>* prev = nullptr;
+    Node<Order>* prev2 = nullptr;
+    auto l = list->getHead();
+    auto r = list->getHead();
+
+    if (l == nullptr) {
+        return;
+    }
+    if (low->data.id == high->data.id) {
+        return;
+    }
+
+    while (l != nullptr && l->data.id != low->data.id) {
+        prev = l;
+        l = l->next;
+    }
+
+    while (r != nullptr && r->data.id != high->data.id) {
+        prev2 = r;
+        r = r->next;
+    }
+
+    if (l != nullptr && r != nullptr) {
+        if (prev != nullptr) {
+            prev->next = r;
+        }
+        else {
+            list->head = r;
+        }
+
+        if (prev2 != nullptr) {
+            prev2->next = l;
+        }
+        else {
+            list->head = l;
+        }
+        auto temp = l->next;
+        l->next = r->next;
+        r->next = temp;
+    }
+    else {
+        return;
+    }   
 
 }

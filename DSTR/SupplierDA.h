@@ -14,23 +14,23 @@ class SupplierDA
 	public:
 		SupplierDA() {};
 		enum class find { NotFound, Found };
-
+		enum class sortMethod { ascending, descending };
 
 		// public functions here
 		DynamicArray<Supplier>* getSupplierData(); // Return all supplier data
 		void addSupplier(Supplier supplier); // Add in dynamic array then store into database
 
-		void displayList(); // Display dynamic array as table form
-
-		void sortSupplierbyName();
+		
 		find findSupplierByID(int id); // Find if ID exists by using binary search
-		Supplier getSupplierByID(int id); //Get the user by ID
+		Supplier getSupplierByID(int id); //Get the supplier by ID
+		void sortSupplierbyID(sortMethod method); // Sort supplier by ID by using bubble sort
 
+
+		void displayList(); // Display dynamic array as table form
 
 		void importSupplier(); // Import supplier data to dynamic array storage
 
 	private:
-
 		// private functions here
 		DynamicArray<Supplier>* importFromDatabase(); // Import suppliers from database into dynamic array
 		void exportToDatabase(); // Export suppliers to database from dynamic array

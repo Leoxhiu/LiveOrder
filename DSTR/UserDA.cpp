@@ -62,7 +62,6 @@ Node<User>* middle(Node<User>* start, Node<User>* last)
 
 	return slow;
 }
-
 UserDA::find UserDA::findUserByID(int id)
 {
 	LinkedList<User>* userData = getUserData();
@@ -109,6 +108,16 @@ User UserDA::getUserByID(int id) {
 
 }
 
+void UserDA::sortUserByID(LinkedList<User>* list, int low, int high) {
+	if (low < high) {
+		auto pivot = list->getData(high);
+		int pos = partition(list, low, high, pivot);
+		sortUserByID(list, low, pos - 1);
+		sortUserByID(list, pos + 1, high);
+	}
+}
+
+
 UserDA::find UserDA::findUserByEmail(string email) {
 	LinkedList<User>* userData = getUserData();
 	UserDA::find result = UserDA::find::NotFound;
@@ -152,78 +161,6 @@ void UserDA::displayList() {
 	}
 }
 
-void UserDA::sort(LinkedList<User>* list, int low, int high) {
-	if (low < high) {
-		auto pivot = list->getData(high);
-		int pos = partition(list, low, high, pivot);
-		sort(list, low, pos - 1);
-		sort(list, pos + 1, high);
-	}
-}
-
-int UserDA::partition(LinkedList<User>* list, int low, int high, User* pivot) {
-	int i = low;
-	int j = low;
-	while (i <= high) {
-		auto id = list->getData(i)->id;
-		auto pivotid = pivot->id;
-		if (id < pivotid) {
-			i++;
-		}
-		else {
-			swap(list, list->getNode(i), list->getNode(j));
-			i++;
-			j++;
-		}
-	}
-	return j - 1;
-}
-
-void UserDA::swap(LinkedList<User>* list, Node<User>* low, Node<User>* high) {
-	Node<User>* prev = nullptr;
-	Node<User>* prev2 = nullptr;
-	auto l = list->getHead();
-	auto r = list->getHead();
-
-	if (l == nullptr) {
-		return;
-	}
-	if (low->data.id == high->data.id) {
-		return;
-	}
-
-	while (l != nullptr && l->data.id != low->data.id) {
-		prev = l;
-		l = l->next;
-	}
-
-	while (r != nullptr && r->data.id != high->data.id) {
-		prev2 = r;
-		r = r->next;
-	}
-
-	if (l != nullptr && r != nullptr) {
-		if (prev != nullptr) {
-			prev->next = r;
-		}
-		else {
-			list->head = r;
-		}
-
-		if (prev2 != nullptr) {
-			prev2->next = l;
-		}
-		else {
-			list->head = l;
-		}
-		auto temp = l->next;
-		l->next = r->next;
-		r->next = temp;
-	}
-	else {
-		return;
-	}
-}
 
 void UserDA::importUser() {
 
@@ -270,7 +207,6 @@ LinkedList<User>* UserDA::importFromDatabase() {
 	return userData;
 
 }
-
 void UserDA::exportToDatabase() {
 
 	LinkedList<User>* userData = getUserData();
@@ -293,4 +229,67 @@ void UserDA::exportToDatabase() {
 		cout << "Unable to access database.";
 	}
 
+}
+
+int UserDA::partition(LinkedList<User>* list, int low, int high, User* pivot) {
+	int i = low;
+	int j = low;
+	while (i <= high) {
+		auto id = list->getData(i)->id;
+		auto pivotid = pivot->id;
+		if (id < pivotid) {
+			i++;
+		}
+		else {
+			swap(list, list->getNode(i), list->getNode(j));
+			i++;
+			j++;
+		}
+	}
+	return j - 1;
+}
+void UserDA::swap(LinkedList<User>* list, Node<User>* low, Node<User>* high) {
+	Node<User>* prev = nullptr;
+	Node<User>* prev2 = nullptr;
+	auto l = list->getHead();
+	auto r = list->getHead();
+
+	if (l == nullptr) {
+		return;
+	}
+	if (low->data.id == high->data.id) {
+		return;
+	}
+
+	while (l != nullptr && l->data.id != low->data.id) {
+		prev = l;
+		l = l->next;
+	}
+
+	while (r != nullptr && r->data.id != high->data.id) {
+		prev2 = r;
+		r = r->next;
+	}
+
+	if (l != nullptr && r != nullptr) {
+		if (prev != nullptr) {
+			prev->next = r;
+		}
+		else {
+			list->head = r;
+		}
+
+		if (prev2 != nullptr) {
+			prev2->next = l;
+		}
+		else {
+			list->head = l;
+		}
+		auto temp = l->next;
+		l->next = r->next;
+		r->next = temp;
+	}
+	else {
+		return;
+	}
 }

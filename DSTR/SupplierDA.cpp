@@ -38,7 +38,34 @@ void SupplierDA::displayList() {
 	}
 }
 
-void SupplierDA::sortSupplierbyName() { //bubble sort
+void SupplierDA::sortSupplierbyID(sortMethod method) {
+	DynamicArray<Supplier>* supplierData = getSupplierData();
+	
+	if (method == sortMethod::ascending) {
+
+		int i, j;
+		for (i = 0; i < supplierData->getLength() - 1; i++)
+
+			// Last i elements are already 
+			// in place
+			for (j = 0; j < supplierData->getLength() - i - 1; j++)
+				if (supplierData->getData(j)->id > supplierData->getData(j + 1)->id)
+					swap(supplierData->data[j], supplierData->data[j + 1]);
+
+	}
+	else if
+	(method == sortMethod::descending) {
+
+		int i, j;
+		for (i = 0; i < supplierData->getLength() - 1; i++)
+
+			// Last i elements are already 
+			// in place
+			for (j = 0; j < supplierData->getLength() - i - 1; j++)
+				if (supplierData->getData(j)->id < supplierData->getData(j + 1)->id)
+					swap(supplierData->data[j], supplierData->data[j + 1]);
+
+	}
 
 }
 
@@ -77,32 +104,13 @@ Supplier SupplierDA::getSupplierByID(int id) {
 	DynamicArray<Supplier>* supplierData = getSupplierData();
 	Supplier supplier;
 	for (int i = 0; i < supplierData->getLength(); i++)
-	{
-		if (supplierData->getData(i)->id == id) {
-			
-			supplier.id = supplierData->getData(i)->id;
-			supplier.name = supplierData->getData(i)->name;
-			supplier.phoneNumber = supplierData->getData(i)->phoneNumber;
-			supplier.email = supplierData->getData(i)->email;
-
-		}
-			
-		
-	}
-
-// In Progresss
-
-Supplier SupplierDA::getSupplierByID(int id) {
-
-	DynamicArray<Supplier>* supplierData = getSupplierData();
-	Supplier supplier;
-	for (int i = 0; i < supplierData->getLength(); i++)
 		if (supplierData->getData(i)->id == id)
 			supplier = *supplierData->getData(i);
 			return supplier;
 
-	return;
+	return supplier;
 }
+
 
 
 void SupplierDA::importSupplier() {
@@ -147,7 +155,6 @@ DynamicArray<Supplier>* SupplierDA::importFromDatabase() {
 	return supplierData;
 
 }
-
 void SupplierDA::exportToDatabase() {
 
 	DynamicArray<Supplier>* supplierData = getSupplierData();

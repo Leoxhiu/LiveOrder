@@ -5,12 +5,12 @@ using namespace std;
 template <class T> class DynamicArray {
 
 private:
-	T* data;
 	int max_length;
 	int current_length;
 	void extend();
 
 public:
+	T* data;
 	DynamicArray();
 	~DynamicArray();
 	T* getData(int index);

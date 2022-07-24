@@ -48,12 +48,26 @@ int main()
 	Initialization();
 
 	// uncomment this to launch the actual system
-	// Homepage Homepage;
+	//Homepage Homepage;
 
-	OrderDA orderDA;
-	orderDA.sort(orderDA.getOrderData(), 0, orderDA.getOrderData()->getLength() - 1);
-	orderDA.displayList();
+
+
+	// Bubble Sort Testing
+	/*ItemDA supp;
+	supp.displayList();
+
+	cout << endl;
+	supp.sortItembyID(ItemDA::sortMethod::descending);
+	supp.displayList();
+
+	cout << endl;
+
+	supp.sortItembyQuantity(ItemDA::sortMethod::descending);
+	supp.displayList();
+
+	cout << endl;
+
+	supp.sortItembyPrice(ItemDA::sortMethod::descending);
+	supp.displayList();*/
 	
-
 }
-
