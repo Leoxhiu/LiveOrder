@@ -51,6 +51,7 @@ int main()
 	// Homepage Homepage;
 
 	OrderDA orderDA;
+	orderDA.displayList();
 	orderDA.sort();
 
 }

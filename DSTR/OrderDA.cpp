@@ -68,6 +68,7 @@ Node<Order>* OrderDA::merge(Node<Order>* first, Node<Order>* second, int choice)
 				second = second->next;
 			}
 			temp = temp->next;
+			break;
 		}
 		case 2: { //descending
 			if (first->data.id > second->data.id) {
@@ -79,6 +80,7 @@ Node<Order>* OrderDA::merge(Node<Order>* first, Node<Order>* second, int choice)
 				second = second->next;
 			}
 			temp = temp->next;
+			break;
 		}
 		}
 	}
@@ -129,7 +131,7 @@ Node<Order>* OrderDA::mergeSort(Node<Order>* head, int choice) {
 		res->data.date, res->data.supplierID, res->data.status, res->data.isCompleted);
 	tempData->append(order);
 
-	for (int i = 0; i <= tempData->getLength(); i++) {
+	for (int i = 0; i < tempData->getLength(); i++) {
 		Order* order = tempData->getData(i);
 		printElement(order->id, 10);
 		printElement(order->itemID, 10);
@@ -140,12 +142,12 @@ Node<Order>* OrderDA::mergeSort(Node<Order>* head, int choice) {
 		printElement(order->isCompleted, 12);
 		cout << endl;
 	}
-
 	return res;
 }
 
 void OrderDA::sort() {
 	LinkedList<Order>* orderData = getOrderData();
+	Node<Order>* curr = orderData->getHead();
 	int choice = 0;
 	cout << "Ascending - 1" << endl << "Descending - 2" << endl;
 	cin >> choice;
@@ -159,7 +161,7 @@ void OrderDA::sort() {
 	printElement("isCompleted?", 12);
 	cout << endl;
 
-	mergeSort(orderData->getHead(), choice);
+	mergeSort(curr, choice);
 }
 
 //void UserDA::bubbleSort(LinkedList<User>* userData)
