@@ -38,7 +38,7 @@ void SupplierDA::displayList() {
 	}
 }
 
-void SupplierDA::sortSupplierbyName() {
+void SupplierDA::sortSupplierbyName() { //bubble sort
 
 }
 
@@ -73,17 +73,17 @@ int SupplierDA::searchSupplierbyID(int l, int r, int x) {
 
 // In Progresss
 
-//Supplier SupplierDA::getSupplierByID(int id) {
-//
-//	DynamicArray<Supplier>* supplierData = getSupplierData();
-//	Supplier supplier;
-//	for (int i = 0; i < supplierData->getLength(); i++)
-//		if (supplierData->getData(i)->id == id)
-//			supplier = supplierData->getData(i);
-//			return ;
-//
-//	return -1;
-//}
+Supplier SupplierDA::getSupplierByID(int id) {
+
+	DynamicArray<Supplier>* supplierData = getSupplierData();
+	Supplier supplier;
+	for (int i = 0; i < supplierData->getLength(); i++)
+		if (supplierData->getData(i)->id == id)
+			supplier = *supplierData->getData(i);
+			return supplier;
+
+	return;
+}
 
 
 void SupplierDA::importSupplier() {
