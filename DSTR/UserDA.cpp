@@ -29,9 +29,9 @@ UserDA::validate UserDA::userValidation(string email, string password) {
 
 	for (int i = 0; i < userData->getLength(); i++)
 	{
-		if (email == userData->linearSearch(i)->email) {
+		if (email == userData->getData(i)->email) {
 			result = UserDA::validate::IncorrectPassword;
-			if (password == userData->linearSearch(i)->password) {
+			if (password == userData->getData(i)->password) {
 				result = UserDA::validate::Successful;
 
 			}
@@ -40,48 +40,108 @@ UserDA::validate UserDA::userValidation(string email, string password) {
 	return result;
 }
 
+
+// Used for binary search (findUserByID)
+Node<User>* middle(Node<User>* start, Node<User>* last)
+{
+	if (start == nullptr)
+		return nullptr;
+
+	Node<User>* slow = start;
+	Node<User>* fast = start->next;
+
+	while (fast != last)
+	{
+		fast = fast->next;
+		if (fast != last)
+		{
+			slow = slow->next;
+			fast = fast->next;
+		}
+	}
+
+	return slow;
+}
+
+UserDA::find UserDA::findUserByID(int value)
+{
+	LinkedList<User>* userData = getUserData();
+	Node<User>* start = userData->getHead();
+	Node<User>* last = nullptr;
+
+	do
+	{
+		// Find middle
+		Node<User>* mid = middle(start, last);
+
+		// If middle is empty
+		if (mid == nullptr)
+			return UserDA::find::NotFound;
+
+		// If value is present at middle
+		if (mid->data.id == value)
+			return UserDA::find::Found;
+
+		// If value is more than mid
+		else if (mid->data.id < value)
+			start = mid->next;
+
+		// If the value is less than mid.
+		else
+			last = mid;
+
+	} while (last == NULL ||
+		last != start);
+
+	// value not present
+	return UserDA::find::NotFound;
+}
+User UserDA::getUserByID(int id) {
+
+	LinkedList<User>* userData = getUserData();
+	Node<User>* current = userData->getHead(); // Initialize current
+	while (current != nullptr)
+	{
+		if (current->data.id == id)
+			return current->data;
+		current = current->next;
+	}
+
+}
+
 UserDA::find UserDA::findUserByEmail(string email) {
 	LinkedList<User>* userData = getUserData();
 	UserDA::find result = UserDA::find::NotFound;
 
 	for (int i = 0; i < userData->getLength(); i++)
 	{
-		if (email == userData->linearSearch(i)->email) {
+		if (email == userData->getData(i)->email) {
 			result = UserDA::find::Found;
 			}
 		
 	}
 	return result;
 }
-
-User UserDA::getUserByEmail(string email) {
-
-	User user;
-	LinkedList<User>* users = getUserData();
-
-	for (int i = 0; i < users->getLength(); i++)
+User UserDA::getUserByEmail(string email)
+{
+	LinkedList<User>* userData = getUserData();
+	Node<User>* current = userData->getHead(); // Initialize current
+	while (current != nullptr)
 	{
-		if (email == users->linearSearch(i)->email) {
-
-			user.id = users->linearSearch(i)->id;
-			user.email = users->linearSearch(i)->email;
-			user.password = users->linearSearch(i)->password;
-			user.name = users->linearSearch(i)->name;
-			user.phoneNumber = users->linearSearch(i)->phoneNumber;
-			user.type = users->linearSearch(i)->type;
-
-		}
+		if (current->data.email == email)
+			return current->data;
+		current = current->next;
 	}
 
-	return user;
 }
+
 
 void UserDA::displayList() {
 
 	LinkedList<User>* users = getUserData();
 
 	for (int i = 0; i < users->getLength(); i++) {
-		User* user = users->linearSearch(i);
+		User* user = users->getData(i);
 		printElement(user->id, 4);
 		printElement(user->email, 25);
 		printElement(user->password, 20);
@@ -91,9 +151,6 @@ void UserDA::displayList() {
 		cout << endl;
 	}
 }
-
-
-
 
 void UserDA::importUser() {
 
@@ -150,12 +207,12 @@ void UserDA::exportToDatabase() {
 
 		for (int i = 0; i < userData->getLength(); i++)
 		{
-			file << userData->linearSearch(i)->id << "," <<
-				userData->linearSearch(i)->email << "," <<
-				userData->linearSearch(i)->password << "," <<
-				userData->linearSearch(i)->name << "," <<
-				userData->linearSearch(i)->phoneNumber << "," <<
-				userData->linearSearch(i)->type << endl;
+			file << userData->getData(i)->id << "," <<
+				userData->getData(i)->email << "," <<
+				userData->getData(i)->password << "," <<
+				userData->getData(i)->name << "," <<
+				userData->getData(i)->phoneNumber << "," <<
+				userData->getData(i)->type << endl;
 		}
 
 	}

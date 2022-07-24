@@ -42,10 +42,48 @@ void SupplierDA::sortSupplierbyName() {
 
 }
 
-void SupplierDA::sortSupplierbyId() {
+// binary search
+int SupplierDA::searchSupplierbyID(int l, int r, int x) {
+
+	DynamicArray<Supplier>* supplierData = getSupplierData();
+
+	if (r >= l) {
+		int mid = l + (r - l) / 2;
+
+		// If the element is present at the middle
+		// itself
+		if (supplierData->getData(mid)->id == x)
+			return mid;
+
+		// If element is smaller than mid, then
+		// it can only be present in left subarray
+		if (supplierData->getData(mid)->id > x)
+			return searchSupplierbyID(l, mid - 1, x);
+
+		// Else the element can only be present
+		// in right subarray
+		return searchSupplierbyID( mid + 1, r, x);
+	}
+
+	// We reach here when element is not
+	// present in array
+	return -1;
 
 }
 
+// In Progresss
+
+//Supplier SupplierDA::getSupplierByID(int id) {
+//
+//	DynamicArray<Supplier>* supplierData = getSupplierData();
+//	Supplier supplier;
+//	for (int i = 0; i < supplierData->getLength(); i++)
+//		if (supplierData->getData(i)->id == id)
+//			supplier = supplierData->getData(i);
+//			return ;
+//
+//	return -1;
+//}
 
 
 void SupplierDA::importSupplier() {

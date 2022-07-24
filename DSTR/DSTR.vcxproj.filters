@@ -69,9 +69,6 @@
     <ClCompile Include="OrderManagement.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="LinearSearch.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="Screen.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -79,9 +76,6 @@
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="BinarySearch.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleSort.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="MergeSort.cpp">
@@ -143,9 +137,6 @@
     <ClInclude Include="Table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinearSearch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Homepage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -162,9 +153,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BinarySearch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BubbleSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeSort.h">

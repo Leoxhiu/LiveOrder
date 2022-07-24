@@ -17,12 +17,12 @@ private:
 public:
     LinkedList();
     ~LinkedList();
-
     void append(T newData);
     void appendAfter(int index, T newData);
     int getLength();
-    T* linearSearch(int index);
-
+    T* getData(int index);
+    Node<T>* getNode(int index);
+    Node <T>* getHead();
 };
 
 template<class T>
@@ -85,7 +85,7 @@ inline int LinkedList<T>::getLength()
 }
 
 template<class T>
-inline T* LinkedList<T>::linearSearch(int index)
+inline T* LinkedList<T>::getData(int index)
 {
     if (index >= this->length)
     {
@@ -102,6 +102,31 @@ inline T* LinkedList<T>::linearSearch(int index)
             currIndex++;
         }
         return &(last->data);
+    }
+}
+
+template<class T>
+inline Node<T>* LinkedList<T>::getHead() {
+    return this->head;
+}
+
+template<class T>
+inline Node<T>* LinkedList<T>::getNode(int index) {
+    if (index >= this->length)
+    {
+        return nullptr;
+    }
+    Node<T>* last = this->head;
+    int currIndex = 0;
+    if (index == 0) {
+        return &this->head;
+    }
+    else {
+        while (index != currIndex && last->next) {
+            last = last->next;
+            currIndex++;
+        }
+        return &last;
     }
 }
 

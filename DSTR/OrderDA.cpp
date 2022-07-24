@@ -28,7 +28,7 @@ void OrderDA::displayList() {
 	LinkedList<Order>* orderData = getOrderData();
 
     for (int i = 0; i < orderData->getLength(); i++) {
-        Order* order = orderData->linearSearch(i);
+        Order* order = orderData->getData(i);
         printElement(order->id, 10);
         printElement(order->itemID, 10);
         printElement(order->quantity, 10);
@@ -41,6 +41,27 @@ void OrderDA::displayList() {
 
 }
 
+
+//void UserDA::bubbleSort(LinkedList<User>* userData)
+//{
+//	int i, j;
+//	for (i = 0; i < userData->getLength() - 1; i++)
+//
+//		// Last i elements are already 
+//		// in place
+//		for (j = 0; j < userData->getLength() - i - 1; j++)
+//			if (userData->getData(j)->id > userData->getData(j +1)->id)
+//
+//				swap(userData, userData->getNode(j +1), userData->getNode(j));
+//}
+
+//void swap(LinkedList<User>* userData, Node<User>* low, Node<User>* high) {
+//
+//	Node<User>* prevNode = nullptr;
+//	Node<User>* prevNode2 = nullptr;
+//
+//	auto left = userData->head;
+//}
 
 
 
@@ -104,13 +125,13 @@ void OrderDA::exportToDatabase() {
 
 		for (int i = 0; i < orderData->getLength(); i++)
 		{
-            file << orderData->linearSearch(i)->id << "," <<
-                orderData->linearSearch(i)->itemID << "," <<
-                orderData->linearSearch(i)->quantity << "," <<
-                orderData->linearSearch(i)->date << "," <<
-                orderData->linearSearch(i)->supplierID << "," <<
-                orderData->linearSearch(i)->status << "," <<
-                orderData->linearSearch(i)->isCompleted << endl;
+            file << orderData->getData(i)->id << "," <<
+                orderData->getData(i)->itemID << "," <<
+                orderData->getData(i)->quantity << "," <<
+                orderData->getData(i)->date << "," <<
+                orderData->getData(i)->supplierID << "," <<
+                orderData->getData(i)->status << "," <<
+                orderData->getData(i)->isCompleted << endl;
 		}
 
 	}

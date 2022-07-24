@@ -22,8 +22,9 @@ class SupplierDA
 		void displayList(); // Display dynamic array as table form
 
 		void sortSupplierbyName();
+		int searchSupplierbyID(int l, int r, int x);
+		Supplier getSupplierByID(int id); //Get the user by ID
 
-		void sortSupplierbyId();
 
 		void importSupplier(); // Import supplier data to dynamic array storage
 

@@ -24,8 +24,14 @@ class UserDA
 
 		validate userValidation(string email, string password); // For login validation
 
-		User getUserByEmail(string email); // Get full details of user by email
+		
+
+		find findUserByID(int value); // Find if ID exists by using binary search
+		User getUserByID(int id); // Use linear search to get the user by ID
+
 		find findUserByEmail(string email); // To check unique email
+		User getUserByEmail(string email); // Use linear search to get the user by email
+		
 	
 
 
