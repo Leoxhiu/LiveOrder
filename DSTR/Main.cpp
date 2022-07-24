@@ -51,8 +51,8 @@ int main()
 	// Homepage Homepage;
 
 	OrderDA orderDA;
+	orderDA.sort(orderDA.getOrderData(), 0, orderDA.getOrderData()->getLength() - 1);
 	orderDA.displayList();
-	orderDA.sort();
 
 }
 
