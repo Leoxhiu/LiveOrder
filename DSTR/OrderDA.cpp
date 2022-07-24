@@ -59,7 +59,40 @@ void OrderDA::sortOrderByID(int low, int high) {
     }
 }
 
-
+//void OrderDA::sortOrderByQuantity() {
+//
+//    LinkedList<Order>* orderData = getOrderData();
+//
+//    int swapped;
+//
+//    Node<Order>* lPtr; // left pointer will always point to the start of the list
+//    Node<Order>* rPrt = NULL; // right pointer will always point to the end of the list
+//    do
+//    {
+//        swapped = 0;
+//        auto lPtr = orderData->getHead();
+//        if (lPtr == nullptr) {
+//            break;
+//        }
+//
+//        while (lPtr->next != rPrt)
+//        {
+//            
+//
+//            if (lPtr->data.quantity > lPtr->next->data.quantity)
+//            {
+//                bubbleSwap(lPtr, lPtr->next);
+//                swapped = 1;
+//            }
+//            lPtr = lPtr->next;
+//        }
+//        //as the largest element is at the end of the list, assign that to rPtr as there is no need to
+//        //check already sorted list
+//        rPrt = lPtr;
+//
+//    } while (swapped);
+//
+//}
 
 void OrderDA::importOrder() {
 
@@ -201,4 +234,10 @@ void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high)
         return;
     }   
 
+}
+Node<Order>* OrderDA::bubbleSwap(Node<Order>* ptr1, Node<Order>* ptr2) {
+    Node<Order>* tmp = ptr2->next;
+    ptr2->next = ptr1;
+    ptr1->next = tmp;
+    return ptr2;
 }

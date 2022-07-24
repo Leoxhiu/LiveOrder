@@ -23,6 +23,7 @@ class OrderDA
 		void displayList(); // Display linked list as table form
 
 		void sortOrderByID(int low, int high);
+		void sortOrderByQuantity();
 		
 		void importOrder(); // Import order data to linked list storage
 
@@ -34,5 +35,6 @@ class OrderDA
 		// functions for quick sort (ID)
 		int partition(LinkedList<Order>* list, int low, int high, Order* pivot);
 		void swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high);
+		Node<Order>* bubbleSwap(Node<Order>* ptr1, Node<Order>* ptr2);
 };
 
