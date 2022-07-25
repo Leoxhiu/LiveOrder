@@ -1,6 +1,6 @@
 #include <iostream>
 #include <thread>
-
+#include "YearlyPurchaseReport.h"
 #include "PurchaseReport.h"
 #include "Screen.h"
 #include "ReportGeneration.h"
@@ -44,7 +44,7 @@ void PurchaseReport::adminInterface(int accountType) { // 0 = admin, 1 = executi
 	switch (option) {
 	case 1: {
 		Screen::clearScreen();
-		// generate yearly purchase report
+		YearlyPurchaseReport YearlyPurchaseReport(accountType);
 		break;
 	}
 	case 2: {

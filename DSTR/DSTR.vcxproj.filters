@@ -102,6 +102,9 @@
     <ClCompile Include="DynamicArray.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="YearlyPurchaseReport.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserDA.h">
@@ -170,9 +173,6 @@
     <ClInclude Include="SupplierReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ItemReport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MonthlyPurchaseReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -180,6 +180,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DynamicArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="YearlyPurchaseReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

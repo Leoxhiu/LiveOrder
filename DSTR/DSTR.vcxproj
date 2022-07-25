@@ -153,6 +153,7 @@
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserDA.cpp" />
+    <ClCompile Include="YearlyPurchaseReport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearch.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Table.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserDA.h" />
+    <ClInclude Include="YearlyPurchaseReport.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="user.txt" />
