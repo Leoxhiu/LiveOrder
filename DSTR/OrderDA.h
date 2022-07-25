@@ -13,8 +13,8 @@ class OrderDA
 	public:
 
 		OrderDA() {};
-		enum class sortBy { id, quantity };
-
+		enum class sortBy { itemID, quantity };
+		enum class sortMethod { ascending , descending };
 
 		// public functions here
 		LinkedList<Order>* getOrderData(); // Return all order data
@@ -22,9 +22,10 @@ class OrderDA
 
 		void displayList(); // Display linked list as table form
 
-		void sortOrderByID(int low, int high);
-		void sortOrderByQuantity();
-		
+		void sortOrderByID(int low, int high); // Sort order by id using quick sort
+		void sortOrderByQuantity(Node<Order>** headRef, sortMethod method); // Sort order by quantity using merge sort
+		void sortOrderByItemID(Node<Order>** headRef, sortMethod method); // Sort order by item by using merge sort
+
 		void importOrder(); // Import order data to linked list storage
 
 	private:
@@ -32,9 +33,12 @@ class OrderDA
 		LinkedList<Order>* importFromDatabase(); // Import orders from database into linked list
 		void exportToDatabase(); // Export orders to database from linked list
 
-		// functions for quick sort (ID)
+		// functions for quick sort (ID only)
 		int partition(LinkedList<Order>* list, int low, int high, Order* pivot);
 		void swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high);
-		Node<Order>* bubbleSwap(Node<Order>* ptr1, Node<Order>* ptr2);
+
+		// functions for merge sort
+		void FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef);
+		Node<Order>* SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method);
 };
 

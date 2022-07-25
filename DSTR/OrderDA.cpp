@@ -58,41 +58,49 @@ void OrderDA::sortOrderByID(int low, int high) {
         sortOrderByID(pos + 1, high);
     }
 }
+void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
+{
+    Node<Order>* head = *headRef;
+    Node<Order>* a;
+    Node<Order>* b;
 
-//void OrderDA::sortOrderByQuantity() {
-//
-//    LinkedList<Order>* orderData = getOrderData();
-//
-//    int swapped;
-//
-//    Node<Order>* lPtr; // left pointer will always point to the start of the list
-//    Node<Order>* rPrt = NULL; // right pointer will always point to the end of the list
-//    do
-//    {
-//        swapped = 0;
-//        auto lPtr = orderData->getHead();
-//        if (lPtr == nullptr) {
-//            break;
-//        }
-//
-//        while (lPtr->next != rPrt)
-//        {
-//            
-//
-//            if (lPtr->data.quantity > lPtr->next->data.quantity)
-//            {
-//                bubbleSwap(lPtr, lPtr->next);
-//                swapped = 1;
-//            }
-//            lPtr = lPtr->next;
-//        }
-//        //as the largest element is at the end of the list, assign that to rPtr as there is no need to
-//        //check already sorted list
-//        rPrt = lPtr;
-//
-//    } while (swapped);
-//
-//}
+    /* Base case -- length 0 or 1 */
+    if ((head == NULL) || (head->next == NULL)) {
+        return;
+    }
+
+    /* Split head into 'a' and 'b' sublists */
+    FrontBackSplit(head, &a, &b);
+
+    /* Recursively sort the sublists */
+    sortOrderByQuantity(&a, method);
+    sortOrderByQuantity(&b, method);
+
+    /* answer = merge the two sorted lists together */
+    *headRef = SortedMerge(a, b, sortBy::quantity, method);
+}
+void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
+{
+    Node<Order>* head = *headRef;
+    Node<Order>* a;
+    Node<Order>* b;
+
+    /* Base case -- length 0 or 1 */
+    if ((head == NULL) || (head->next == NULL)) {
+        return;
+    }
+
+    /* Split head into 'a' and 'b' sublists */
+    FrontBackSplit(head, &a, &b);
+
+    /* Recursively sort the sublists */
+    sortOrderByItemID(&a, method);
+    sortOrderByItemID(&b, method);
+
+    /* answer = merge the two sorted lists together */
+    *headRef = SortedMerge(a, b, sortBy::itemID, method);
+}
+
 
 void OrderDA::importOrder() {
 
@@ -235,9 +243,104 @@ void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high)
     }   
 
 }
-Node<Order>* OrderDA::bubbleSwap(Node<Order>* ptr1, Node<Order>* ptr2) {
-    Node<Order>* tmp = ptr2->next;
-    ptr2->next = ptr1;
-    ptr1->next = tmp;
-    return ptr2;
+
+void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef)
+{
+    Node<Order>* fast;
+    Node<Order>* slow;
+    slow = source;
+    fast = source->next;
+
+    /* Advance 'fast' two nodes, and advance 'slow' one node */
+    while (fast != NULL) {
+        fast = fast->next;
+        if (fast != NULL) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    /* 'slow' is before the midpoint in the list, so split it in two
+    at that point. */
+    *frontRef = source;
+    *backRef = slow->next;
+    slow->next = NULL;
+}
+Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method)
+{
+    Node<Order>* result = NULL;
+
+    /* Base cases */
+    if (a == NULL)
+        return (b);
+    else if (b == NULL)
+        return (a);
+
+    if (variable == sortBy::quantity) {
+
+        if (method == sortMethod::descending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.quantity >= b->data.quantity) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+        else if (method == sortMethod::ascending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.quantity <= b->data.quantity) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+
+    }
+    else if (variable == sortBy::itemID) {
+
+        if (method == sortMethod::descending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.itemID >= b->data.itemID) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+        else if (method == sortMethod::ascending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.itemID <= b->data.itemID) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+
+
+    }
+
+
 }
