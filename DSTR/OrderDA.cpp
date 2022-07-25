@@ -26,21 +26,79 @@ void OrderDA::addOrder(Order order) {
 void OrderDA::displayList() {
 
 	LinkedList<Order>* orderData = getOrderData();
+	printElement("Order ID", 10);
+	printElement("Item ID", 10);
+	printElement("Quantity", 10);
+	printElement("Date", 20);
+	printElement("Supplier ID", 15);
+	printElement("Status", 15);
+	printElement("isCompleted?", 12);
+	cout << endl;
 
-    for (int i = 0; i < orderData->length; i++) {
-        Order* order = orderData->linearSearch(i);
+    for (int i = 0; i < orderData->getLength(); i++) {
+        Order* order = orderData->getData(i);
         printElement(order->id, 10);
         printElement(order->itemID, 10);
         printElement(order->quantity, 10);
         printElement(order->date, 20);
-        printElement(order->supplierID, 10);
+        printElement(order->supplierID, 15);
         printElement(order->status, 15);
-        printElement(order->isCompleted, 4);
+        printElement(order->isCompleted, 12);
         cout << endl;
     }
 
 }
 
+void OrderDA::sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method) {
+    if (low < high) {
+        auto pivot = list->getData(high);
+        int pos = partition(list, low, high, pivot, method);
+        sortOrderByID(list, low, pos - 1, method);
+        sortOrderByID(list, pos + 1, high, method);
+    }
+}
+void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
+{
+    Node<Order>* head = *headRef;
+    Node<Order>* a;
+    Node<Order>* b;
+
+    /* Base case -- length 0 or 1 */
+    if ((head == NULL) || (head->next == NULL)) {
+        return;
+    }
+
+    /* Split head into 'a' and 'b' sublists */
+    FrontBackSplit(head, &a, &b);
+
+    /* Recursively sort the sublists */
+    sortOrderByQuantity(&a, method);
+    sortOrderByQuantity(&b, method);
+
+    /* answer = merge the two sorted lists together */
+    *headRef = SortedMerge(a, b, sortBy::quantity, method);
+}
+void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
+{
+    Node<Order>* head = *headRef;
+    Node<Order>* a;
+    Node<Order>* b;
+
+    /* Base case -- length 0 or 1 */
+    if ((head == NULL) || (head->next == NULL)) {
+        return;
+    }
+
+    /* Split head into 'a' and 'b' sublists */
+    FrontBackSplit(head, &a, &b);
+
+    /* Recursively sort the sublists */
+    sortOrderByItemID(&a, method);
+    sortOrderByItemID(&b, method);
+
+    /* answer = merge the two sorted lists together */
+    *headRef = SortedMerge(a, b, sortBy::itemID, method);
+}
 
 
 
@@ -94,7 +152,6 @@ LinkedList<Order>* OrderDA::importFromDatabase() {
 	return orderData;
 
 }
-
 void OrderDA::exportToDatabase() {
 
 	LinkedList<Order>* orderData = getOrderData();
@@ -102,20 +159,200 @@ void OrderDA::exportToDatabase() {
 	fstream file(this->filepath);
 	if (file.is_open()) {
 
-		for (int i = 0; i < orderData->length; i++)
+		for (int i = 0; i < orderData->getLength(); i++)
 		{
-            file << orderData->linearSearch(i)->id << "," <<
-                orderData->linearSearch(i)->itemID << "," <<
-                orderData->linearSearch(i)->quantity << "," <<
-                orderData->linearSearch(i)->date << "," <<
-                orderData->linearSearch(i)->supplierID << "," <<
-                orderData->linearSearch(i)->status << "," <<
-                orderData->linearSearch(i)->isCompleted << endl;
+            file << orderData->getData(i)->id << "," <<
+                orderData->getData(i)->itemID << "," <<
+                orderData->getData(i)->quantity << "," <<
+                orderData->getData(i)->date << "," <<
+                orderData->getData(i)->supplierID << "," <<
+                orderData->getData(i)->status << "," <<
+                orderData->getData(i)->isCompleted << endl;
 		}
 
 	}
 	else {
         cout << "Unable to access database.";
 	}
+
+}
+
+int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method) {
+    
+    int i = low;
+    int j = low;
+    while (i <= high) {
+        auto id = list->getData(i)->id;
+        auto pivotid = pivot->id;
+        if (method == sortMethod::ascending) {
+            if (id > pivotid) {
+                i++;
+            }
+            else {
+                swap(list, list->getNode(i), list->getNode(j));
+                i++;
+                j++;
+            }
+        }
+        else if (method == sortMethod::descending) {
+            if (id < pivotid) {
+                i++;
+            }
+            else {
+                swap(list, list->getNode(i), list->getNode(j));
+                i++;
+                j++;
+            }
+        }   
+    }
+    return j - 1;
+ 
+}
+void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high) {
+
+    Node<Order>* prev = nullptr;
+    Node<Order>* prev2 = nullptr;
+    auto l = list->getHead();
+    auto r = list->getHead();
+
+    if (l == nullptr) {
+        return;
+    }
+    if (low->data.id == high->data.id) {
+        return;
+    }
+
+    while (l != nullptr && l->data.id != low->data.id) {
+        prev = l;
+        l = l->next;
+    }
+
+    while (r != nullptr && r->data.id != high->data.id) {
+        prev2 = r;
+        r = r->next;
+    }
+
+    if (l != nullptr && r != nullptr) {
+        if (prev != nullptr) {
+            prev->next = r;
+        }
+        else {
+            list->head = r;
+        }
+
+        if (prev2 != nullptr) {
+            prev2->next = l;
+        }
+        else {
+            list->head = l;
+        }
+        auto temp = l->next;
+        l->next = r->next;
+        r->next = temp;
+    }
+    else {
+        return;
+    }   
+
+}
+
+void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef)
+{
+    Node<Order>* fast;
+    Node<Order>* slow;
+    slow = source;
+    fast = source->next;
+
+    /* Advance 'fast' two nodes, and advance 'slow' one node */
+    while (fast != NULL) {
+        fast = fast->next;
+        if (fast != NULL) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    /* 'slow' is before the midpoint in the list, so split it in two
+    at that point. */
+    *frontRef = source;
+    *backRef = slow->next;
+    slow->next = NULL;
+}
+Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method)
+{
+    Node<Order>* result = NULL;
+
+    /* Base cases */
+    if (a == NULL)
+        return (b);
+    else if (b == NULL)
+        return (a);
+
+    if (variable == sortBy::quantity) {
+
+        if (method == sortMethod::descending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.quantity >= b->data.quantity) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+        else if (method == sortMethod::ascending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.quantity <= b->data.quantity) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+
+    }
+    else if (variable == sortBy::itemID) {
+
+        if (method == sortMethod::descending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.itemID >= b->data.itemID) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+        else if (method == sortMethod::ascending) {
+
+            /* Pick either a or b, and recur */
+            if (a->data.itemID <= b->data.itemID) {
+                result = a;
+                result->next = SortedMerge(a->next, b, variable, method);
+            }
+            else {
+                result = b;
+                result->next = SortedMerge(a, b->next, variable, method);
+            }
+            return (result);
+
+        }
+
+
+    }
+
 
 }

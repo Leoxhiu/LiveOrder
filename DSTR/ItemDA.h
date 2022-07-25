@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Item.h"
-#include "LinkedList.h"
+#include "DynamicArray.h"
 
 using namespace std;
 
@@ -11,22 +11,29 @@ class ItemDA
 		const string filepath = "item.txt"; // relative database
 
 	public:
-
 		ItemDA() {};
+		enum class find { NotFound, Found };
+		enum class sortMethod { ascending, descending };
 
 		// public functions here
-		LinkedList<Item>* getItemData(); // Return all item data
-		void addItem(Item item); // Add in linked list then store into database
+		DynamicArray<Item>* getItemData(); // Return all item data
+		void addItem(Item item); // Add in dynamic array then store into database
 
-		void displayList(); // Display linked list as table form
+		find findItemByID(int id); // Find if ID exists by using binary search
+		Item getItemByID(int id); //Get the item by ID
+
+		void sortItembyID(sortMethod method); // Sort item by ID by using bubble sort
+		void sortItembyQuantity(sortMethod method); // Sort item by Quantity by using bubble sort
+		void sortItembyPrice(sortMethod method); // Sort item by Price by using bubble sort
+
+		void displayList(); // Display dynamic array as table form
 
 
-
-		void importItem(); // Import item data to linked list storage
+		void importItem(); // Import item data to dynamic array storage
 
 	private:
 		// private functions here
-		LinkedList<Item>* importFromDatabase(); // Import items from database into linked list
-		void exportToDatabase(); // Export items to database from linked list
+		DynamicArray<Item>* importFromDatabase(); // Import items from database into dynamic array
+		void exportToDatabase(); // Export items to database from dynamic array
 };
 

@@ -4,13 +4,13 @@ This is a POS system created for assignment purpose. Based on C++
 
 #### Data structures:
 LinkedList,
-Array
+Dynamic Array
 
 
 
 #### Sort algorithms:
 Bubble sort,
-Merge sort
+Quick sort
 
 
 

@@ -7,28 +7,29 @@
 #include "ItemDA.h"
 #include "Table.h"
 #include "Storage.h"
+#include "DynamicArray.h"
 
 using namespace std;
 
 // public functions here
 
-LinkedList<Item>* ItemDA::getItemData() {
-	Storage<LinkedList<Item>*>* itemData = itemData->getInstance(); // find the linked list from storage
+DynamicArray<Item>* ItemDA::getItemData() {
+	Storage<DynamicArray<Item>*>* itemData = itemData->getInstance(); // find the dynamic array from storage
 	return itemData->getData();
 }
 
 void ItemDA::addItem(Item item) {
-	LinkedList<Item>* itemData = getItemData();
+    DynamicArray<Item>* itemData = getItemData();
 	itemData->append(item);
 	//exportToDatabase();
 }
 
 void ItemDA::displayList() {
 
-    LinkedList<Item>* orderData = getItemData();
+    DynamicArray<Item>* orderData = getItemData();
 
-    for (int i = 0; i < orderData->length; i++) {
-        Item* item = orderData->linearSearch(i);
+    for (int i = 0; i < orderData->getLength(); i++) {
+        Item* item = orderData->getData(i);
         printElement(item->id, 10);
         printElement(item->name, 50);
         printElement(item->quantity, 10);
@@ -38,22 +39,149 @@ void ItemDA::displayList() {
     }
 }
 
+ItemDA::find ItemDA::findItemByID(int id) {
 
+    DynamicArray<Item>* itemData = getItemData();
+
+    int low = 0, high = itemData->getLength() - 1;
+    int mid;
+
+    // This below check covers all cases , so need to check
+    // for mid=lo-(hi-lo)/2
+    while (high - low > 1) {
+        int mid = (high + low) / 2;
+        if (itemData->getData(mid)->id < id) {
+            low = mid + 1;
+        }
+        else {
+            high = mid;
+        }
+    }
+    if (itemData->getData(low)->id == id) {
+        return find::Found;
+    }
+    else if (itemData->getData(high)->id == id) {
+        return find::Found;
+    }
+    else {
+        return find::NotFound;
+    }
+
+}
+Item ItemDA::getItemByID(int id) {
+
+    DynamicArray<Item>* itemData = getItemData();
+    Item item;
+    for (int i = 0; i < itemData->getLength(); i++)
+        if (itemData->getData(i)->id == id)
+            item = *itemData->getData(i);
+            return item;
+
+    return item;
+}
+
+void ItemDA::sortItembyID(sortMethod method) {
+    DynamicArray<Item>* itemData = getItemData();
+
+    if (method == sortMethod::ascending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->id > itemData->getData(j + 1)->id)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+    else if
+        (method == sortMethod::descending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->id < itemData->getData(j + 1)->id)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+
+}
+void ItemDA::sortItembyQuantity(sortMethod method) {
+    DynamicArray<Item>* itemData = getItemData();
+
+    if (method == sortMethod::ascending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->quantity > itemData->getData(j + 1)->quantity)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+    else if
+        (method == sortMethod::descending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->quantity < itemData->getData(j + 1)->quantity)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+}
+void ItemDA::sortItembyPrice(sortMethod method) {
+    DynamicArray<Item>* itemData = getItemData();
+
+    if (method == sortMethod::ascending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->price > itemData->getData(j + 1)->price)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+    else if
+        (method == sortMethod::descending) {
+
+        int i, j;
+        for (i = 0; i < itemData->getLength() - 1; i++)
+
+            // Last i elements are already 
+            // in place
+            for (j = 0; j < itemData->getLength() - i - 1; j++)
+                if (itemData->getData(j)->price < itemData->getData(j + 1)->price)
+                    swap(itemData->data[j], itemData->data[j + 1]);
+
+    }
+}
 
 void ItemDA::importItem() {
     // create new instance in storage
-    Storage<LinkedList<Item>*>* itemData = Storage<LinkedList<Item>*>::getInstance();
+    Storage<DynamicArray<Item>*>* itemData = Storage<DynamicArray<Item>*>::getInstance();
 
     // import user data into storage(linked list) from database 
     itemData->setData(importFromDatabase());
 
 }
 
-
 // private functions here
-LinkedList<Item>* ItemDA::importFromDatabase() {
+DynamicArray<Item>* ItemDA::importFromDatabase() {
 
-    LinkedList<Item>* itemData = new LinkedList<Item>();
+    DynamicArray<Item>* itemData = new DynamicArray<Item>();
 
     ifstream file(this->filepath); // read database (relative path)
     if (file.is_open()) {
@@ -84,21 +212,20 @@ LinkedList<Item>* ItemDA::importFromDatabase() {
     return itemData;
 
 }
-
 void ItemDA::exportToDatabase() {
 
-    LinkedList<Item>* itemData = getItemData();
+    DynamicArray<Item>* itemData = getItemData();
 
     fstream file(this->filepath);
     if (file.is_open()) {
 
-        for (int i = 0; i < itemData->length; i++)
+        for (int i = 0; i < itemData->getLength(); i++)
         {
-            file << itemData->linearSearch(i)->id << "," <<
-                itemData->linearSearch(i)->name << "," <<
-                itemData->linearSearch(i)->quantity << "," <<
-                itemData->linearSearch(i)->type << "," <<
-                itemData->linearSearch(i)->price << endl;
+            file << itemData->getData(i)->id << "," <<
+                itemData->getData(i)->name << "," <<
+                itemData->getData(i)->quantity << "," <<
+                itemData->getData(i)->type << "," <<
+                itemData->getData(i)->price << endl;
         }
 
     }

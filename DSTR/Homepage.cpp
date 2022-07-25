@@ -5,9 +5,6 @@
 #include "Homepage.h"
 #include "Login.h"
 
-#include "Item.h"
-#include "ItemDA.h"
-
 using namespace std;
 
 Homepage::Homepage() {

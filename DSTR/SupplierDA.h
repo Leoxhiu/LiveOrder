@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Supplier.h"
-#include "Array.h"
+#include "DynamicArray.h"
 
 using namespace std;
 
@@ -12,29 +12,27 @@ class SupplierDA
 		const string filepath = "supplier.txt"; // relative database
 
 	public:
-
 		SupplierDA() {};
+		enum class find { NotFound, Found };
+		enum class sortMethod { ascending, descending };
 
 		// public functions here
-		Array<Supplier>* getSupplierData(); // Return all supplier data
-		void addSupplier(Supplier supplier); // Register in linked list then store into database
+		DynamicArray<Supplier>* getSupplierData(); // Return all supplier data
+		void addSupplier(Supplier supplier); // Add in dynamic array then store into database
 
-		void displayList(); // Display linked list as table form
+		
+		find findSupplierByID(int id); // Find if ID exists by using binary search
+		Supplier getSupplierByID(int id); //Get the supplier by ID
+		void sortSupplierbyID(sortMethod method); // Sort supplier by ID by using bubble sort
 
-		void extendSupplierDetail(int sid);
 
-		void chooseSupplier(int sid);
+		void displayList(); // Display dynamic array as table form
 
-		void sortSupplierbyName();
-
-		void sortSupplierbyId();
-
-		void importSupplier(); // Import supplier data to linked list storage
+		void importSupplier(); // Import supplier data to dynamic array storage
 
 	private:
-
 		// private functions here
-		Array<Supplier>* importFromDatabase(); // Import suppliers from database into linked list
-		void exportToDatabase(); // Export suppliers to database from linked list
+		DynamicArray<Supplier>* importFromDatabase(); // Import suppliers from database into dynamic array
+		void exportToDatabase(); // Export suppliers to database from dynamic array
 };
 

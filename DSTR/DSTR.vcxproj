@@ -127,16 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
     <ClCompile Include="BinarySearch.cpp" />
-    <ClCompile Include="BubbleSort.cpp" />
+    <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="ExecutiveRegistration.cpp" />
-    <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Homepage.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDA.cpp" />
     <ClCompile Include="ItemReport.cpp" />
-    <ClCompile Include="LinearSearch.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -158,16 +155,13 @@
     <ClCompile Include="UserDA.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
     <ClInclude Include="BinarySearch.h" />
-    <ClInclude Include="BubbleSort.h" />
+    <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="ExecutiveRegistration.h" />
-    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Homepage.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItermDA.h" />
-    <ClInclude Include="LinearSearch.h" />
+    <ClInclude Include="ItemDA.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MergeSort.h" />
