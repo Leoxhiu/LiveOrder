@@ -49,13 +49,12 @@ void OrderDA::displayList() {
 
 }
 
-void OrderDA::sortOrderByID(int low, int high) {
-    LinkedList<Order>* orderData = getOrderData();
+void OrderDA::sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method) {
     if (low < high) {
-        auto pivot = orderData->getData(high);
-        int pos = partition(orderData, low, high, pivot);
-        sortOrderByID(low, pos - 1);
-        sortOrderByID(pos + 1, high);
+        auto pivot = list->getData(high);
+        int pos = partition(list, low, high, pivot, method);
+        sortOrderByID(list, low, pos - 1, method);
+        sortOrderByID(list, pos + 1, high, method);
     }
 }
 void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
@@ -100,6 +99,7 @@ void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
     /* answer = merge the two sorted lists together */
     *headRef = SortedMerge(a, b, sortBy::itemID, method);
 }
+
 
 
 void OrderDA::importOrder() {
@@ -177,21 +177,33 @@ void OrderDA::exportToDatabase() {
 
 }
 
-int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot) {
+int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method) {
     
     int i = low;
     int j = low;
     while (i <= high) {
         auto id = list->getData(i)->id;
         auto pivotid = pivot->id;
-        if (id < pivotid) {
-            i++;
+        if (method == sortMethod::ascending) {
+            if (id > pivotid) {
+                i++;
+            }
+            else {
+                swap(list, list->getNode(i), list->getNode(j));
+                i++;
+                j++;
+            }
         }
-        else {
-            swap(list, list->getNode(i), list->getNode(j));
-            i++;
-            j++;
-        }
+        else if (method == sortMethod::descending) {
+            if (id < pivotid) {
+                i++;
+            }
+            else {
+                swap(list, list->getNode(i), list->getNode(j));
+                i++;
+                j++;
+            }
+        }   
     }
     return j - 1;
  

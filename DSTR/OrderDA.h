@@ -22,9 +22,11 @@ class OrderDA
 
 		void displayList(); // Display linked list as table form
 
-		void sortOrderByID(int low, int high); // Sort order by id using quick sort
+		void sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method); // Sort order by id using quick sort
 		void sortOrderByQuantity(Node<Order>** headRef, sortMethod method); // Sort order by quantity using merge sort
 		void sortOrderByItemID(Node<Order>** headRef, sortMethod method); // Sort order by item by using merge sort
+
+
 
 		void importOrder(); // Import order data to linked list storage
 
@@ -34,7 +36,7 @@ class OrderDA
 		void exportToDatabase(); // Export orders to database from linked list
 
 		// functions for quick sort (ID only)
-		int partition(LinkedList<Order>* list, int low, int high, Order* pivot);
+		int partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method);
 		void swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high);
 
 		// functions for merge sort

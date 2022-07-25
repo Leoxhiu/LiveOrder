@@ -71,13 +71,32 @@ int main()
 	supp.displayList();*/
 	
 
-	// Linked List Merge Sort Testing
-	OrderDA orderDA;
+	// linked list quick sort testing
+	/*OrderDA orderDA;
 	LinkedList<Order>* orderData = orderDA.getOrderData();
 
 	orderDA.displayList();
 	
+	orderDA.sortOrderByID(orderDA.getOrderData(), 0, orderData->getLength()-1, OrderDA::sortMethod::descending);
+	orderDA.displayList();
 	cout << endl;
+	orderDA.sortOrderByID(orderDA.getOrderData(), 0, orderData->getLength() - 1, OrderDA::sortMethod::ascending);
+	orderDA.displayList();*/
+
+
+	/*UserDA userDA;
+
+	LinkedList<User>* userData = userDA.getUserData();
+	userDA.displayList();
+
+	userDA.sortUserByID(userDA.getUserData(), 0, userData->getLength() - 1, UserDA::sortMethod::descending);
+	userDA.displayList();
+	userDA.sortUserByID(userDA.getUserData(), 0, userData->getLength() - 1, UserDA::sortMethod::ascending);
+	userDA.displayList();*/
+
+
+	// Linked List Merge Sort Testing
+	/*cout << endl;
 	orderDA.sortOrderByQuantity(&orderData->head, OrderDA::sortMethod::descending);
 	orderDA.displayList();
 
@@ -91,5 +110,5 @@ int main()
 
 	cout << endl;
 	orderDA.sortOrderByItemID(&orderData->head, OrderDA::sortMethod::descending);
-	orderDA.displayList();
+	orderDA.displayList();*/
 }

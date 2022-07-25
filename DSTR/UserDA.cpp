@@ -108,12 +108,12 @@ User UserDA::getUserByID(int id) {
 
 }
 
-void UserDA::sortUserByID(LinkedList<User>* list, int low, int high) {
+void UserDA::sortUserByID(LinkedList<User>* list, int low, int high, sortMethod method) {
 	if (low < high) {
 		auto pivot = list->getData(high);
-		int pos = partition(list, low, high, pivot);
-		sortUserByID(list, low, pos - 1);
-		sortUserByID(list, pos + 1, high);
+		int pos = partition(list, low, high, pivot, method);
+		sortUserByID(list, low, pos - 1, method);
+		sortUserByID(list, pos + 1, high, method);
 	}
 }
 
@@ -149,15 +149,34 @@ void UserDA::displayList() {
 
 	LinkedList<User>* users = getUserData();
 
+	printElement("User ID", 9);
+	printElement("User Email", 25);
+	printElement("Password", 20);
+	printElement("Name", 20);
+	printElement("Phone Number", 15);
+	printElement("User Role", 14);
+	cout << endl;
+
 	for (int i = 0; i < users->getLength(); i++) {
 		User* user = users->getData(i);
-		printElement(user->id, 4);
-		printElement(user->email, 25);
-		printElement(user->password, 20);
-		printElement(user->name, 20);
-		printElement(user->phoneNumber, 15);
-		printElement(user->type, 5);
-		cout << endl;
+		if (user->type == 0) {
+			printElement(user->id, 9);
+			printElement(user->email, 25);
+			printElement(user->password, 20);
+			printElement(user->name, 20);
+			printElement(user->phoneNumber, 15);
+			printElement("Administrator", 14);
+			cout << endl;
+		}
+		else if (user->type == 1) {
+			printElement(user->id, 9);
+			printElement(user->email, 25);
+			printElement(user->password, 20);
+			printElement(user->name, 20);
+			printElement(user->phoneNumber, 15);
+			printElement("Executive", 14);
+			cout << endl;
+		}	
 	}
 }
 
@@ -231,19 +250,31 @@ void UserDA::exportToDatabase() {
 
 }
 
-int UserDA::partition(LinkedList<User>* list, int low, int high, User* pivot) {
+int UserDA::partition(LinkedList<User>* list, int low, int high, User* pivot, sortMethod method) {
 	int i = low;
 	int j = low;
 	while (i <= high) {
 		auto id = list->getData(i)->id;
 		auto pivotid = pivot->id;
-		if (id < pivotid) {
-			i++;
+		if (method == sortMethod::ascending) {
+			if (id > pivotid) {
+				i++;
+			}
+			else {
+				swap(list, list->getNode(i), list->getNode(j));
+				i++;
+				j++;
+			}
 		}
-		else {
-			swap(list, list->getNode(i), list->getNode(j));
-			i++;
-			j++;
+		else if (method == sortMethod::descending) {
+			if (id < pivotid) {
+				i++;
+			}
+			else {
+				swap(list, list->getNode(i), list->getNode(j));
+				i++;
+				j++;
+			}
 		}
 	}
 	return j - 1;
