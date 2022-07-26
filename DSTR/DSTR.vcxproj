@@ -151,6 +151,7 @@
     <ClCompile Include="SupplierDA.cpp" />
     <ClCompile Include="SupplierReport.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="UpdateOrder.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserDA.cpp" />
     <ClCompile Include="YearlyPurchaseReport.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="SupplierDA.h" />
     <ClInclude Include="SupplierReport.h" />
     <ClInclude Include="Table.h" />
+    <ClInclude Include="UpdateOrder.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserDA.h" />
     <ClInclude Include="YearlyPurchaseReport.h" />

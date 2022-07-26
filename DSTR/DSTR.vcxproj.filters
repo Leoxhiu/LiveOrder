@@ -105,6 +105,9 @@
     <ClCompile Include="YearlyPurchaseReport.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="UpdateOrder.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserDA.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="YearlyPurchaseReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateOrder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -64,9 +64,7 @@ void PurchaseReport::adminInterface(int accountType) { // 0 = admin, 1 = executi
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
 		PurchaseReport PurchaseReport(accountType);
-
 	}
-
 	}
 
 }
