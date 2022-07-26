@@ -50,7 +50,16 @@ int main()
 	// uncomment this to launch the actual system
 	// Homepage Homepage;
 
+	// filter testing
+	/*OrderDA orderDA;
 
+	orderDA.filterOrderbyStatus("trivia");
+	orderDA.filterOrderbyItemID(1);
+	orderDA.filterOrderbySupplierID(5);*/
+
+	/*UserDA userDA;
+
+	userDA.filterUserByRole(1);*/
 
 	// Dynamic Array Bubble Sort Testing
 	/*ItemDA supp;

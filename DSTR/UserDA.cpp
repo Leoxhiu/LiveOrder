@@ -145,6 +145,54 @@ User UserDA::getUserByEmail(string email)
 
 }
 
+void UserDA::displayThis(LinkedList<User>* newList) {
+	printElement("User ID", 9);
+	printElement("User Email", 25);
+	printElement("Password", 20);
+	printElement("Name", 20);
+	printElement("Phone Number", 15);
+	printElement("User Role", 14);
+	cout << endl;
+
+	for (int i = 0; i < newList->getLength(); i++) {
+		User* filtered_user = newList->getData(i);
+		if (filtered_user->type == 0) {
+			printElement(filtered_user->id, 9);
+			printElement(filtered_user->email, 25);
+			printElement(filtered_user->password, 20);
+			printElement(filtered_user->name, 20);
+			printElement(filtered_user->phoneNumber, 15);
+			printElement("Administrator", 14);
+			cout << endl;
+		}
+		else if (filtered_user->type == 1) {
+			printElement(filtered_user->id, 9);
+			printElement(filtered_user->email, 25);
+			printElement(filtered_user->password, 20);
+			printElement(filtered_user->name, 20);
+			printElement(filtered_user->phoneNumber, 15);
+			printElement("Executive", 14);
+			cout << endl;
+		}
+	}
+}
+
+
+LinkedList<User>* UserDA::filterUserByRole(int type) {
+	LinkedList<User>* incompleteUser = new LinkedList<User>;
+
+	UserDA userDA;
+	for (int i = 0; i < userDA.getUserData()->getLength(); i++) {
+		if (userDA.getUserData()->getData(i)->type == type) {
+
+			User user = *userDA.getUserData()->getData(i);
+			incompleteUser->append(user);
+
+		}
+	}
+	userDA.displayThis(incompleteUser);
+}
+
 
 void UserDA::displayList() {
 

@@ -32,7 +32,8 @@ class UserDA
 		find findUserByEmail(string email); // Find if email exists
 		User getUserByEmail(string email); // Use linear search to get the user by email
 		
-
+		void displayThis(LinkedList<User>* newList);
+		LinkedList<User>* filterUserByRole(int type);
 
 
 		void displayList(); // Display linked list as table form

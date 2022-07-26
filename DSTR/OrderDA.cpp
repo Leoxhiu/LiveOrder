@@ -49,6 +49,94 @@ void OrderDA::displayList() {
 
 }
 
+void OrderDA::displayThis(LinkedList<Order>* newList) {
+    printElement("Order ID", 10);
+    printElement("Item ID", 10);
+    printElement("Quantity", 10);
+    printElement("Date", 20);
+    printElement("Supplier ID", 15);
+    printElement("Status", 15);
+    printElement("isCompleted?", 12);
+    cout << endl;
+
+    for (int i = 0; i < newList->getLength(); i++) {
+        Order* filtered_order = newList->getData(i);
+        printElement(filtered_order->id, 10);
+        printElement(filtered_order->itemID, 10);
+        printElement(filtered_order->quantity, 10);
+        printElement(filtered_order->date, 20);
+        printElement(filtered_order->supplierID, 15);
+        printElement(filtered_order->status, 15);
+        printElement(filtered_order->isCompleted, 12);
+        cout << endl;
+    }
+
+}
+
+LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
+    LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
+
+    OrderDA orderDA;
+    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
+        if (orderDA.getOrderData()->getData(i)->isCompleted == isCompleted) {
+
+            Order order = *orderDA.getOrderData()->getData(i);
+            incompleteOrder->append(order);
+
+        }
+    }
+    orderDA.displayThis(incompleteOrder);
+}
+
+LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
+    LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
+
+    OrderDA orderDA;
+    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
+        if (orderDA.getOrderData()->getData(i)->itemID == itemId) {
+
+            Order order = *orderDA.getOrderData()->getData(i);
+            incompleteOrder->append(order);
+
+        }
+    }
+    orderDA.displayThis(incompleteOrder);
+}
+
+
+LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
+    LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
+
+    OrderDA orderDA;
+    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
+        if (orderDA.getOrderData()->getData(i)->supplierID == supplierId) {
+
+            Order order = *orderDA.getOrderData()->getData(i);
+            incompleteOrder->append(order);
+
+        }
+    }
+    orderDA.displayThis(incompleteOrder);
+}
+
+
+LinkedList<Order>* OrderDA::filterOrderbyStatus(string status) {
+    LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
+
+    OrderDA orderDA;
+    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
+        if (orderDA.getOrderData()->getData(i)->status == status) {
+
+            Order order = *orderDA.getOrderData()->getData(i);
+            incompleteOrder->append(order);
+
+        }
+    }
+    orderDA.displayThis(incompleteOrder);
+}
+
+
+
 void OrderDA::sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method) {
     if (low < high) {
         auto pivot = list->getData(high);
