@@ -25,11 +25,14 @@ class OrderDA
 
 		void displayList(); // Display linked list as table form
 
+		double calcTotalSales(LinkedList<Order>* list);
+
 		void displayThis(LinkedList<Order>* newList);
 		void filterOrderbyCompletion(bool isCompleted);
 		void filterOrderbyItemID(int itemId);
 		void filterOrderbySupplierID(int supplierId);
 		void filterOrderbyStatus(string status);
+		find filterOrderbyDate(string date);
 
 		void sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method); // Sort order by id using quick sort
 		void sortOrderByQuantity(Node<Order>** headRef, sortMethod method); // Sort order by quantity using merge sort
