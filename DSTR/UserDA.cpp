@@ -178,7 +178,7 @@ void UserDA::displayThis(LinkedList<User>* newList) {
 }
 
 
-LinkedList<User>* UserDA::filterUserByRole(int type) {
+void UserDA::filterUserByRole(int type) {
 	LinkedList<User>* incompleteUser = new LinkedList<User>;
 
 	UserDA userDA;

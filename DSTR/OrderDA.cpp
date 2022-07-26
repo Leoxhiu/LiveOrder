@@ -98,7 +98,7 @@ void OrderDA::displayThis(LinkedList<Order>* newList) {
 
 }
 
-LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
+void OrderDA::filterOrderbyCompletion(bool isCompleted) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -113,7 +113,7 @@ LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
     orderDA.displayThis(incompleteOrder);
 }
 
-LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
+void OrderDA::filterOrderbyItemID(int itemId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -129,7 +129,7 @@ LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
 }
 
 
-LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
+void OrderDA::filterOrderbySupplierID(int supplierId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -145,7 +145,7 @@ LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
 }
 
 
-LinkedList<Order>* OrderDA::filterOrderbyStatus(string status) {
+void OrderDA::filterOrderbyStatus(string status) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;

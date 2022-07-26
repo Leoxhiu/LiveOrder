@@ -29,7 +29,7 @@ class ItemDA
 		void displayList(); // Display dynamic array as table form
 
 		void displayThis(DynamicArray<Item>* newArray);
-		DynamicArray<Item>* filterItembySupplierID(int supplierId);
+		void filterItembySupplierID(int supplierId);
 
 		void importItem(); // Import item data to dynamic array storage
 

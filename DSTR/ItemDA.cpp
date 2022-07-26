@@ -70,7 +70,7 @@ void ItemDA::displayThis(DynamicArray<Item>* newArray) {
 }
 
 
-DynamicArray<Item>* ItemDA::filterItembySupplierID(int supplierId) {
+void ItemDA::filterItembySupplierID(int supplierId) {
     DynamicArray<Item>* newItem = new DynamicArray<Item>;
 
     ItemDA itemDA;
