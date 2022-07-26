@@ -48,7 +48,7 @@ int main()
 	Initialization();
 
 	// uncomment this to launch the actual system
-	// Homepage Homepage;
+	Homepage Homepage;
 
 	// filter testing
 	/*OrderDA orderDA;
