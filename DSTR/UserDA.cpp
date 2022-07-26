@@ -131,6 +131,7 @@ UserDA::find UserDA::findUserByEmail(string email) {
 	}
 	return result;
 }
+
 User UserDA::getUserByEmail(string email)
 {
 	LinkedList<User>* userData = getUserData();
@@ -247,7 +248,6 @@ void UserDA::exportToDatabase() {
 	else {
 		cout << "Unable to access database.";
 	}
-
 }
 
 int UserDA::partition(LinkedList<User>* list, int low, int high, User* pivot, sortMethod method) {
