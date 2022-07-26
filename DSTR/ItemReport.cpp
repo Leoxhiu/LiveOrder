@@ -7,7 +7,7 @@ using namespace std;
 ItemReport::ItemReport(int accountType) {
 
 	cout << "============================" << endl;
-	cout << " Supplier Report Generation " << endl;
+	cout << " Item Report Generation " << endl;
 	cout << "============================" << endl;
 
 }

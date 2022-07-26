@@ -22,7 +22,7 @@ SupplierReport::SupplierReport(int accountType) {
 	cout << "What are you going to do next?" << endl <<
 		endl <<
 		"1. Extend supplier details" << endl <<
-		"2. Sort report" << endl <<
+		"2. Sort report by supplier ID" << endl <<
 		endl <<
 		"3. << Back" << endl
 		<< endl;
@@ -35,6 +35,7 @@ SupplierReport::SupplierReport(int accountType) {
 	switch (option) {
 	case 1: {
 		int supplierID = 0;
+		cout << "Please input supplier ID: ";
 		cin >> supplierID;
 
 		SupplierDA::find found = supplierDA.findSupplierByID(supplierID);
@@ -159,24 +160,86 @@ SupplierReport::SupplierReport(int accountType) {
 		else if (found == SupplierDA::find::NotFound) {
 			cout << "Supplier with such ID is not found" << endl;
 		}
-		break;
+		
+		int opt = 0;
+		do {
+			cout << endl << "Input 1 to continue: ";
+			cin >> opt;
+			if (opt == 1) {
+				Screen::clearScreen();
+				SupplierReport supplierReport(accountType);
+				break;
+			}
+			else if (opt != 0 && opt != 1) {
+				cin.ignore();
+				cout << "\n-----------------------------" << endl;
+				cout << "        Invalid input!       " << endl;
+				cout << "-----------------------------" << endl;
+				break;
+			}
+		} while (opt != 1);
+
 	}
 	case 2: {
-		Screen::clearScreen();
-		SupplierReport SupplierReport(accountType);
-		break;
+		
+		int opt;
+		int cont = 0;
+		cout << "1. Ascending order" << endl <<
+				"2. Descending Order" << endl;
+		do {
+			opt = 0;
+			cin >> opt;
+			switch (opt) {
+			case 1: {
+				supplierDA.sortSupplierbyID(SupplierDA::sortMethod::ascending);
+				
+				cout << "Enter 1 to continue: ";
+				cin >> cont;
+				if (cont == 1) {
+					Screen::clearScreen();
+					SupplierReport supplierReport(accountType);
+					break;
+				}
+				else {
+					cin.ignore();
+				}
+			}
+			case 2: {
+				supplierDA.sortSupplierbyID(SupplierDA::sortMethod::descending);
+
+				cout << "Enter 1 to continue: ";
+				cin >> cont;
+				if (cont == 1) {
+					Screen::clearScreen();
+					SupplierReport supplierReport(accountType);
+					break;
+				}
+				else {
+					cin.ignore();
+				}
+			}
+			default: {
+				cin.ignore();
+				cout << "\n-----------------------------" << endl;
+				cout << "        Invalid input!       " << endl;
+				cout << "-----------------------------" << endl;
+				break;
+			}
+			}
+		} while (opt != 1 && opt != 2);
 	}
 	case 3: {
 		Screen::clearScreen();
+		ReportGeneration ReportGeneration(accountType);
 		break;
 	}
 	default: {
 		cout << "\n-----------------------------" << endl;
-		cout << "    Invalid option!            " << endl;
+		cout << "        Invalid input!       " << endl;
 		cout << "-----------------------------" << endl;
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
-		ReportGeneration ReportGeneration(accountType);
+		SupplierReport SupplierReport(accountType);
 
 	}
 
