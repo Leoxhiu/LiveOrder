@@ -118,7 +118,8 @@ Supplier SupplierDA::getSupplierByID(int id) {
 
 
 void SupplierDA::extendSupplierDetail(int supplierId) {
-	cout << "Items selled by this supplier: " << endl
+	cout << "------------------------------------------" << endl 
+		<< "Items selled by this supplier: " << endl
 		<< "------------------------------------------" << endl;
 
 	switch (supplierId) {

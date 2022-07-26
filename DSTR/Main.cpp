@@ -65,7 +65,9 @@ int main()
 		cout << "Order with such ID is not found.";
 	}*/
 	
+	SupplierDA supplierDA;
 
+	supplierDA.chooseSupplier(2);
 
 	/*UserDA userDA;
 
