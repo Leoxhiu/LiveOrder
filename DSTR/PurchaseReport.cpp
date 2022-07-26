@@ -90,7 +90,7 @@ void PurchaseReport::executiveInterface(int accountType) { // 0 = admin, 1 = exe
 		MonthlyPurchaseReport MonthlyPurchaseReport(accountType);
 		break;
 	}
-	case 3: {
+	case 2: {
 		Screen::clearScreen();
 		ReportGeneration ReportGeneration(accountType);
 		break;

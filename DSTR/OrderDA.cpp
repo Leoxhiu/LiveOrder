@@ -74,6 +74,29 @@ void OrderDA::displayList() {
 
 }
 
+double OrderDA::calcTotalSales(LinkedList<Order>* list) {
+    double cost[10];
+    double total = 0;
+
+    cost[0] = 500.8;
+    cost[1] = 299.0;
+    cost[2] = 599.0;
+    cost[3] = 2799.0;
+    cost[4] = 4899.0;
+    cost[5] = 7988.0;
+    cost[6] = 1699.0;
+    cost[7] = 95.3;
+    cost[8] = 889.0;
+    cost[9] = 3399.0;
+
+    for (int i = 0; i < list->getLength(); i++) {
+        Order* filtered_order = list->getData(i);
+        total = total + (filtered_order->quantity * (cost[filtered_order->itemID - 1]));
+    }
+
+    return total;
+}
+
 void OrderDA::displayThis(LinkedList<Order>* newList) {
     printElement("Order ID", 10);
     printElement("Item ID", 10);
@@ -160,7 +183,27 @@ void OrderDA::filterOrderbyStatus(string status) {
     orderDA.displayThis(incompleteOrder);
 }
 
+OrderDA::find OrderDA::filterOrderbyDate(string date) {
+    LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
+    OrderDA::find found = OrderDA::find::NotFound;
+    OrderDA orderDA;
+    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
+        if (orderDA.getOrderData()->getData(i)->date > date) {
 
+            Order order = *orderDA.getOrderData()->getData(i);
+            incompleteOrder->append(order);
+            OrderDA::find found = OrderDA::find::Found;
+        }
+    }
+    if (found == OrderDA::find::NotFound) {
+        cout << "No order has been recorded in this particular date range." << endl;
+        return found;
+    }
+    else if (found == OrderDA::find::Found) {
+        orderDA.displayThis(incompleteOrder);
+        return found;
+    }
+}
 
 void OrderDA::sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method) {
     if (low < high) {
