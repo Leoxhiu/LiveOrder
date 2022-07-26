@@ -13,5 +13,7 @@ class OrderManagement
 
 	private:
 		void keepLaunch(string message, int accountType);
+
+		string getCurrentDate();
 };
 

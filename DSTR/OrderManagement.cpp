@@ -104,7 +104,7 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 				}
 				}
 				cout << "Supplier ID is automatically set as " << supplierID << " to match with Item ID of " << itemID << "." << endl;
-				valid == true;
+				valid = true;
 				break;
 			}
 		}
@@ -127,17 +127,12 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 				break;
 			}
 			else {
-				valid == true;
+				valid = true;
 				break;
 			}
 		}
 
-		time_t now = time(0);
-		tm tstruct;
-		char buffer[80];
-		localtime_s(&tstruct, &now);
-
-		date = strftime(buffer, sizeof(buffer), "%Y-%m-%d", &tstruct);
+		date = getCurrentDate();
 
 		valid = false;
 		while (valid == false) {
@@ -160,12 +155,12 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 			else {
 				if (stat == 1) {
 					status = "trivia";
-					valid == true;
+					valid = true;
 					break;
 				}
 				else if (stat == 2) {
 					status = "urgent";
-					valid == true;
+					valid = true;
 					break;
 				}
 			}
@@ -191,9 +186,7 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
 		OrderManagement OrderManagement(accountType);
-
 	}
-
 	}
 
 }
@@ -237,9 +230,7 @@ void OrderManagement::ExecutiveOrderManagement(int accountType) {
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
 		OrderManagement OrderManagement(accountType);
-
 	}
-
 	}
 
 }
@@ -276,4 +267,14 @@ void OrderManagement::keepLaunch(string message, int accountType) {
 		MainMenu MainMenu(accountType);
 	}
 	}
+}
+
+string OrderManagement::getCurrentDate() {
+	time_t now = time(0);
+	tm tstruct;
+	char buffer[80];
+	localtime_s(&tstruct, &now);
+
+	strftime(buffer, sizeof(buffer), "%Y-%m-%d", &tstruct);
+	return buffer;
 }
