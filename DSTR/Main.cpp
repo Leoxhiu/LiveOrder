@@ -65,15 +65,15 @@ int main()
 		cout << "Order with such ID is not found.";
 	}*/
 	
-	SupplierDA supplierDA;
+	/*SupplierDA supplierDA;
 
-	supplierDA.chooseSupplier(2);
+	supplierDA.chooseSupplier(2);*/
 
 	/*UserDA userDA;
 
 	userDA.filterUserByRole(1);*/
 
-	// Dynamic Array Bubble Sort Testing
+	 //Dynamic Array Bubble Sort Testing
 	/*ItemDA supp;
 	supp.displayList();
 

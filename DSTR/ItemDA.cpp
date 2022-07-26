@@ -26,17 +26,62 @@ void ItemDA::addItem(Item item) {
 
 void ItemDA::displayList() {
 
-    DynamicArray<Item>* orderData = getItemData();
+    DynamicArray<Item>* itemData = getItemData();
 
-    for (int i = 0; i < orderData->getLength(); i++) {
-        Item* item = orderData->getData(i);
+    printElement("Item ID", 10);
+    printElement("Name", 50);
+    printElement("Supplier ID", 15);
+    printElement("Quantity", 10);
+    printElement("Item Type", 25);
+    printElement("Cost", 20);
+    cout << endl;
+
+    for (int i = 0; i < itemData->getLength(); i++) {
+        Item* item = itemData->getData(i);
         printElement(item->id, 10);
         printElement(item->name, 50);
+        printElement(item->supplierID, 15);
         printElement(item->quantity, 10);
         printElement(item->type, 25);
         printElement(item->price, 20);
         cout << endl;
     }
+}
+
+void ItemDA::displayThis(DynamicArray<Item>* newArray) {
+    printElement("Item ID", 10);
+    printElement("Name", 50);
+    printElement("Supplier ID", 15);
+    printElement("Quantity", 10);
+    printElement("Item Type", 25);
+    printElement("Cost", 20);
+    cout << endl;
+
+    for (int i = 0; i < newArray->getLength(); i++) {
+        Item* filtered_item = newArray->getData(i);
+        printElement(filtered_item->id, 10);
+        printElement(filtered_item->name, 50);
+        printElement(filtered_item->supplierID, 15);
+        printElement(filtered_item->quantity, 10);
+        printElement(filtered_item->type, 25);
+        printElement(filtered_item->price, 20);
+        cout << endl;
+    }
+}
+
+
+DynamicArray<Item>* ItemDA::filterItembySupplierID(int supplierId) {
+    DynamicArray<Item>* newItem = new DynamicArray<Item>;
+
+    ItemDA itemDA;
+    for (int i = 0; i < itemDA.getItemData()->getLength(); i++) {
+        if (itemDA.getItemData()->getData(i)->supplierID == supplierId) {
+
+            Item item = *itemDA.getItemData()->getData(i);
+            newItem->append(item);
+        }
+    }
+    itemDA.displayThis(newItem);
 }
 
 ItemDA::find ItemDA::findItemByID(int id) {
@@ -186,7 +231,7 @@ DynamicArray<Item>* ItemDA::importFromDatabase() {
     ifstream file(this->filepath); // read database (relative path)
     if (file.is_open()) {
 
-        string id, name, quantity, type, price;
+        string id, name, quantity, type, price, supplierID;
         string line;
 
         while (getline(file, line)) {
@@ -195,11 +240,12 @@ DynamicArray<Item>* ItemDA::importFromDatabase() {
 
             getline(ss, id, ',');
             getline(ss, name, ',');
+            getline(ss, supplierID, ',');
             getline(ss, quantity, ',');
             getline(ss, type, ',');
             getline(ss, price, ',');
 
-            Item item(stoi(id), name, stoi(quantity), type, stod(price));
+            Item item(stoi(id), name, stoi(supplierID), stoi(quantity), type, stod(price));
             itemData->append(item);
         }
 
@@ -223,6 +269,7 @@ void ItemDA::exportToDatabase() {
         {
             file << itemData->getData(i)->id << "," <<
                 itemData->getData(i)->name << "," <<
+                itemData->getData(i)->supplierID << "," <<
                 itemData->getData(i)->quantity << "," <<
                 itemData->getData(i)->type << "," <<
                 itemData->getData(i)->price << endl;

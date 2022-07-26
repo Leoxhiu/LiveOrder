@@ -25,9 +25,6 @@ class SupplierDA
 		Supplier getSupplierByID(int id); //Get the supplier by ID
 		void sortSupplierbyID(sortMethod method); // Sort supplier by ID by using bubble sort
 
-		void extendSupplierDetail(int supplierId);
-		void chooseSupplier(int supplierId);
-
 		void displayList(); // Display dynamic array as table form
 
 		void importSupplier(); // Import supplier data to dynamic array storage
