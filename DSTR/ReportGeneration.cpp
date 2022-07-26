@@ -7,6 +7,7 @@
 #include "PurchaseReport.h"
 #include "SupplierReport.h"
 #include "ItemReport.h"
+#include "ExecutiveReport.h"
 
 using namespace std;
 
@@ -34,8 +35,9 @@ void ReportGeneration::adminInterface(int accountType) { // 0 = admin, 1 = execu
 		"1. Purchase Report" << endl <<
 		"2. Supplier Report" << endl <<
 		"3. Item Report" << endl <<
+		"4, Executive Report" << endl <<
 		endl <<
-		"4. << Back" << endl
+		"5. << Back" << endl
 		<< endl;
 
 	int option;
@@ -60,6 +62,11 @@ void ReportGeneration::adminInterface(int accountType) { // 0 = admin, 1 = execu
 		break;
 	}
 	case 4: {
+		Screen::clearScreen();
+		ExecutiveReport ExecutiveReport(accountType);
+		break;
+	}
+	case 5: {
 		Screen::clearScreen();
 		MainMenu MainMenu(accountType);
 		break;
