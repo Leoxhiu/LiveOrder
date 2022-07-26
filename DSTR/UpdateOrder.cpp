@@ -178,7 +178,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 	cout << endl << "Pending orders..." << endl;
 
 	OrderDA orderDA;
-	orderDA.filterOrderbyCompletion(false);
+	orderDA.displayList();
 
 	cout << "Update: " << endl <<
 		endl <<

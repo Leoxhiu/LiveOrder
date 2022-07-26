@@ -67,7 +67,7 @@ SupplierReport::SupplierReport(int accountType) {
 				for (int i = 0; i < size; i++) {
 					cout << "Item ID: " << iid[i] << endl
 						<< "Item Name: " << item_name[i] << endl
-						<< "Price per item: " << price[i] << endl
+						<< "Price per item (RM): " << price[i] << endl
 						<< "------------------------------------------" << endl;
 				}
 				break;
@@ -90,7 +90,7 @@ SupplierReport::SupplierReport(int accountType) {
 				for (int i = 0; i < size; i++) {
 					cout << "Item ID: " << iid[i] << endl
 						<< "Item Name: " << item_name[i] << endl
-						<< "Price per item: " << price[i] << endl
+						<< "Price per item (RM): " << price[i] << endl
 						<< "------------------------------------------" << endl;
 				}
 				break;
@@ -110,7 +110,7 @@ SupplierReport::SupplierReport(int accountType) {
 				for (int i = 0; i < size; i++) {
 					cout << "Item ID: " << iid[i] << endl
 						<< "Item Name: " << item_name[i] << endl
-						<< "Price per item: " << price[i] << endl
+						<< "Price per item (RM): " << price[i] << endl
 						<< "------------------------------------------" << endl;
 				}
 				break;
@@ -130,7 +130,7 @@ SupplierReport::SupplierReport(int accountType) {
 				for (int i = 0; i < size; i++) {
 					cout << "Item ID: " << iid[i] << endl
 						<< "Item Name: " << item_name[i] << endl
-						<< "Price per item: " << price[i] << endl
+						<< "Price per item (RM): " << price[i] << endl
 						<< "------------------------------------------" << endl;
 				}
 				break;
@@ -150,7 +150,7 @@ SupplierReport::SupplierReport(int accountType) {
 				for (int i = 0; i < size; i++) {
 					cout << "Item ID: " << iid[i] << endl
 						<< "Item Name: " << item_name[i] << endl
-						<< "Price per item: " << price[i] << endl
+						<< "Price per item (RM): " << price[i] << endl
 						<< "------------------------------------------" << endl;
 				}
 				break;
@@ -192,6 +192,7 @@ SupplierReport::SupplierReport(int accountType) {
 			switch (opt) {
 			case 1: {
 				supplierDA.sortSupplierbyID(SupplierDA::sortMethod::ascending);
+				supplierDA.displayList();
 				
 				cout << "Enter 1 to continue: ";
 				cin >> cont;
@@ -206,6 +207,7 @@ SupplierReport::SupplierReport(int accountType) {
 			}
 			case 2: {
 				supplierDA.sortSupplierbyID(SupplierDA::sortMethod::descending);
+				supplierDA.displayList();
 
 				cout << "Enter 1 to continue: ";
 				cin >> cont;
