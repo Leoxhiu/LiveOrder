@@ -10,7 +10,8 @@ Dynamic Array
 
 #### Sort algorithms:
 Bubble sort,
-Quick sort
+Quick sort,
+Merge sort
 
 
 
