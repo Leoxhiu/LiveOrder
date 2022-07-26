@@ -23,6 +23,31 @@ void OrderDA::addOrder(Order order) {
 	//exportToDatabase();
 }
 
+OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update opt) {
+    LinkedList<Order>* orderData = getOrderData();
+    
+    if (opt == update::completion) {
+        for (int i = 0; i < orderData->getLength(); i++) {
+            Order* order = orderData->getData(i);
+            if (order->id == id) {
+                order->isCompleted = complete;
+                return OrderDA::find::Found;
+            }
+        }
+    }
+    else if (opt == update::status) {
+        for (int i = 0; i < orderData->getLength(); i++) {
+            Order* order = orderData->getData(i);
+            if (order->id == id) {
+                order->status = status;
+                return OrderDA::find::Found;
+            }
+        }
+    }
+
+    return OrderDA::find::NotFound;
+}
+
 void OrderDA::displayList() {
 
 	LinkedList<Order>* orderData = getOrderData();

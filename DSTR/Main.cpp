@@ -57,6 +57,16 @@ int main()
 	orderDA.filterOrderbyItemID(1);
 	orderDA.filterOrderbySupplierID(5);*/
 
+	//update testing and validation
+	/*OrderDA orderDA;
+
+	OrderDA::find found = orderDA.updateOrder(51, "trivia", false, OrderDA::update::completion);
+	if (found == OrderDA::find::NotFound) {
+		cout << "Order with such ID is not found.";
+	}*/
+	
+
+
 	/*UserDA userDA;
 
 	userDA.filterUserByRole(1);*/

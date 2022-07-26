@@ -15,10 +15,13 @@ class OrderDA
 		OrderDA() {};
 		enum class sortBy { itemID, quantity };
 		enum class sortMethod { ascending , descending };
+		enum class find { NotFound, Found };
+		enum class update {status, completion};
 
 		// public functions here
 		LinkedList<Order>* getOrderData(); // Return all order data
 		void addOrder(Order order); // Register in linked list then store into database
+		find updateOrder(int id, string status, bool complete, update update);
 
 		void displayList(); // Display linked list as table form
 
