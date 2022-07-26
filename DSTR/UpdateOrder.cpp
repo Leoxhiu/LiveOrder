@@ -81,7 +81,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -94,7 +94,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -135,7 +135,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -148,7 +148,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -231,7 +231,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -244,7 +244,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -285,7 +285,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
@@ -298,7 +298,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
-						valid == true;
+						valid = true;
 						break;
 					}
 				}
