@@ -43,7 +43,10 @@ void MonthlyPurchaseReport::Initialization(int accountType) {
 		}
 		else if (desiredMonth > 0 && desiredMonth < 10) {
 			date = "2022-0" + to_string(desiredMonth);
-			if (desiredMonth == 9) {
+			if (desiredMonth != 9) {
+				upperdate = "2022-0" + to_string(desiredMonth+1);
+			}
+			else if (desiredMonth == 9) {
 				upperdate = "2022-10";
 			}
 			break;

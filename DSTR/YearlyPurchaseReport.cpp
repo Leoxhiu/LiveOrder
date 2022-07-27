@@ -40,7 +40,7 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 			upperdate = getCurrentDate() + "-12-32";
 			break;
 		}
-		else if (desiredYear > 0 && desiredYear < 3000) {
+		else if (desiredYear > 2000 && desiredYear < 3000) {
 			date = to_string(desiredYear);
 			upperdate = to_string(desiredYear+1);
 			break;
