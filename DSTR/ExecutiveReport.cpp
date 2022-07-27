@@ -16,8 +16,10 @@ ExecutiveReport::ExecutiveReport(int accountType) {
 	cout << "============================" << endl;
 	cout << " Executive Report Generation " << endl;
 	cout << "============================" << endl << endl;
+	
+	LinkedList<User>* userData = userDA.getUserData();
+	
 	userDA.filterUserByRole(1);
-	userDA.displayList();
 
 	cout << "What are you going to do next?" << endl <<
 		endl <<
@@ -42,8 +44,13 @@ ExecutiveReport::ExecutiveReport(int accountType) {
 				cin >> opt;
 				switch (opt) {
 				case 1:{
-					userDA.sortUserByID(UserDA::sortMethod::ascending);
+					Screen::clearScreen();
+					cout << "============================" << endl;
+					cout << " Executive Report Generation " << endl;
+					cout << "============================" << endl << endl;
 
+					userDA.sortUserByID(userDA.getUserData(), 0, userData->getLength() - 1, UserDA::sortMethod::ascending);
+					userDA.filterUserByRole(1);
 					cout << "Enter 1 to continue: ";
 					cin >> cont;
 					if (cont == 1) {
@@ -56,20 +63,25 @@ ExecutiveReport::ExecutiveReport(int accountType) {
 					}
 				}
 				case 2: {
-					userDA.sortUserByID(UserDA::sortMethod::descending);
+					Screen::clearScreen();
+					cout << "============================" << endl;
+					cout << " Executive Report Generation " << endl;
+					cout << "============================" << endl << endl;
 
+					userDA.sortUserByID(userDA.getUserData(), 0, userData->getLength() - 1, UserDA::sortMethod::descending);
+					userDA.filterUserByRole(1);
 					cout << "Enter 1 to continue: ";
 					cin >> cont;
 					if (cont == 1) {
 						Screen::clearScreen();
-						SupplierReport supplierReport(accountType);
+						ExecutiveReport executiveReport(accountType);
 						break;
 					}
 					else {
 						cin.ignore();
 					}
 				}
-				  defaukt: {
+				  default: {
 					  cin.ignore();
 					  cout << "\n-----------------------------" << endl;
 					  cout << "        Invalid input!       " << endl;
