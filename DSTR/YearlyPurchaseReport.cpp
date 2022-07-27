@@ -2,6 +2,7 @@
 #include <thread>
 
 #include "YearlyPurchaseReport.h"
+#include "PurchaseReportAction.h"
 #include "Screen.h"
 #include "Order.h"
 #include "OrderDA.h"
@@ -21,12 +22,43 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 	cout << "   Yearly Purchase Report  " << endl;
 	cout << "============================" << endl;
 
-	string desiredYear;
+	int desiredYear = -1;
+	string date;
+	OrderDA orderDA;
 
-	cout << "Desired year: ";
-	cin >> desiredYear;
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Current year - type in 0" << endl
+		<< "Desired year - type in any year" << endl
+		<< "Type 2 to go back." << endl;
+
+	do {
+		cin >> desiredYear;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		if (desiredYear == 0) {
+			date = getCurrentDate();
+			break;
+		}
+		else if (desiredYear > 0 && desiredYear < 3000) {
+			date = to_string(desiredYear);
+			break;
+		}
+		else if (desiredYear == 2) {
+			Screen::clearScreen();
+			PurchaseReport PurchaseReport(accountType);
+		}
+		else {
+			cout << "Invalid input!" << endl;
+			break;
+		}
+	} while (desiredYear < 0 || desiredYear >= 3000);
+
+	OrderDA::find found = orderDA.filterOrderbyDate(date, orderDA.getOrderData());
+	if (found == OrderDA::find::NotFound) {
+		keepLaunch("Try again?", accountType);
+	}
+	else if (found == OrderDA::find::Found) {
+		OrderReportAction("Continue?", accountType, date);
+	}
 
 }
 
@@ -63,4 +95,48 @@ void YearlyPurchaseReport::keepLaunch(string message, int accountType) {
 	}
 	}
 
+}
+
+void YearlyPurchaseReport::OrderReportAction(string message, int accountType, string date) {
+	int option;
+
+	cout << "\n============================" << endl;
+	cout << message << endl;
+	cout << "1. More actions on purchase report" << endl;
+	cout << "2. Stay in Yearly Purchase Report" << endl;
+	cin >> option;
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	switch (option) {
+	case 1: {
+		Screen::clearScreen();
+		PurchaseReportAction PurchaseReportAction(date, accountType);
+		break;
+	}
+	case 2: {
+		Screen::clearScreen();
+		YearlyPurchaseReport YearlyPurchaseReport(accountType);
+		break;
+	}
+
+	default: {
+		cout << "\n-----------------------------" << endl;
+		cout << "    Invalid option!            " << endl;
+		cout << "-----------------------------" << endl;
+		this_thread::sleep_for(std::chrono::seconds(3));
+		Screen::clearScreen();
+		OrderReportAction(message, accountType, date);
+	}
+	}
+}
+
+string YearlyPurchaseReport::getCurrentDate() {
+	time_t now = time(0);
+	tm tstruct;
+	char buffer[80];
+	localtime_s(&tstruct, &now);
+
+	strftime(buffer, sizeof(buffer), "%Y", &tstruct);
+	return buffer;
 }

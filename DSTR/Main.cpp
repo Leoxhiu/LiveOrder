@@ -50,12 +50,20 @@ int main()
 	// uncomment this to launch the actual system
 	Homepage Homepage;
 
-	// filter testing
-	/*OrderDA orderDA;
 
-	orderDA.filterOrderbyStatus("trivia");
-	orderDA.filterOrderbyItemID(1);
-	orderDA.filterOrderbySupplierID(5);*/
+	/*OrderDA orderDA;
+	LinkedList<Order>* orderList;
+	orderList = orderDA.filterOrderbyCompletion(false);
+	orderDA.displayThis(orderList);
+	orderDA.filterOrderbyDate("2022", orderDA.getOrderData());
+	orderList = orderDA.filterOrderbyItemID(5);
+	orderDA.filterOrderbyDate("2022", orderList);
+	orderList = orderDA.filterOrderbyStatus("urgent");
+	orderDA.filterOrderbyDate("2022", orderList);
+	orderList = orderDA.filterOrderbySupplierID(5);
+	orderDA.filterOrderbyDate("2022", orderList);
+	orderList = orderDA.filterOrderbyCompletion(true);
+	orderDA.filterOrderbyDate("2022", orderList);*/
 
 	//update testing and validation
 	/*OrderDA orderDA;

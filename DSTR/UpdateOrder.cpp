@@ -7,6 +7,7 @@
 #include "Order.h"
 #include "OrderDA.h"
 #include "UpdateOrder.h"
+#include "LinkedList.h"
 
 UpdateOrder::UpdateOrder(int accountType) {
 
@@ -28,7 +29,9 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 	cout << endl << "Pending orders..." << endl;
 
 	OrderDA orderDA;
-	orderDA.displayList();
+	LinkedList<Order>* orderList;
+	orderList = orderDA.filterOrderbyCompletion(false);
+	orderDA.displayThis(orderList);
 
 	cout << "Update: " << endl <<
 		endl <<
@@ -178,7 +181,9 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 	cout << endl << "Pending orders..." << endl;
 
 	OrderDA orderDA;
-	orderDA.displayList();
+	LinkedList<Order>* orderList;
+	orderList = orderDA.filterOrderbyCompletion(false);
+	orderDA.displayThis(orderList);
 
 	cout << "Update: " << endl <<
 		endl <<

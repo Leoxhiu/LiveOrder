@@ -74,7 +74,7 @@ void OrderDA::displayList() {
 
 }
 
-double OrderDA::calcTotalSales(LinkedList<Order>* list) {
+void OrderDA::calcTotalSales(LinkedList<Order>* list) {
     double cost[10];
     double total = 0;
 
@@ -94,7 +94,7 @@ double OrderDA::calcTotalSales(LinkedList<Order>* list) {
         total = total + (filtered_order->quantity * (cost[filtered_order->itemID - 1]));
     }
 
-    return total;
+    cout << endl << "Total amount spent on this duration: RM" << total << "." << endl;
 }
 
 void OrderDA::displayThis(LinkedList<Order>* newList) {
@@ -121,7 +121,7 @@ void OrderDA::displayThis(LinkedList<Order>* newList) {
 
 }
 
-void OrderDA::filterOrderbyCompletion(bool isCompleted) {
+LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -133,10 +133,10 @@ void OrderDA::filterOrderbyCompletion(bool isCompleted) {
 
         }
     }
-    orderDA.displayThis(incompleteOrder);
+    return incompleteOrder;
 }
 
-void OrderDA::filterOrderbyItemID(int itemId) {
+LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -148,11 +148,11 @@ void OrderDA::filterOrderbyItemID(int itemId) {
 
         }
     }
-    orderDA.displayThis(incompleteOrder);
+    return incompleteOrder;
 }
 
 
-void OrderDA::filterOrderbySupplierID(int supplierId) {
+LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -164,11 +164,11 @@ void OrderDA::filterOrderbySupplierID(int supplierId) {
 
         }
     }
-    orderDA.displayThis(incompleteOrder);
+    return incompleteOrder;
 }
 
 
-void OrderDA::filterOrderbyStatus(string status) {
+LinkedList<Order>* OrderDA::filterOrderbyStatus(string status) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
     OrderDA orderDA;
@@ -180,28 +180,28 @@ void OrderDA::filterOrderbyStatus(string status) {
 
         }
     }
-    orderDA.displayThis(incompleteOrder);
+    return incompleteOrder;
 }
 
-OrderDA::find OrderDA::filterOrderbyDate(string date) {
+OrderDA::find OrderDA::filterOrderbyDate(string date, string upperdate, LinkedList<Order>* templist) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
-    OrderDA::find found = OrderDA::find::NotFound;
+    bool found = false;
     OrderDA orderDA;
-    for (int i = 0; i < orderDA.getOrderData()->getLength(); i++) {
-        if (orderDA.getOrderData()->getData(i)->date > date) {
-
-            Order order = *orderDA.getOrderData()->getData(i);
+    for (int i = 0; i < templist->getLength(); i++) {
+        if (templist->getData(i)->date > date && templist->getData(i)->date < upperdate) {
+            Order order = *templist->getData(i);
             incompleteOrder->append(order);
-            OrderDA::find found = OrderDA::find::Found;
+            found = true;
         }
     }
-    if (found == OrderDA::find::NotFound) {
-        cout << "No order has been recorded in this particular date range." << endl;
-        return found;
+    if (found == false) {
+        cout << "No order after " << date << " is found." << endl;
+        return OrderDA::find::NotFound;
     }
-    else if (found == OrderDA::find::Found) {
+    else if (found == true) {
         orderDA.displayThis(incompleteOrder);
-        return found;
+        orderDA.calcTotalSales(incompleteOrder);
+        return OrderDA::find::Found;
     }
 }
 

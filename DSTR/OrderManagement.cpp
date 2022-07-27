@@ -5,6 +5,7 @@
 
 #include "Screen.h"
 #include "Order.h"
+#include "LinkedList.h"
 #include "OrderDA.h"
 #include "updateOrder.h"
 #include "MainMenu.h"
@@ -33,7 +34,9 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 	cout << endl << "Pending orders..." << endl;
 
 	OrderDA orderDA;
-	orderDA.filterOrderbyCompletion(false);
+	LinkedList<Order>* orderList;
+	orderList = orderDA.filterOrderbyCompletion(false);
+	orderDA.displayThis(orderList);
 
 	cout << endl << "What are you going to do next?" << endl <<
 		endl <<
@@ -200,7 +203,9 @@ void OrderManagement::ExecutiveOrderManagement(int accountType) {
 	cout << endl << "Pending orders..." << endl;
 
 	OrderDA orderDA;
-	orderDA.filterOrderbyCompletion(false);
+	LinkedList<Order>* orderList;
+	orderList = orderDA.filterOrderbyCompletion(false);
+	orderDA.displayThis(orderList);
 
 	cout << "What are you going to do next?" << endl <<
 		endl <<
