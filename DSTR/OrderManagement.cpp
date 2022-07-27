@@ -176,6 +176,7 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 	}
 	case 3: {
 		orderDA.displayList();
+		keepLaunch("Continue?", accountType);
 		break;
 	}
 	case 4: {
@@ -227,6 +228,7 @@ void OrderManagement::ExecutiveOrderManagement(int accountType) {
 	}
 	case 2: {
 		orderDA.displayList();
+		keepLaunch("Continue?", accountType);
 		break;
 	}
 	case 3: {
