@@ -108,6 +108,12 @@
     <ClCompile Include="UpdateOrder.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="ExecutiveReport.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PurchaseReportAction.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UserDA.h">
@@ -189,6 +195,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UpdateOrder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecutiveReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PurchaseReportAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
