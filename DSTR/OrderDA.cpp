@@ -22,7 +22,6 @@ LinkedList<Order>* OrderDA::getOrderData() {
 void OrderDA::addOrder(Order order) {
 	LinkedList<Order>* orderData = getOrderData();
 	orderData->append(order);
-	//exportToDatabase();
 }
 
 // update order priority status or completion status at certain order ID 

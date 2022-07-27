@@ -20,7 +20,6 @@ LinkedList<User>* UserDA::getUserData() {
 void UserDA::addUser(User user) {
 	LinkedList<User>* userData = getUserData();
 	userData->append(user);
-	//exportToDatabase();
 }
 
 UserDA::validate UserDA::userValidation(string email, string password) {
@@ -95,6 +94,8 @@ UserDA::find UserDA::findUserByID(int id)
 	// value not present
 	return UserDA::find::NotFound;
 }
+
+
 User UserDA::getUserByID(int id) {
 
 	LinkedList<User>* userData = getUserData();

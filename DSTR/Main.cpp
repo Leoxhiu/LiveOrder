@@ -46,6 +46,5 @@ void Initialization() {
 int main()
 {
 	Initialization();
-
 	Homepage Homepage;
 }

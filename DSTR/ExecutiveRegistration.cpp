@@ -34,9 +34,7 @@ ExecutiveRegistration::ExecutiveRegistration() {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	cout << "Name: ";
-	cin >> name;
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	getline(cin,name);
 
 	cout << "Phone Number: ";
 	cin >> phoneNumber;
