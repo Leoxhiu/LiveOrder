@@ -24,6 +24,7 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 
 	int desiredYear = -1;
 	string date;
+	string upperdate;
 	OrderDA orderDA;
 
 	cout << "Current year - type in 0" << endl
@@ -36,10 +37,12 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		if (desiredYear == 0) {
 			date = getCurrentDate();
+			upperdate = getCurrentDate() + "-12-32";
 			break;
 		}
 		else if (desiredYear > 0 && desiredYear < 3000) {
 			date = to_string(desiredYear);
+			upperdate = to_string(desiredYear+1);
 			break;
 		}
 		else if (desiredYear == 2) {
@@ -52,12 +55,12 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 		}
 	} while (desiredYear < 0 || desiredYear >= 3000);
 
-	OrderDA::find found = orderDA.filterOrderbyDate(date, orderDA.getOrderData());
+	OrderDA::find found = orderDA.filterOrderbyDate(date, upperdate, orderDA.getOrderData());
 	if (found == OrderDA::find::NotFound) {
 		keepLaunch("Try again?", accountType);
 	}
 	else if (found == OrderDA::find::Found) {
-		OrderReportAction("Continue?", accountType, date);
+		OrderReportAction("Continue?", accountType, date, upperdate);
 	}
 
 }
@@ -97,7 +100,7 @@ void YearlyPurchaseReport::keepLaunch(string message, int accountType) {
 
 }
 
-void YearlyPurchaseReport::OrderReportAction(string message, int accountType, string date) {
+void YearlyPurchaseReport::OrderReportAction(string message, int accountType, string date, string upperdate) {
 	int option;
 
 	cout << "\n============================" << endl;
@@ -111,7 +114,7 @@ void YearlyPurchaseReport::OrderReportAction(string message, int accountType, st
 	switch (option) {
 	case 1: {
 		Screen::clearScreen();
-		PurchaseReportAction PurchaseReportAction(date, accountType);
+		PurchaseReportAction PurchaseReportAction(date, upperdate, accountType);
 		break;
 	}
 	case 2: {
@@ -126,7 +129,7 @@ void YearlyPurchaseReport::OrderReportAction(string message, int accountType, st
 		cout << "-----------------------------" << endl;
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
-		OrderReportAction(message, accountType, date);
+		OrderReportAction(message, accountType, date, upperdate);
 	}
 	}
 }

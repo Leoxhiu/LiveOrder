@@ -68,7 +68,7 @@ void MonthlyPurchaseReport::Initialization(int accountType) {
 		keepLaunch("Try again?", accountType);
 	}
 	else if (found == OrderDA::find::Found) {
-		OrderReportAction("Continue?", accountType, date);
+		OrderReportAction("Continue?", accountType, date, upperdate);
 	}
 	
 }
@@ -108,7 +108,7 @@ void MonthlyPurchaseReport::keepLaunch(string message, int accountType) {
 
 }
 
-void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, string date) {
+void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, string date, string upperdate) {
 	int option;
 
 	cout << "\n============================" << endl;
@@ -122,7 +122,7 @@ void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, s
 	switch (option) {
 	case 1: {
 		Screen::clearScreen();
-		PurchaseReportAction PurchaseReportAction(date, accountType);
+		PurchaseReportAction PurchaseReportAction(date, upperdate, accountType);
 		break;
 	}
 	case 2: {
@@ -137,7 +137,7 @@ void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, s
 		cout << "-----------------------------" << endl;
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
-		OrderReportAction(message, accountType, date);
+		OrderReportAction(message, accountType, date, upperdate);
 	}
 	}
 }
