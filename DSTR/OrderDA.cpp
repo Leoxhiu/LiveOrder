@@ -12,17 +12,20 @@
 using namespace std;
 
 // public functions here
+// retreives list of data from order instance
 LinkedList<Order>* OrderDA::getOrderData() {
 	Storage<LinkedList<Order>*>* orderData = orderData->getInstance(); // find the linked list from storage
 	return orderData->getData();
 }
 
+// append new order into order instance 
 void OrderDA::addOrder(Order order) {
 	LinkedList<Order>* orderData = getOrderData();
 	orderData->append(order);
 	//exportToDatabase();
 }
 
+// update order priority status or completion status at certain order ID 
 OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update opt) {
     LinkedList<Order>* orderData = getOrderData();
     
@@ -48,6 +51,7 @@ OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update 
     return OrderDA::find::NotFound;
 }
 
+// display all data in tabular form
 void OrderDA::displayList() {
 
 	LinkedList<Order>* orderData = getOrderData();
@@ -74,6 +78,7 @@ void OrderDA::displayList() {
 
 }
 
+// calculate total sales in RM based on the passed in linked list
 void OrderDA::calcTotalSales(LinkedList<Order>* list) {
     double cost[10];
     double total = 0;
@@ -97,6 +102,7 @@ void OrderDA::calcTotalSales(LinkedList<Order>* list) {
     cout << endl << "Total amount spent on this duration: RM" << total << "." << endl;
 }
 
+// display passed in linked list in tabular form
 void OrderDA::displayThis(LinkedList<Order>* newList) {
     printElement("Order ID", 10);
     printElement("Item ID", 10);
@@ -121,6 +127,7 @@ void OrderDA::displayThis(LinkedList<Order>* newList) {
 
 }
 
+// filter order by completion status and pass into a temporary linked list to be returned
 LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
@@ -136,6 +143,7 @@ LinkedList<Order>* OrderDA::filterOrderbyCompletion(bool isCompleted) {
     return incompleteOrder;
 }
 
+// filter order by item ID and pass into a temporary linked list to be returned
 LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
@@ -151,7 +159,7 @@ LinkedList<Order>* OrderDA::filterOrderbyItemID(int itemId) {
     return incompleteOrder;
 }
 
-
+// filter order by supplier ID and pass into a temporary linked list to be returned
 LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
@@ -167,7 +175,7 @@ LinkedList<Order>* OrderDA::filterOrderbySupplierID(int supplierId) {
     return incompleteOrder;
 }
 
-
+// filter order by priority status and pass into a temporary linked list to be returned
 LinkedList<Order>* OrderDA::filterOrderbyStatus(string status) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
 
@@ -183,6 +191,7 @@ LinkedList<Order>* OrderDA::filterOrderbyStatus(string status) {
     return incompleteOrder;
 }
 
+// filter order by date and pass into a temporary linked list to be returned
 OrderDA::find OrderDA::filterOrderbyDate(string date, string upperdate, LinkedList<Order>* templist) {
     LinkedList<Order>* incompleteOrder = new LinkedList<Order>;
     bool found = false;
@@ -205,14 +214,17 @@ OrderDA::find OrderDA::filterOrderbyDate(string date, string upperdate, LinkedLi
     }
 }
 
+// sort order by order ID
 void OrderDA::sortOrderByID(LinkedList<Order>* list, int low, int high, sortMethod method) {
     if (low < high) {
-        auto pivot = list->getData(high);
-        int pos = partition(list, low, high, pivot, method);
+        auto pivot = list->getData(high); 
+        int pos = partition(list, low, high, pivot, method); 
         sortOrderByID(list, low, pos - 1, method);
         sortOrderByID(list, pos + 1, high, method);
     }
 }
+
+// sort order by order quantity
 void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
 {
     Node<Order>* head = *headRef;
@@ -234,6 +246,8 @@ void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
     /* answer = merge the two sorted lists together */
     *headRef = SortedMerge(a, b, sortBy::quantity, method);
 }
+
+// sort order by item id
 void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
 {
     Node<Order>* head = *headRef;
@@ -257,18 +271,19 @@ void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
 }
 
 
-
+// import order data into storage
 void OrderDA::importOrder() {
 
     // create new instance in storage
     Storage<LinkedList<Order>*>* orderData = Storage<LinkedList<Order>*>::getInstance();
 
-    // import user data into storage(linked list) from database 
+    // import order data into storage(linked list) from order.txt 
     orderData->setData(importFromDatabase());
 
 }
 
 // private functions here
+// imports content of order.txt to be appended to linked list
 LinkedList<Order>* OrderDA::importFromDatabase() {
 
 	LinkedList<Order>* orderData = new LinkedList<Order>();
@@ -308,6 +323,8 @@ LinkedList<Order>* OrderDA::importFromDatabase() {
 	return orderData;
 
 }
+
+
 void OrderDA::exportToDatabase() {
 
 	LinkedList<Order>* orderData = getOrderData();
@@ -333,6 +350,7 @@ void OrderDA::exportToDatabase() {
 
 }
 
+// compare elements and swap partitions accordingly
 int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method) {
     
     int i = low;
@@ -364,6 +382,8 @@ int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot,
     return j - 1;
  
 }
+
+// compare elements and swap elements accordingly
 void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high) {
 
     Node<Order>* prev = nullptr;
@@ -412,6 +432,7 @@ void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high)
 
 }
 
+// split list in half until every part cannot be split again
 void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef)
 {
     Node<Order>* fast;
@@ -434,6 +455,8 @@ void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<O
     *backRef = slow->next;
     slow->next = NULL;
 }
+
+// merge sorted splits 
 Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method)
 {
     Node<Order>* result = NULL;

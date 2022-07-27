@@ -5,6 +5,7 @@
 class Screen
 {
 public:
+	// deletes everything written on the CLI interface
 	static void clearScreen(char fill = ' ') {
 		COORD tl = { 0,0 };
 		CONSOLE_SCREEN_BUFFER_INFO s;

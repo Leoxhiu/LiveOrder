@@ -12,12 +12,13 @@
 using namespace std;
 
 // public functions here
-
+// retreives list of data from item instance
 DynamicArray<Item>* ItemDA::getItemData() {
 	Storage<DynamicArray<Item>*>* itemData = itemData->getInstance(); // find the dynamic array from storage
 	return itemData->getData();
 }
 
+// append new item into item instance 
 void ItemDA::addItem(Item item) {
     DynamicArray<Item>* itemData = getItemData();
 	itemData->append(item);

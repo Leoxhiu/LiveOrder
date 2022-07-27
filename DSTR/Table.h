@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//print element into tabular format
 template<typename T> void printElement(T t, const int& width)
 {
     const char separator = ' ';

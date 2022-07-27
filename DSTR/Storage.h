@@ -13,7 +13,8 @@ class Storage {
         Storage() {};
 
     public:
-        static Storage<T>* getInstance() {
+        //instance remains static and well not be overwritten easily without functions related to linked list and dynamic array
+        static Storage<T>* getInstance() { 
             if (!instance) {
                 instance = new Storage;
             }

@@ -27,7 +27,7 @@ public:
 };
 
 template<class T>
-inline void LinkedList<T>::append(T newData)
+inline void LinkedList<T>::append(T newData) // add new data into linked list
 {
     Node<T>* newNode = new Node<T>();
     Node<T>* last = this->head;
@@ -49,7 +49,7 @@ inline void LinkedList<T>::append(T newData)
 }
 
 template<class T>
-inline void LinkedList<T>::appendAfter(int index, T newData)
+inline void LinkedList<T>::appendAfter(int index, T newData) // add new data into linked list at a certain index
 {
     if (index >= this->length)return;
     if (!this->head) return;
@@ -112,7 +112,7 @@ inline Node<T>* LinkedList<T>::getHead() {
 }
 
 template<class T>
-inline Node<T>* LinkedList<T>::getNode(int index) {
+inline Node<T>* LinkedList<T>::getNode(int index) { //retreive the certain node at input index
     if (index >= this->length)
     {
         return nullptr;

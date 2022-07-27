@@ -22,7 +22,7 @@ public:
 const int increment = 10;
 
 template <class T>
-void DynamicArray<T>::extend() {
+void DynamicArray<T>::extend() { //increase the maximum size of dyanmic array
 	T* newData = new T[max_length + increment];
 	for (int i = 0; i < max_length; i++) {
 		newData[i] = data[i];
@@ -45,7 +45,7 @@ DynamicArray<T>::~DynamicArray() {
 }
 
 template <class T>
-void DynamicArray<T>::append(T newData) {
+void DynamicArray<T>::append(T newData) { //add new element into dynamic array
 	if (current_length == max_length) extend();
 	data[current_length] = newData;
 	current_length++;
