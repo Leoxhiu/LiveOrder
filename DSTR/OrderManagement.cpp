@@ -42,8 +42,9 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 		endl <<
 		"1. Update order" << endl <<
 		"2. Record new order" << endl <<
+		"3. Display all order" << endl <<
 		endl <<
-		"3. << Back" << endl
+		"4. << Back" << endl
 		<< endl;
 
 	int option;
@@ -174,6 +175,10 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 		break;
 	}
 	case 3: {
+		orderDA.displayList();
+		break;
+	}
+	case 4: {
 		Screen::clearScreen();
 		MainMenu MainMenu(accountType);
 		break;
@@ -204,8 +209,9 @@ void OrderManagement::ExecutiveOrderManagement(int accountType) {
 	cout << "What are you going to do next?" << endl <<
 		endl <<
 		"1. Update Order" << endl <<
+		"2. Display all orders" << endl <<
 		endl <<
-		"2. << Back" << endl
+		"3. << Back" << endl
 		<< endl;
 
 	int option;
@@ -220,6 +226,10 @@ void OrderManagement::ExecutiveOrderManagement(int accountType) {
 		break;
 	}
 	case 2: {
+		orderDA.displayList();
+		break;
+	}
+	case 3: {
 		Screen::clearScreen();
 		MainMenu MainMenu(accountType);
 		break;
