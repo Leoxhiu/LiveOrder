@@ -72,7 +72,7 @@ void ItemReport::filterItem(int accountType) {
 
 	cout << endl << "Filter by:" << endl <<
 		endl <<
-		"1. Suppleir ID" << endl <<
+		"1. Supplier ID" << endl <<
 		"2. Item Type" << endl <<
 		endl <<
 		"3. << Back" << endl
