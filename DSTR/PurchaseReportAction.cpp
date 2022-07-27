@@ -93,7 +93,6 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 			cin >> ItemID;
 			if (ItemID < 1 || ItemID > 10) {
 				cout << "Invalid item ID!" << endl;
-				break;
 			}
 			else if (ItemID > 0 && ItemID < 11) {
 				tempOrder = orderDA.filterOrderbyItemID(ItemID);
@@ -102,6 +101,7 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 				break;
 			}
 		} while (ItemID < 1 || ItemID>10);	
+		break;
 	}
 	case 2: {
 		int supplierID = 0;
@@ -110,7 +110,6 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 			cin >> supplierID;
 			if (supplierID < 1 || supplierID > 5) {
 				cout << "Invalid Supplier ID!" << endl;
-				break;
 			}
 			else if (supplierID > 0 && supplierID < 6) {
 				tempOrder = orderDA.filterOrderbySupplierID(supplierID);
@@ -119,6 +118,7 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 				break;
 			}
 		} while (supplierID < 1 || supplierID>5);
+		break;
 	}
 	case 3: {
 		int status = 0;
@@ -127,7 +127,6 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 			cin >> status;
 			if (status != 1 && status != 2) {
 				cout << "Invalid input!" << endl;
-				break;
 			}
 			else if (status == 1) {
 				tempOrder = orderDA.filterOrderbyStatus("trivia");
@@ -142,6 +141,7 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 				break;
 			}
 		} while (status != 1 && status != 2);
+		break;
 	}
 	case 4: {
 		int complete = 0;
@@ -150,7 +150,6 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 			cin >> complete;
 			if (complete != 1 && complete != 2) {
 				cout << "Invalid input!" << endl;
-				break;
 			}
 			else if (complete == 1) {
 				tempOrder = orderDA.filterOrderbyCompletion(true);
@@ -165,10 +164,12 @@ void PurchaseReportAction::filterReport(string date, string upperdate, int accou
 				break;
 			}
 		} while (complete != 1 && complete != 2);
+		break;
 	}
 	case 5: {
 		Screen::clearScreen();
 		PurchaseReportAction PurchaseReportAction(date, upperdate, accountType);
+		break;
 	}
 	default: {
 		cout << "Invalid option!" << endl;
@@ -208,7 +209,6 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 			cin >> sortBy;
 			if (sortBy != 1 && sortBy != 2) {
 				cout << "Invalid input!" << endl;
-				break;
 			}
 			else if (sortBy == 1) {
 				LinkedList<Order>* orderData = orderDA.getOrderData();
@@ -225,6 +225,7 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 				break;
 			}
 		} while (sortBy != 1 && sortBy != 2);
+		break;
 	}
 	case 2: {
 		int sortBy = 0;
@@ -233,7 +234,6 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 			cin >> sortBy;
 			if (sortBy != 1 && sortBy != 2) {
 				cout << "Invalid input!" << endl;
-				break;
 			}
 			else if (sortBy == 1) {
 				LinkedList<Order>* orderData = orderDA.getOrderData();
@@ -250,6 +250,7 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 				break;
 			}
 		} while (sortBy != 1 && sortBy != 2);
+		break;
 	}
 	case 3: {
 		int sortBy = 0;
@@ -258,7 +259,6 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 			cin >> sortBy;
 			if (sortBy != 1 && sortBy != 2) {
 				cout << "Invalid input!" << endl;
-				break;
 			}
 			else if (sortBy == 1) {
 				LinkedList<Order>* orderData = orderDA.getOrderData();
@@ -275,6 +275,7 @@ void PurchaseReportAction::sortReport(string date, string upperdate, int account
 				break;
 			}
 		} while (sortBy != 1 && sortBy != 2);
+		break;
 	}
 	case 4: {
 		Screen::clearScreen();

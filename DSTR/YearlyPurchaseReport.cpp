@@ -48,10 +48,10 @@ void YearlyPurchaseReport::Initialization(int accountType) {
 		else if (desiredYear == 2) {
 			Screen::clearScreen();
 			PurchaseReport PurchaseReport(accountType);
+			break;
 		}
 		else {
 			cout << "Invalid input!" << endl;
-			break;
 		}
 	} while (desiredYear < 0 || desiredYear >= 3000);
 

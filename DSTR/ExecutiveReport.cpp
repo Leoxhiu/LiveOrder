@@ -81,12 +81,11 @@ ExecutiveReport::ExecutiveReport(int accountType) {
 						cin.ignore();
 					}
 				}
-				  default: {
-					  cin.ignore();
-					  cout << "\n-----------------------------" << endl;
-					  cout << "        Invalid input!       " << endl;
-					  cout << "-----------------------------" << endl;
-					  break;
+				default: {
+					cin.ignore();
+					cout << "\n-----------------------------" << endl;
+					cout << "        Invalid input!       " << endl;
+					cout << "-----------------------------" << endl;
 				}
 				}
 			} while (opt != 1 && opt != 2);

@@ -75,13 +75,11 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (itemID < 1 || itemID > 10) {
 				cin.clear();
 				cin.ignore();
 				cout << "Item ID must be in between 1 and 10!" << endl;
-				break;
 			}
 			else {
 				switch (itemID) {
@@ -121,13 +119,11 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (quantity < 1) {
 				cin.clear();
 				cin.ignore();
 				cout << "Quantity cannot be 0 or negative number!" << endl;
-				break;
 			}
 			else {
 				valid = true;
@@ -147,13 +143,11 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (stat != 1 && stat != 2) {
 				cin.clear();
 				cin.ignore();
 				cout << "Invalid option!" << endl;
-				break;
 			}
 			else {
 				if (stat == 1) {

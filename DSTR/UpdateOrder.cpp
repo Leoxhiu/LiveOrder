@@ -65,13 +65,11 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (stat != 1 && stat != 2) {
 				cin.clear();
 				cin.ignore();
 				cout << "Invalid option!" << endl;
-				break;
 			}
 			else {
 				if (stat == 1) {
@@ -93,6 +91,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					if (found == OrderDA::find::NotFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
+						break;
 					}
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
@@ -119,13 +118,11 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (complete != 1 && complete != 2) {
 				cin.clear();
 				cin.ignore();
 				cout << "Invalid option!" << endl;
-				break;
 			}
 			else {
 				if (complete == 1) {
@@ -147,6 +144,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 					if (found == OrderDA::find::NotFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
+						break;
 					}
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
@@ -217,13 +215,11 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (stat != 1 && stat != 2) {
 				cin.clear();
 				cin.ignore();
 				cout << "Invalid option!" << endl;
-				break;
 			}
 			else {
 				if (stat == 1) {
@@ -245,6 +241,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					if (found == OrderDA::find::NotFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
+						break;
 					}
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";
@@ -271,13 +268,11 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 				cin.clear();
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
-				break;
 			}
 			else if (complete != 1 && complete != 2) {
 				cin.clear();
 				cin.ignore();
 				cout << "Invalid option!" << endl;
-				break;
 			}
 			else {
 				if (complete == 1) {
@@ -299,6 +294,7 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 					if (found == OrderDA::find::NotFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
+						break;
 					}
 					else if (found == OrderDA::find::Found) {
 						cout << "Order with ID of " << id << " has been updated.";

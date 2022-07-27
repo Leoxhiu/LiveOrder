@@ -62,7 +62,6 @@ void MonthlyPurchaseReport::Initialization(int accountType) {
 		}
 		else {
 			cout << "Invalid input!" << endl;
-			break;
 		}
 	} while (desiredMonth < 0 || desiredMonth >13);
 	

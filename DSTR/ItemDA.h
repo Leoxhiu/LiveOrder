@@ -30,6 +30,7 @@ class ItemDA
 
 		void displayThis(DynamicArray<Item>* newArray);
 		void filterItembySupplierID(int supplierId);
+		void filterItembyType(string type);
 
 		void importItem(); // Import item data to dynamic array storage
 

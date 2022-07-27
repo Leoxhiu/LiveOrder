@@ -29,7 +29,7 @@ void ItemDA::displayList() {
     DynamicArray<Item>* itemData = getItemData();
 
     printElement("Item ID", 10);
-    printElement("Name", 50);
+    printElement("Name", 35);
     printElement("Supplier ID", 15);
     printElement("Quantity", 10);
     printElement("Item Type", 25);
@@ -39,7 +39,7 @@ void ItemDA::displayList() {
     for (int i = 0; i < itemData->getLength(); i++) {
         Item* item = itemData->getData(i);
         printElement(item->id, 10);
-        printElement(item->name, 50);
+        printElement(item->name, 35);
         printElement(item->supplierID, 15);
         printElement(item->quantity, 10);
         printElement(item->type, 25);
@@ -50,7 +50,7 @@ void ItemDA::displayList() {
 
 void ItemDA::displayThis(DynamicArray<Item>* newArray) {
     printElement("Item ID", 10);
-    printElement("Name", 50);
+    printElement("Name", 35);
     printElement("Supplier ID", 15);
     printElement("Quantity", 10);
     printElement("Item Type", 25);
@@ -60,7 +60,7 @@ void ItemDA::displayThis(DynamicArray<Item>* newArray) {
     for (int i = 0; i < newArray->getLength(); i++) {
         Item* filtered_item = newArray->getData(i);
         printElement(filtered_item->id, 10);
-        printElement(filtered_item->name, 50);
+        printElement(filtered_item->name, 35);
         printElement(filtered_item->supplierID, 15);
         printElement(filtered_item->quantity, 10);
         printElement(filtered_item->type, 25);
@@ -76,6 +76,20 @@ void ItemDA::filterItembySupplierID(int supplierId) {
     ItemDA itemDA;
     for (int i = 0; i < itemDA.getItemData()->getLength(); i++) {
         if (itemDA.getItemData()->getData(i)->supplierID == supplierId) {
+
+            Item item = *itemDA.getItemData()->getData(i);
+            newItem->append(item);
+        }
+    }
+    itemDA.displayThis(newItem);
+}
+
+void ItemDA::filterItembyType(string type) {
+    DynamicArray<Item>* newItem = new DynamicArray<Item>;
+
+    ItemDA itemDA;
+    for (int i = 0; i < itemDA.getItemData()->getLength(); i++) {
+        if (itemDA.getItemData()->getData(i)->type == type) {
 
             Item item = *itemDA.getItemData()->getData(i);
             newItem->append(item);
@@ -140,8 +154,7 @@ void ItemDA::sortItembyID(sortMethod method) {
                     swap(itemData->data[j], itemData->data[j + 1]);
 
     }
-    else if
-        (method == sortMethod::descending) {
+    else if(method == sortMethod::descending) {
 
         int i, j;
         for (i = 0; i < itemData->getLength() - 1; i++)
@@ -170,8 +183,7 @@ void ItemDA::sortItembyQuantity(sortMethod method) {
                     swap(itemData->data[j], itemData->data[j + 1]);
 
     }
-    else if
-        (method == sortMethod::descending) {
+    else if (method == sortMethod::descending) {
 
         int i, j;
         for (i = 0; i < itemData->getLength() - 1; i++)
@@ -184,6 +196,7 @@ void ItemDA::sortItembyQuantity(sortMethod method) {
 
     }
 }
+
 void ItemDA::sortItembyPrice(sortMethod method) {
     DynamicArray<Item>* itemData = getItemData();
 

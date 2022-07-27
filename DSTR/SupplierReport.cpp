@@ -175,9 +175,9 @@ SupplierReport::SupplierReport(int accountType) {
 				cout << "\n-----------------------------" << endl;
 				cout << "        Invalid input!       " << endl;
 				cout << "-----------------------------" << endl;
-				break;
 			}
 		} while (opt != 1);
+		break;
 
 	}
 	case 2: {
@@ -225,10 +225,10 @@ SupplierReport::SupplierReport(int accountType) {
 				cout << "\n-----------------------------" << endl;
 				cout << "        Invalid input!       " << endl;
 				cout << "-----------------------------" << endl;
-				break;
 			}
 			}
 		} while (opt != 1 && opt != 2);
+		break;
 	}
 	case 3: {
 		Screen::clearScreen();
