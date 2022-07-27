@@ -130,6 +130,7 @@
     <ClCompile Include="BinarySearch.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="ExecutiveRegistration.cpp" />
+    <ClCompile Include="ExecutiveReport.cpp" />
     <ClCompile Include="Homepage.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemDA.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="BinarySearch.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="ExecutiveRegistration.h" />
+    <ClInclude Include="ExecutiveReport.h" />
     <ClInclude Include="Homepage.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="Item.h" />
