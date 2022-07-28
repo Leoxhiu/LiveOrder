@@ -28,14 +28,14 @@ Login::Login() {
 	UserDA userDA;
 	UserDA::validate result = userDA.userValidation(email, password);
 
-	if (result == UserDA::validate::Successful) {
+	if (result == UserDA::validate::successful) {
 
 		// if email and password correct, identify user type (0 = admin, 1 = executive)
 		User user = userDA.getUserByEmail(email);
 		Screen::clearScreen();
 		MainMenu MainMenu(user.type);
 	}
-	else if (result == UserDA::validate::IncorrectPassword) {
+	else if (result == UserDA::validate::incorrectPassword) {
 
 		cout << "\n-----------------------------" << endl;
 		cout << "     Incorrect password.   " << endl;

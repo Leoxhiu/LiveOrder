@@ -24,14 +24,14 @@ void UserDA::addUser(User user) {
 
 UserDA::validate UserDA::userValidation(string email, string password) {
 	LinkedList<User>* userData = getUserData();
-	UserDA::validate result = UserDA::validate::NotFound;
+	UserDA::validate result = UserDA::validate::notFound;
 
 	for (int i = 0; i < userData->getLength(); i++)
 	{
 		if (email == userData->getData(i)->email) {
-			result = UserDA::validate::IncorrectPassword;
+			result = UserDA::validate::incorrectPassword;
 			if (password == userData->getData(i)->password) {
-				result = UserDA::validate::Successful;
+				result = UserDA::validate::successful;
 
 			}
 		}
@@ -74,11 +74,11 @@ UserDA::find UserDA::findUserByID(int id)
 
 		// If middle is empty
 		if (mid == nullptr)
-			return UserDA::find::NotFound;
+			return UserDA::find::notFound;
 
 		// If value is present at middle
 		if (mid->data.id == id)
-			return UserDA::find::Found;
+			return UserDA::find::found;
 
 		// If value is more than mid
 		else if (mid->data.id < id)
@@ -92,7 +92,7 @@ UserDA::find UserDA::findUserByID(int id)
 		last != start);
 
 	// value not present
-	return UserDA::find::NotFound;
+	return UserDA::find::notFound;
 }
 
 
@@ -121,12 +121,12 @@ void UserDA::sortUserByID(LinkedList<User>* list, int low, int high, sortMethod 
 
 UserDA::find UserDA::findUserByEmail(string email) {
 	LinkedList<User>* userData = getUserData();
-	UserDA::find result = UserDA::find::NotFound;
+	UserDA::find result = UserDA::find::notFound;
 
 	for (int i = 0; i < userData->getLength(); i++)
 	{
 		if (email == userData->getData(i)->email) {
-			result = UserDA::find::Found;
+			result = UserDA::find::found;
 			}
 		
 	}

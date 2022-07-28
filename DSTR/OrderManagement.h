@@ -7,9 +7,8 @@ class OrderManagement
 	public:
 		OrderManagement(int accountType);
 
-		void AdminOrderManagement(int accountType);
-
-		void ExecutiveOrderManagement(int accountType);
+		void adminInterface(int accountType);
+		void executiveInterface(int accountType);
 
 	private:
 		void keepLaunch(string message, int accountType);

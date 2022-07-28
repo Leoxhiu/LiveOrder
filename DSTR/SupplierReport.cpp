@@ -39,7 +39,7 @@ SupplierReport::SupplierReport(int accountType) {
 		cin >> supplierID;
 
 		SupplierDA::find found = supplierDA.findSupplierByID(supplierID);
-		if (found == SupplierDA::find::Found) {
+		if (found == SupplierDA::find::found) {
 			for (int i = 0; i < supplierDA.getSupplierData()->getLength(); i++) {
 				Supplier* supplier = supplierDA.getSupplierData()->getData(i);
 				if (supplier->id == supplierID) {
@@ -157,7 +157,7 @@ SupplierReport::SupplierReport(int accountType) {
 			}
 			}
 		}
-		else if (found == SupplierDA::find::NotFound) {
+		else if (found == SupplierDA::find::notFound) {
 			cout << "Supplier with such ID is not found" << endl;
 		}
 		

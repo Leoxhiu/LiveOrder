@@ -8,9 +8,9 @@ public:
 	YearlyPurchaseReport(int accountType);
 
 private:
-	void Initialization(int accountType);
+	void initialization(int accountType);
 	void keepLaunch(string message, int accountType);
-	void OrderReportAction(string message, int accountType, string date, string upperdate);
+	void orderReportAction(string message, int accountType, string date, string upperdate);
 	string getCurrentDate();
 
 };

@@ -94,13 +94,13 @@ SupplierDA::find SupplierDA::findSupplierByID(int id) {
 		}
 	}
 	if (supplierData->getData(low)->id == id) {
-		return find::Found;
+		return find::found;
 	}
 	else if (supplierData->getData(high)->id == id) {
-		return find::Found;
+		return find::found;
 	}
 	else {
-		return find::NotFound;
+		return find::notFound;
 	}
 
 }

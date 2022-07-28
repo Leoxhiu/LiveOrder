@@ -9,11 +9,11 @@ using namespace std;
 
 Homepage::Homepage() {
 
-    Initialization();
+    initialization();
 
 }
 
-void Homepage::Initialization(){
+void Homepage::initialization(){
     cout << "============================" << endl;
     cout << "    LiveOrder PO system     " << endl;
     cout << "============================" << endl;

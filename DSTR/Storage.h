@@ -9,11 +9,11 @@ class Storage {
         static Storage* instance;
         T data;
 
-        // Private constructor so that no object can be created.
+        // private constructor so that no object can be created.
         Storage() {};
 
     public:
-        //instance remains static and well not be overwritten easily without functions related to linked list and dynamic array
+        // instance remains static and well not be overwritten easily without functions related to linked list and dynamic array
         static Storage<T>* getInstance() { 
             if (!instance) {
                 instance = new Storage;

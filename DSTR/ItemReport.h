@@ -8,7 +8,7 @@ class ItemReport
 		ItemReport(int accountType);
 
 	private:
-		void Initialization(int accountType);
+		void initialization(int accountType);
 		void filterItem(int accountType);
 		void sortItem(int accountType);
 		void keepLaunchSort(string message, int accountType);

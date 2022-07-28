@@ -76,10 +76,10 @@ bool ExecutiveRegistration::emailExist(string email, UserDA userDA){
 	// exist? 
 	UserDA::find result = userDA.findUserByEmail(email);
 
-	if (result == UserDA::find::Found) {
+	if (result == UserDA::find::found) {
 		return true;
 	}
-	else if (result == UserDA::find::NotFound) {
+	else if (result == UserDA::find::notFound) {
 		return false;
 	}
 

@@ -16,16 +16,16 @@ OrderManagement::OrderManagement(int accountType) { // 0 = admin, 1 = executive
 
 	if (accountType == 0) {
 
-		AdminOrderManagement(accountType);
+		adminInterface(accountType);
 	}
 	else if (accountType == 1)
 	{
-		ExecutiveOrderManagement(accountType);
+		executiveInterface(accountType);
 	}
 
 }
 
-void OrderManagement::AdminOrderManagement(int accountType) {
+void OrderManagement::adminInterface(int accountType) {
 
 	cout << "============================" << endl;
 	cout << "       Order Management	 " << endl;
@@ -194,7 +194,7 @@ void OrderManagement::AdminOrderManagement(int accountType) {
 
 }
 
-void OrderManagement::ExecutiveOrderManagement(int accountType) {
+void OrderManagement::executiveInterface(int accountType) {
 
 	cout << "============================" << endl;
 	cout << "       Order Management	 " << endl;
