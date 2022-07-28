@@ -1,10 +1,10 @@
-1,dyson air purifier,1,43,home appliance,500.8
-2,samsung bluetooth buds,2,22,audio,299
-3,lenovo ideapad 5,3,9,laptop,599
-4,asus zenfone 8 flip,4,39,smartphone,2799
-5,iphone 13 pro,5,27,smartphone,4899
-6,samsung family refrigerator,2,43,home appliance,7988
-7,asus zenbook 14x,4,10,laptop,1699
-8,lenovo 100 stereo,3,16,audio,95.3
-9,apple airpods,5,23,audio,889
-10,samsung galaxy book2 pro,2,37,laptop,3399
+1,Dyson Air Purifier,1,43,Home Appliance,500.8
+2,Samsung Bluetooth Buds,2,22,Audio,299
+3,Lenovo Ideapad 5,3,9,Laptop,599
+4,Asus Zenfone 8 Flip,4,39,Smartphone,2799
+5,Iphone 13 Pro,5,27,Smartphone,4899
+6,Samsung Family Refrigerator,2,43,Home Appliance,7988
+7,Asus Zenbook 14X,4,10,Laptop,1699
+8,Lenovo 100 Stereo,3,16,Audio,95.3
+9,Apple Airpods,5,23,Audio,889
+10,Samsung Galaxy Book 2 Pro,2,37,Laptop,3399

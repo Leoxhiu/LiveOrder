@@ -33,6 +33,7 @@ class ItemDA
 		void filterItembyType(string type);
 
 		void importItem(); // Import item data to dynamic array storage
+		DynamicArray<Item>* ReturnItemsbySupplierID(int supplierId);
 
 	private:
 		// private functions here
