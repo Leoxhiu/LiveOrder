@@ -473,7 +473,30 @@ LinkedList<Order>* OrderDA::importFromDatabase() {
 	return orderData;
 
 }
+void OrderDA::exportToDatabase() {
 
+    LinkedList<Order>* orderData = getOrderData();
+
+    fstream file(this->filepath);
+    if (file.is_open()) {
+
+        for (int i = 0; i < orderData->getLength(); i++)
+        {
+            file << orderData->getData(i)->id << "," <<
+                orderData->getData(i)->itemID << "," <<
+                orderData->getData(i)->quantity << "," <<
+                orderData->getData(i)->date << "," <<
+                orderData->getData(i)->supplierID << "," <<
+                orderData->getData(i)->status << "," <<
+                orderData->getData(i)->isCompleted << endl;
+        }
+
+    }
+    else {
+        cout << "Unable to access database.";
+    }
+
+}
 
 // compare elements and swap partitions accordingly
 int OrderDA::partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method) {

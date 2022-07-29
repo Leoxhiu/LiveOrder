@@ -39,5 +39,6 @@ class ItemDA
 	private:
 		// private functions here
 		DynamicArray<Item>* importFromDatabase(); // Import items from database into dynamic array
+		void exportToDatabase(); // Export items to database from dynamic array
 };
 
