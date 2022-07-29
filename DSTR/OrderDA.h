@@ -16,12 +16,17 @@ class OrderDA
 		enum class sortBy { itemID, quantity };
 		enum class sortMethod { ascending , descending };
 		enum class find { notFound, found };
+		enum class sameRecord {same, different};
 		enum class update {status, completion};
 
 		// public functions here
 		LinkedList<Order>* getOrderData(); // Return all order data
 		void addOrder(Order order); // Register in linked list then store into database
-		find updateOrder(int id, string status, bool complete, update update);
+		sameRecord validateSameRecord(int id, string status, bool complete, update opt);
+		find updateOrder(int id, string status, bool complete, update opt);
+		
+		int getOrderItemID(int id); //get the item id in specific purchase order
+		int getOrderItemQuantity(int id); //get the quantity of the item in specific purchase order
 
 		void displayList(); // Display linked list as table form
 
@@ -38,7 +43,7 @@ class OrderDA
 		void sortOrderByQuantity(Node<Order>** headRef, sortMethod method); // Sort order by quantity using merge sort
 		void sortOrderByItemID(Node<Order>** headRef, sortMethod method); // Sort order by item by using merge sort
 
-
+		
 
 		void importOrder(); // Import order data to linked list storage
 
@@ -54,5 +59,7 @@ class OrderDA
 		// functions for merge sort
 		void frontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef);
 		Node<Order>* sortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method);
+
+		Node<Order>* middle(Node<Order>* start, Node<Order>* last);
 };
 

@@ -6,6 +6,8 @@
 #include "Screen.h"
 #include "Order.h"
 #include "OrderDA.h"
+#include "Item.h"
+#include "ItemDA.h"
 #include "UpdateOrder.h"
 #include "LinkedList.h"
 
@@ -32,6 +34,9 @@ void UpdateOrder::adminInterface(int accountType) {
 	LinkedList<Order>* orderList;
 	orderList = orderDA.filterOrderbyCompletion(false);
 	orderDA.displayThis(orderList);
+
+	ItemDA itemDA;
+
 
 	cout << "Update: " << endl <<
 		endl <<
@@ -75,7 +80,7 @@ void UpdateOrder::adminInterface(int accountType) {
 				if (stat == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::status);
 					if (found == OrderDA::find::notFound) {
-						cout << "Order with such ID is not found.";
+						cout << "Update Failed.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
@@ -89,7 +94,7 @@ void UpdateOrder::adminInterface(int accountType) {
 				else if (stat == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "urgent", false, OrderDA::update::status);
 					if (found == OrderDA::find::notFound) {
-						cout << "Order with such ID is not found.";
+						cout << "Update Failed.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
@@ -128,7 +133,6 @@ void UpdateOrder::adminInterface(int accountType) {
 				if (complete == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", true, OrderDA::update::completion);
 					if (found == OrderDA::find::notFound) {
-						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
@@ -142,7 +146,6 @@ void UpdateOrder::adminInterface(int accountType) {
 				else if (complete == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::completion);
 					if (found == OrderDA::find::notFound) {
-						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}

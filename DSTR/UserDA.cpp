@@ -61,6 +61,7 @@ Node<User>* middle(Node<User>* start, Node<User>* last)
 
 	return slow;
 }
+
 UserDA::find UserDA::findUserByID(int id)
 {
 	LinkedList<User>* userData = getUserData();

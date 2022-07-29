@@ -226,6 +226,16 @@ void ItemDA::sortItembyPrice(sortMethod method) {
     }
 }
 
+void ItemDA::incrementQuantity(int id, int quantity) {
+    DynamicArray<Item>* itemData = getItemData();
+
+    for (int i = 0; i < itemData->getLength() - 1; i++) {
+        if (itemData->getData(i)->id == id) {
+            itemData->getData(i)->quantity = itemData->getData(i)->quantity + quantity;
+        }
+    }
+}
+
 void ItemDA::importItem() {
     // create new instance in storage
     Storage<DynamicArray<Item>*>* itemData = Storage<DynamicArray<Item>*>::getInstance();

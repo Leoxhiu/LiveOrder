@@ -5,7 +5,10 @@
 
 #include "OrderDA.h"
 #include "Order.h"
+#include "Item.h"
+#include "ItemDA.h"
 #include "LinkedList.h"
+#include "DynamicArray.h"
 #include "Table.h"
 #include "Storage.h"
 
@@ -24,16 +27,19 @@ void OrderDA::addOrder(Order order) {
 	orderData->append(order);
 }
 
-// update order priority status or completion status at certain order ID 
-OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update opt) {
+OrderDA::sameRecord OrderDA::validateSameRecord(int id, string status, bool complete, update opt) {
     LinkedList<Order>* orderData = getOrderData();
-    
+
     if (opt == update::completion) {
         for (int i = 0; i < orderData->getLength(); i++) {
             Order* order = orderData->getData(i);
             if (order->id == id) {
-                order->isCompleted = complete;
-                return OrderDA::find::found;
+                if (order->isCompleted == complete) {
+                    return OrderDA::sameRecord::same;
+                }
+                else if (order->isCompleted != complete) {
+                    return OrderDA::sameRecord::different;
+                }
             }
         }
     }
@@ -41,13 +47,158 @@ OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update 
         for (int i = 0; i < orderData->getLength(); i++) {
             Order* order = orderData->getData(i);
             if (order->id == id) {
-                order->status = status;
-                return OrderDA::find::found;
+                if (order->status == status) {
+                    return OrderDA::sameRecord::same;
+                }
+                else if (order->status != status) {
+                    return OrderDA::sameRecord::different;
+                }
+            }
+
+        }
+    }
+}
+
+// update order priority status or completion status at certain order ID 
+OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update opt) {
+    LinkedList<Order>* orderData = getOrderData();
+    ItemDA itemDA;
+
+    if (opt == update::completion) {
+        for (int i = 0; i < orderData->getLength(); i++) {
+            Order* order = orderData->getData(i);
+            if (order->id == id) {
+                OrderDA::sameRecord same = validateSameRecord(id, status, complete, opt);
+                if (same == OrderDA::sameRecord::different) {
+                    order->isCompleted = complete;
+                    if (complete == false) {
+                        itemDA.incrementQuantity(getOrderItemID(id), -(getOrderItemQuantity(id)));
+                        return OrderDA::find::found;
+                    }
+                    else if (complete == true) {
+                        itemDA.incrementQuantity(getOrderItemID(id), getOrderItemQuantity(id));
+                        return OrderDA::find::found;
+                    }
+                }
+                else if (same == OrderDA::sameRecord::same) {    
+                    cout << "Update failed due to input being the same with the record." << endl;
+                    return OrderDA::find::notFound;
+                }
+            }
+        }
+    }
+    else if (opt == update::status) {
+        for (int i = 0; i < orderData->getLength(); i++) {
+            Order* order = orderData->getData(i);
+            if (order->id == id) {
+                OrderDA::sameRecord same = validateSameRecord(id, status, complete, opt);
+                if (same == OrderDA::sameRecord::different) {
+                    order->status = status;
+                    return OrderDA::find::found;
+                }
+                else if (same == OrderDA::sameRecord::same) {
+                    cout << "Update failed due to input being the same with the record." << endl;
+                    return OrderDA::find::notFound;
+                }
+                
             }
         }
     }
 
     return OrderDA::find::notFound;
+}
+
+Node<Order>* OrderDA::middle(Node<Order>* start, Node<Order>* last) {
+    if (start == nullptr)
+        return nullptr;
+
+    Node<Order>* slow = start;
+    Node<Order>* fast = start->next;
+
+    while (fast != last)
+    {
+        fast = fast->next;
+        if (fast != last)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+    }
+
+    return slow;
+}
+
+//get the quantity of the item id in specific purchase order
+int OrderDA::getOrderItemID(int id) {
+    LinkedList<Order>* orderData = getOrderData();
+
+    Node<Order>* start = orderData->getHead();
+    Node<Order>* last = nullptr;
+    int itemID = 0;
+
+    do
+    {
+        // Find middle
+        Node<Order>* mid = middle(start, last);
+
+        // If middle is empty
+        if (mid == nullptr)
+            return 0;
+
+        // If value is present at middle
+        if (mid->data.id == id) {
+            itemID = mid->data.itemID;
+            return itemID;
+        }
+            
+        // If value is more than mid
+        else if (mid->data.id < id)
+            start = mid->next;
+
+        // If the value is less than mid.
+        else
+            last = mid;
+
+    } while (last == NULL ||
+        last != start);
+
+    return 0;
+}
+
+int OrderDA::getOrderItemQuantity(int id) {
+    LinkedList<Order>* orderData = getOrderData();
+
+    Node<Order>* start = orderData->getHead();
+    Node<Order>* last = nullptr;
+    int quantity = 0;
+
+    do
+    {
+        // Find middle
+        Node<Order>* mid = middle(start, last);
+
+        // If middle is empty
+        if (mid == nullptr)
+            return 0;
+
+        // If value is present at middle
+        if (mid->data.id == id) {
+            quantity = mid->data.quantity;
+            return quantity;
+        }
+
+        // If value is more than mid
+        else if (mid->data.id < id)
+            start = mid->next;
+
+        // If the value is less than mid.
+        else
+            last = mid;
+
+    } while (last == NULL ||
+        last != start);
+
+    return 0;
 }
 
 // display all data in tabular form

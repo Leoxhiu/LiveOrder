@@ -32,6 +32,8 @@ class ItemDA
 		void filterItembySupplierID(int supplierId);
 		void filterItembyType(string type);
 
+		void incrementQuantity(int id, int quantity); //increment quantity of item upon purchase order completion
+
 		void importItem(); // Import item data to dynamic array storage
 		DynamicArray<Item>* ReturnItemsbySupplierID(int supplierId);
 
