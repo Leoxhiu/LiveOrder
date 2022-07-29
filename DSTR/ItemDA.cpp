@@ -74,15 +74,14 @@ void ItemDA::displayThis(DynamicArray<Item>* newArray) {
 void ItemDA::filterItembySupplierID(int supplierId) {
     DynamicArray<Item>* newItem = new DynamicArray<Item>;
 
-    ItemDA itemDA;
-    for (int i = 0; i < itemDA.getItemData()->getLength(); i++) {
-        if (itemDA.getItemData()->getData(i)->supplierID == supplierId) {
+    for (int i = 0; i < getItemData()->getLength(); i++) {
+        if (getItemData()->getData(i)->supplierID == supplierId) {
 
-            Item item = *itemDA.getItemData()->getData(i);
+            Item item = *getItemData()->getData(i);
             newItem->append(item);
         }
     }
-    itemDA.displayThis(newItem);
+    displayThis(newItem);
 }
 
 void ItemDA::filterItembyType(string type) {
@@ -118,13 +117,13 @@ ItemDA::find ItemDA::findItemByID(int id) {
         }
     }
     if (itemData->getData(low)->id == id) {
-        return find::Found;
+        return find::found;
     }
     else if (itemData->getData(high)->id == id) {
-        return find::Found;
+        return find::found;
     }
     else {
-        return find::NotFound;
+        return find::notFound;
     }
 
 }
@@ -197,7 +196,6 @@ void ItemDA::sortItembyQuantity(sortMethod method) {
 
     }
 }
-
 void ItemDA::sortItembyPrice(sortMethod method) {
     DynamicArray<Item>* itemData = getItemData();
 

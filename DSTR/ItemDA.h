@@ -12,7 +12,7 @@ class ItemDA
 
 	public:
 		ItemDA() {};
-		enum class find { NotFound, Found };
+		enum class find { notFound, found };
 		enum class sortMethod { ascending, descending };
 
 		// public functions here
@@ -33,6 +33,7 @@ class ItemDA
 		void filterItembyType(string type);
 
 		void importItem(); // Import item data to dynamic array storage
+		DynamicArray<Item>* ReturnItemsbySupplierID(int supplierId);
 
 	private:
 		// private functions here

@@ -17,7 +17,6 @@ public:
     Node<T>* head;
     LinkedList();
     ~LinkedList();
-    void modifyHead();
     void append(T newData);
     void appendAfter(int index, T newData);
     int getLength();

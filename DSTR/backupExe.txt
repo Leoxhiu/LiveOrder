@@ -1,5 +1,0 @@
-1,ali123@gmail.com,123,ali,0168889999,1
-2,sarah05@gmail.com,456,sarah,0141234567,1
-3,paul1993@gmail.com,paul1993,paul,0168783368,1
-4,ben01@gmail.com,ben lim,ben1234,0164567891,1
-5,jinn03@gmail.com,jinn123,chon jinn hou,0113334444,1

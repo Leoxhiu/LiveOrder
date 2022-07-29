@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinarySearch.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
     <ClCompile Include="ExecutiveRegistration.cpp" />
     <ClCompile Include="ExecutiveReport.cpp" />
@@ -139,7 +138,6 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
-    <ClCompile Include="MergeSort.cpp" />
     <ClCompile Include="MonthlyPurchaseReport.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrderDA.cpp" />
@@ -159,7 +157,6 @@
     <ClCompile Include="YearlyPurchaseReport.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinarySearch.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="ExecutiveRegistration.h" />
     <ClInclude Include="ExecutiveReport.h" />
@@ -169,7 +166,6 @@
     <ClInclude Include="ItemDA.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="MergeSort.h" />
     <ClInclude Include="MonthlyPurchaseReport.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="OrderDA.h" />
@@ -191,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="user.txt" />
-    <Text Include="backupExe.txt" />
     <Text Include="item.txt" />
     <Text Include="order.txt" />
     <Text Include="supplier.txt" />

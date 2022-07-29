@@ -13,7 +13,7 @@ class SupplierDA
 
 	public:
 		SupplierDA() {};
-		enum class find { NotFound, Found };
+		enum class find { notFound, found };
 		enum class sortMethod { ascending, descending };
 
 		// public functions here

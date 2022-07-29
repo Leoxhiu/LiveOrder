@@ -11,8 +11,8 @@ class MonthlyPurchaseReport
 
 	private:
 		void keepLaunch(string message, int accountType);
-		void OrderReportAction(string message, int accountType, string date, string upperdate);
-		void Initialization(int accountType);
+		void orderReportAction(string message, int accountType, string date, string upperdate);
+		void initialization(int accountType);
 		string getCurrentDate();
 };
 

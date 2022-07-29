@@ -12,12 +12,12 @@ using namespace std;
 
 MonthlyPurchaseReport::MonthlyPurchaseReport(int accountType) {
 
-	Initialization(accountType);
+	initialization(accountType);
 
 }
 
 
-void MonthlyPurchaseReport::Initialization(int accountType) {
+void MonthlyPurchaseReport::initialization(int accountType) {
 
 	cout << "============================" << endl;
 	cout << "   Monthly Purchase Report  " << endl;
@@ -66,11 +66,11 @@ void MonthlyPurchaseReport::Initialization(int accountType) {
 	} while (desiredMonth < 0 || desiredMonth >13);
 	
 	OrderDA::find found = orderDA.filterOrderbyDate(date, upperdate, orderDA.getOrderData());
-	if (found == OrderDA::find::NotFound) {
+	if (found == OrderDA::find::notFound) {
 		keepLaunch("Try again?", accountType);
 	}
-	else if (found == OrderDA::find::Found) {
-		OrderReportAction("Continue?", accountType, date, upperdate);
+	else if (found == OrderDA::find::found) {
+		orderReportAction("Continue?", accountType, date, upperdate);
 	}
 	
 }
@@ -110,7 +110,7 @@ void MonthlyPurchaseReport::keepLaunch(string message, int accountType) {
 
 }
 
-void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, string date, string upperdate) {
+void MonthlyPurchaseReport::orderReportAction(string message, int accountType, string date, string upperdate) {
 	int option;
 
 	cout << "\n============================" << endl;
@@ -139,7 +139,7 @@ void MonthlyPurchaseReport::OrderReportAction(string message, int accountType, s
 		cout << "-----------------------------" << endl;
 		this_thread::sleep_for(std::chrono::seconds(3));
 		Screen::clearScreen();
-		OrderReportAction(message, accountType, date, upperdate);
+		orderReportAction(message, accountType, date, upperdate);
 	}
 	}
 }

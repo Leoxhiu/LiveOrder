@@ -11,10 +11,10 @@
 using namespace std;
 
 PurchaseReportAction::PurchaseReportAction(string date, string upperdate, int accountType) {
-	Initialization(date, upperdate, accountType);
+	initialization(date, upperdate, accountType);
 }
 
-void PurchaseReportAction::Initialization(string date, string upperdate, int accountType) {
+void PurchaseReportAction::initialization(string date, string upperdate, int accountType) {
 	cout << "============================" << endl;
 	cout << "   Purchase Report Actions  " << endl;
 	cout << "============================" << endl;

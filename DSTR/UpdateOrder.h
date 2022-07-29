@@ -4,9 +4,8 @@ class UpdateOrder {
 public:
 	UpdateOrder(int accountType);
 
-	void AdminUpdateOrder(int accountType);
-
-	void ExecutiveUpdateOrder(int accountType);
+	void adminInterface(int accountType);
+	void executiveInterface(int accountType);
 
 private:
 

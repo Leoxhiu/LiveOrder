@@ -24,7 +24,7 @@ Storage<DynamicArray<Supplier>*>* Storage<DynamicArray<Supplier>*>::instance = n
 Storage<LinkedList<Order>*>* Storage<LinkedList<Order>*>::instance = nullptr;
 Storage<DynamicArray<Item>*>* Storage<DynamicArray<Item>*>::instance = nullptr;
 
-void Initialization() {
+void initialization() {
 
 	// import user data into linked list (store at run time)
 	UserDA userDA;
@@ -45,6 +45,6 @@ void Initialization() {
 
 int main()
 {
-	Initialization();
+	initialization();
 	Homepage Homepage;
 }

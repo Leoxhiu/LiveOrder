@@ -12,8 +12,8 @@ class UserDA
 
 	public:
 		UserDA() {};
-		enum class validate {NotFound, IncorrectPassword, Successful};
-		enum class find { NotFound, Found };
+		enum class validate {notFound, incorrectPassword, successful};
+		enum class find { notFound, found };
 		enum class sortBy { itemID, quantity };
 		enum class sortMethod { ascending, descending };
 

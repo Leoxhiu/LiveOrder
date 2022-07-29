@@ -11,10 +11,10 @@ using namespace std;
 
 ItemReport::ItemReport(int accountType) {
 
-	Initialization(accountType);
+	initialization(accountType);
 }
 
-void ItemReport::Initialization(int accountType) {
+void ItemReport::initialization(int accountType) {
 	cout << "============================" << endl;
 	cout << "   Item Report Generation   " << endl;
 	cout << "============================" << endl;

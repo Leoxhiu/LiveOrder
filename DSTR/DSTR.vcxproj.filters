@@ -75,12 +75,6 @@
     <ClCompile Include="Table.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="BinarySearch.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeSort.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="ReportGeneration.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -164,12 +158,6 @@
     <ClInclude Include="OrderManagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BinarySearch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeSort.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ReportGeneration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -206,9 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="user.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="backupExe.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="item.txt">

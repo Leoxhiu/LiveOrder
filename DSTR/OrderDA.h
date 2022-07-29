@@ -15,7 +15,7 @@ class OrderDA
 		OrderDA() {};
 		enum class sortBy { itemID, quantity };
 		enum class sortMethod { ascending , descending };
-		enum class find { NotFound, Found };
+		enum class find { notFound, found };
 		enum class update {status, completion};
 
 		// public functions here
@@ -52,7 +52,7 @@ class OrderDA
 		void swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high);
 
 		// functions for merge sort
-		void FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef);
-		Node<Order>* SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method);
+		void frontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef);
+		Node<Order>* sortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method);
 };
 

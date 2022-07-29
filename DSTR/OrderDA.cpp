@@ -33,7 +33,7 @@ OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update 
             Order* order = orderData->getData(i);
             if (order->id == id) {
                 order->isCompleted = complete;
-                return OrderDA::find::Found;
+                return OrderDA::find::found;
             }
         }
     }
@@ -42,12 +42,12 @@ OrderDA::find OrderDA::updateOrder(int id, string status, bool complete, update 
             Order* order = orderData->getData(i);
             if (order->id == id) {
                 order->status = status;
-                return OrderDA::find::Found;
+                return OrderDA::find::found;
             }
         }
     }
 
-    return OrderDA::find::NotFound;
+    return OrderDA::find::notFound;
 }
 
 // display all data in tabular form
@@ -204,12 +204,12 @@ OrderDA::find OrderDA::filterOrderbyDate(string date, string upperdate, LinkedLi
     }
     if (found == false) {
         cout << "No order after " << date << " is found." << endl;
-        return OrderDA::find::NotFound;
+        return OrderDA::find::notFound;
     }
     else if (found == true) {
         orderDA.displayThis(incompleteOrder);
         orderDA.calcTotalSales(incompleteOrder);
-        return OrderDA::find::Found;
+        return OrderDA::find::found;
     }
 }
 
@@ -236,14 +236,14 @@ void OrderDA::sortOrderByQuantity(Node<Order>** headRef, sortMethod method)
     }
 
     /* Split head into 'a' and 'b' sublists */
-    FrontBackSplit(head, &a, &b);
+    frontBackSplit(head, &a, &b);
 
     /* Recursively sort the sublists */
     sortOrderByQuantity(&a, method);
     sortOrderByQuantity(&b, method);
 
     /* answer = merge the two sorted lists together */
-    *headRef = SortedMerge(a, b, sortBy::quantity, method);
+    *headRef = sortedMerge(a, b, sortBy::quantity, method);
 }
 
 // sort order by item id
@@ -259,14 +259,14 @@ void OrderDA::sortOrderByItemID(Node<Order>** headRef, sortMethod method)
     }
 
     /* Split head into 'a' and 'b' sublists */
-    FrontBackSplit(head, &a, &b);
+    frontBackSplit(head, &a, &b);
 
     /* Recursively sort the sublists */
     sortOrderByItemID(&a, method);
     sortOrderByItemID(&b, method);
 
     /* answer = merge the two sorted lists together */
-    *headRef = SortedMerge(a, b, sortBy::itemID, method);
+    *headRef = sortedMerge(a, b, sortBy::itemID, method);
 }
 
 
@@ -432,7 +432,7 @@ void OrderDA::swap(LinkedList<Order>* list, Node<Order>* low, Node<Order>* high)
 }
 
 // split list in half until every part cannot be split again
-void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef)
+void OrderDA::frontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<Order>** backRef)
 {
     Node<Order>* fast;
     Node<Order>* slow;
@@ -456,7 +456,7 @@ void OrderDA::FrontBackSplit(Node<Order>* source, Node<Order>** frontRef, Node<O
 }
 
 // merge sorted splits 
-Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method)
+Node<Order>* OrderDA::sortedMerge(Node<Order>* a, Node<Order>* b, sortBy variable, sortMethod method)
 {
     Node<Order>* result = NULL;
 
@@ -473,11 +473,11 @@ Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variabl
             /* Pick either a or b, and recur */
             if (a->data.quantity >= b->data.quantity) {
                 result = a;
-                result->next = SortedMerge(a->next, b, variable, method);
+                result->next = sortedMerge(a->next, b, variable, method);
             }
             else {
                 result = b;
-                result->next = SortedMerge(a, b->next, variable, method);
+                result->next = sortedMerge(a, b->next, variable, method);
             }
             return (result);
 
@@ -487,11 +487,11 @@ Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variabl
             /* Pick either a or b, and recur */
             if (a->data.quantity <= b->data.quantity) {
                 result = a;
-                result->next = SortedMerge(a->next, b, variable, method);
+                result->next = sortedMerge(a->next, b, variable, method);
             }
             else {
                 result = b;
-                result->next = SortedMerge(a, b->next, variable, method);
+                result->next = sortedMerge(a, b->next, variable, method);
             }
             return (result);
 
@@ -505,11 +505,11 @@ Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variabl
             /* Pick either a or b, and recur */
             if (a->data.itemID >= b->data.itemID) {
                 result = a;
-                result->next = SortedMerge(a->next, b, variable, method);
+                result->next = sortedMerge(a->next, b, variable, method);
             }
             else {
                 result = b;
-                result->next = SortedMerge(a, b->next, variable, method);
+                result->next = sortedMerge(a, b->next, variable, method);
             }
             return (result);
 
@@ -519,11 +519,11 @@ Node<Order>* OrderDA::SortedMerge(Node<Order>* a, Node<Order>* b, sortBy variabl
             /* Pick either a or b, and recur */
             if (a->data.itemID <= b->data.itemID) {
                 result = a;
-                result->next = SortedMerge(a->next, b, variable, method);
+                result->next = sortedMerge(a->next, b, variable, method);
             }
             else {
                 result = b;
-                result->next = SortedMerge(a, b->next, variable, method);
+                result->next = sortedMerge(a, b->next, variable, method);
             }
             return (result);
 

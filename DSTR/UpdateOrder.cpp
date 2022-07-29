@@ -13,15 +13,15 @@ UpdateOrder::UpdateOrder(int accountType) {
 
 	if (accountType == 0) {
 
-		AdminUpdateOrder(accountType);
+		adminInterface(accountType);
 	}
 	else if (accountType == 1)
 	{
-		ExecutiveUpdateOrder(accountType);
+		executiveInterface(accountType);
 	}
 }
 
-void UpdateOrder::AdminUpdateOrder(int accountType) {
+void UpdateOrder::adminInterface(int accountType) {
 	cout << "============================" << endl;
 	cout << "       Update Order	     " << endl;
 	cout << "============================" << endl;
@@ -74,12 +74,12 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 			else {
 				if (stat == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::status);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -88,12 +88,12 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 				}
 				else if (stat == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "urgent", false, OrderDA::update::status);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -127,12 +127,12 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 			else {
 				if (complete == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", true, OrderDA::update::completion);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -141,12 +141,12 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 				}
 				else if (complete == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::completion);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -171,7 +171,7 @@ void UpdateOrder::AdminUpdateOrder(int accountType) {
 	}
 }
 
-void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
+void UpdateOrder::executiveInterface(int accountType) {
 	cout << "============================" << endl;
 	cout << "       Update Order	     " << endl;
 	cout << "============================" << endl;
@@ -224,12 +224,12 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 			else {
 				if (stat == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::status);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -238,12 +238,12 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 				}
 				else if (stat == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "urgent", false, OrderDA::update::status);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -277,12 +277,12 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 			else {
 				if (complete == 1) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", true, OrderDA::update::completion);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
@@ -291,12 +291,12 @@ void UpdateOrder::ExecutiveUpdateOrder(int accountType) {
 				}
 				else if (complete == 2) {
 					OrderDA::find found = orderDA.updateOrder(id, "trivia", false, OrderDA::update::completion);
-					if (found == OrderDA::find::NotFound) {
+					if (found == OrderDA::find::notFound) {
 						cout << "Order with such ID is not found.";
 						keepLaunch("Try again?", accountType);
 						break;
 					}
-					else if (found == OrderDA::find::Found) {
+					else if (found == OrderDA::find::found) {
 						cout << "Order with ID of " << id << " has been updated.";
 						keepLaunch("Continue?", accountType);
 						valid = true;
