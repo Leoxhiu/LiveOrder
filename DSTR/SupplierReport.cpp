@@ -62,7 +62,6 @@ SupplierReport::SupplierReport(int accountType) {
 					cout << "Item ID: " << itemDA.getItemByID(i).id << endl
 						<< "Item Name: " << itemDA.getItemByID(i).name << endl
 						<< "Item Type: " << itemDA.getItemByID(i).type << endl
-						<< "Quantity (Unit): " << itemDA.getItemByID(i).quantity << endl
 						<< "Price per item (RM): " << itemDA.getItemByID(i).price << endl
 						<< "------------------------------------------" << endl;
 				}

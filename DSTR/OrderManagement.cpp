@@ -89,7 +89,7 @@ void OrderManagement::adminInterface(int accountType) {
 				cout << "Item ID must be in between 1 and 10!" << endl;
 			}
 			else {
-				itemDA.getItemByID(itemID).supplierID == supplierID;
+				supplierID = itemDA.getItemByID(itemID).supplierID;
 				cout << "Supplier ID is automatically set as " << supplierID << " to match with Item ID of " << itemID << "." << endl;
 				valid = true;
 				break;
