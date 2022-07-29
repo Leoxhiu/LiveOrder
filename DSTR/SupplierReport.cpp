@@ -56,15 +56,17 @@ SupplierReport::SupplierReport(int accountType) {
 				<< "Items selled by this supplier: " << endl
 				<< "------------------------------------------" << endl;
 
-			DynamicArray<Item>* items = itemDA.ReturnItemsbySupplierID(supplierID);
-			for (int i = 0; i < items->getLength(); i++) {
-				Item* item = items->getData(i);
-				cout << "Item ID: " << item->id << endl
-					<< "Item Name: " << item->name << endl
-					<< "Item Type: " << item->type << endl
-					<< "Quantity (Unit): " << item->quantity << endl
-					<< "Price per item (RM): " << item->price << endl
-					<< "------------------------------------------" << endl;
+			for (int i = 0; i < itemDA.getItemData()->getLength(); i++) {
+				if (itemDA.getItemByID(i).supplierID == supplierID)
+				{
+					cout << "Item ID: " << itemDA.getItemByID(i).id << endl
+						<< "Item Name: " << itemDA.getItemByID(i).name << endl
+						<< "Item Type: " << itemDA.getItemByID(i).type << endl
+						<< "Quantity (Unit): " << itemDA.getItemByID(i).quantity << endl
+						<< "Price per item (RM): " << itemDA.getItemByID(i).price << endl
+						<< "------------------------------------------" << endl;
+				}
+				
 			}
 		
 		}

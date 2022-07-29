@@ -83,17 +83,6 @@ void ItemDA::filterItembySupplierID(int supplierId) {
     }
     displayThis(newItem);
 }
-DynamicArray<Item>* ItemDA::ReturnItemsbySupplierID(int supplierId) {
-    DynamicArray<Item>* newItem = new DynamicArray<Item>;
-
-    for (int i = 0; i < getItemData()->getLength(); i++) {
-        Item* item = getItemData()->getData(i);
-        if (item->supplierID == supplierId) {
-            newItem->append(*item);
-        }
-    }
-    return newItem;
-}
 
 void ItemDA::filterItembyType(string type) {
     DynamicArray<Item>* newItem = new DynamicArray<Item>;

@@ -9,6 +9,8 @@
 #include "OrderDA.h"
 #include "updateOrder.h"
 #include "MainMenu.h"
+#include "ItemDA.h"
+#include "SupplierDA.h"
 
 
 using namespace std;
@@ -60,11 +62,14 @@ void OrderManagement::adminInterface(int accountType) {
 		break;
 	}
 	case 2: {
+		ItemDA itemDA;
+		SupplierDA supplierDA;
+
 		int id = orderDA.getOrderData()->getLength() + 1;
 		int itemID = 0;
+		int supplierID = 0;
 		int quantity = 0;
 		string date;
-		int supplierID = 0;
 		int stat = 0;
 		string status;
 		bool valid = false;
@@ -78,34 +83,13 @@ void OrderManagement::adminInterface(int accountType) {
 				cin.ignore();
 				cout << "Must be numeric input!" << endl;
 			}
-			else if (itemID < 1 || itemID > 10) {
+			else if (itemDA.findItemByID(itemID) == ItemDA::find::notFound){
 				cin.clear();
 				cin.ignore();
 				cout << "Item ID must be in between 1 and 10!" << endl;
 			}
 			else {
-				switch (itemID) {
-				case 1: {
-					supplierID = 1;
-					break;
-				}
-				case 2: case 6: case 10: {
-					supplierID = 2;
-					break;
-				}
-				case 3: case 8: {
-					supplierID = 3;
-					break;
-				}
-				case 4: case 7: {
-					supplierID = 4;
-					break;
-				}
-				case 5: case 9: {
-					supplierID = 5;
-					break;
-				}
-				}
+				itemDA.getItemByID(itemID).supplierID == supplierID;
 				cout << "Supplier ID is automatically set as " << supplierID << " to match with Item ID of " << itemID << "." << endl;
 				valid = true;
 				break;
