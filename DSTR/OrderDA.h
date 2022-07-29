@@ -50,7 +50,6 @@ class OrderDA
 	private:
 		// private functions here
 		LinkedList<Order>* importFromDatabase(); // Import orders from database into linked list
-		void exportToDatabase(); // Export orders to database from linked list
 
 		// functions for quick sort (ID only)
 		int partition(LinkedList<Order>* list, int low, int high, Order* pivot, sortMethod method);

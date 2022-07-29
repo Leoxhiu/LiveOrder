@@ -35,11 +35,9 @@ class ItemDA
 		void incrementQuantity(int id, int quantity); //increment quantity of item upon purchase order completion
 
 		void importItem(); // Import item data to dynamic array storage
-		DynamicArray<Item>* ReturnItemsbySupplierID(int supplierId);
 
 	private:
 		// private functions here
 		DynamicArray<Item>* importFromDatabase(); // Import items from database into dynamic array
-		void exportToDatabase(); // Export items to database from dynamic array
 };
 
