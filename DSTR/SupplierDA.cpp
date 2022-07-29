@@ -104,6 +104,7 @@ SupplierDA::find SupplierDA::findSupplierByID(int id) {
 	}
 
 }
+
 Supplier SupplierDA::getSupplierByID(int id) {
 
 	DynamicArray<Supplier>* supplierData = getSupplierData();
